@@ -1,12 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/halo-logo.jpg.asset.json";
 
+/**
+ * The source logo is a JPG on white. On the dark navy shell we invert +
+ * hue-rotate (restores the navy hue) and screen out the now-black background.
+ */
 export function Logo({ className = "h-12" }: { className?: string }) {
   return (
     <img
       src={logo.url}
       alt="Halo Yachts — infinite range, zero noise"
-      className={`${className} w-auto mix-blend-screen contrast-125 invert`}
+      className={`${className} w-auto invert hue-rotate-180 mix-blend-screen`}
       loading="eager"
     />
   );
