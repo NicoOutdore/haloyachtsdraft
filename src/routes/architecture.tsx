@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteShell, Section, PageHero, SpecRow } from "@/components/site/SiteShell";
+import { RegenChart } from "@/components/site/RegenChart";
 import {
   MODELS,
   SHARED_SPECS,
@@ -7,9 +8,8 @@ import {
   SOLAR_YIELDS,
   CRUISE_DEMAND,
   SOLAR_VS_DEMAND,
-  REGEN_PROFILE,
-
 } from "@/components/site/data";
+
 
 const TITLE = "Naval Architecture & Technical Specifications | Halo Yachts";
 const DESCRIPTION =
