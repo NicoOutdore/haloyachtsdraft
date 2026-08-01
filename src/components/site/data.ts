@@ -30,7 +30,8 @@ export const MODELS = [
     code: "Model B",
     name: "Med / Vacation Edition",
     subtitle: "Forward recessed cockpit",
-    image: med.url,
+    image: explorer.url,
+
     summary:
       "Optimised for part-time cruising vacations and the charter market, pairing a slightly smaller main cabin with a sheltered forward recessed cockpit.",
     features: [
