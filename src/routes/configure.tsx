@@ -28,7 +28,7 @@ export const Route = createFileRoute("/configure")({
 
 const ACQUISITION = ["Outright cash purchase", "Maltese maritime lease (3 years)", "Marine mortgage (7 years)", "Undecided"];
 const TIMELINES = ["Within 12 months", "12 – 24 months", "24 – 36 months", "Exploring"];
-const CABINS = ["3 cabins", "4 cabins"];
+const CABINS = ["2 cabins", "3 cabins", "4 cabins"];
 
 function Choice({
   selected,
@@ -122,7 +122,8 @@ function Configure() {
 
             <div>
               <h2 className="text-xl font-semibold">2. Interior layout</h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <div className="mt-5 grid gap-4 sm:grid-cols-3">
+
                 {CABINS.map((c) => (
                   <Choice key={c} selected={cabins === c} onClick={() => setCabins(c)} title={c} />
                 ))}

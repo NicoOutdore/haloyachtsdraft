@@ -5,7 +5,10 @@ import {
   SHARED_SPECS,
   PROPULSION_SPECS,
   SOLAR_YIELDS,
+  CRUISE_DEMAND,
+  SOLAR_VS_DEMAND,
   REGEN_PROFILE,
+
 } from "@/components/site/data";
 
 const TITLE = "Naval Architecture & Technical Specifications | Halo Yachts";
@@ -93,6 +96,38 @@ function Architecture() {
             </div>
           ))}
         </div>
+
+        <h3 className="mt-16 text-xl font-semibold">Continuous solar input vs. propulsion demand</h3>
+        <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+          Daily totals matter for the bank, but infinite range is decided second by second: whenever
+          live array output exceeds the pods&apos; draw, the yacht cruises on sunlight alone. At{" "}
+          {CRUISE_DEMAND.speed} in benign conditions the twin pods draw {CRUISE_DEMAND.draw}
+          {" "}({CRUISE_DEMAND.note.toLowerCase()}), plus roughly {CRUISE_DEMAND.hotel} of hotel load.
+        </p>
+        <div className="mt-6 overflow-x-auto">
+          <table className="w-full min-w-[36rem] text-left text-sm">
+            <thead>
+              <tr className="border-b border-border text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                <th className="py-3 pr-4 font-medium">Sky condition</th>
+                <th className="py-3 pr-4 font-medium">Live array input</th>
+                <th className="py-3 pr-4 font-medium">Pods at 5.0 kts</th>
+                <th className="py-3 font-medium">Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              {SOLAR_VS_DEMAND.map((r) => (
+                <tr key={r.condition} className="border-b border-border/60">
+                  <td className="py-4 pr-4 font-medium">{r.condition}</td>
+                  <td className="py-4 pr-4 text-accent">{r.input}</td>
+                  <td className="py-4 pr-4 text-muted-foreground">{CRUISE_DEMAND.draw}</td>
+                  <td className="py-4 text-muted-foreground">{r.verdict}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+
 
         <h3 className="mt-16 text-xl font-semibold">Hydro-regeneration under kite power</h3>
         <div className="mt-6 grid max-w-xl gap-4 sm:grid-cols-2">
