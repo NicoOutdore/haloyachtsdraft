@@ -5,7 +5,7 @@ import { BASE_PRICE, RUNNING_COSTS } from "@/components/site/data";
 
 const TITLE = "Pricing, Ownership Pathways & Running Costs | Halo Yachts";
 const DESCRIPTION =
-  "Halo 13.5m base build price £450,000 pre-VAT, with outright purchase, Maltese maritime leasing and marine mortgage pathways — plus annual running cost comparisons against diesel cats.";
+  "Halo 13.5m base build price £450,000 pre-VAT, with outright purchase, Maltese maritime leasing (50% VAT reduction) and marine mortgage pathways — plus annual running cost comparisons against diesel cats.";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
