@@ -73,10 +73,25 @@ export const SOLAR_YIELDS = [
   { season: "Winter low", months: "Nov – Feb", sun: "2 – 3 sun hours/day", yield: "~10 – 15 kWh/day" },
 ];
 
+export const CRUISE_DEMAND = {
+  speed: "5.0 kts",
+  draw: "~2.6 kW",
+  note: "Twin ePropulsion pods, benign conditions — flat water, no adverse current, ~1.3 kW per pod.",
+  hotel: "~0.4 kW",
+};
+
+export const SOLAR_VS_DEMAND = [
+  { condition: "Clear summer midday", input: "~6.0 – 6.8 kW", verdict: "Cruise + hotel load covered, surplus charges the bank" },
+  { condition: "Light / high cloud", input: "~3.5 – 4.5 kW", verdict: "Cruise + hotel load covered, modest surplus" },
+  { condition: "Broken cloud", input: "~2.5 – 3.2 kW", verdict: "Break-even to slight surplus at 5 kts" },
+  { condition: "Heavy overcast", input: "~0.8 – 1.5 kW", verdict: "Shortfall drawn from the 60 kWh bank" },
+];
+
 export const REGEN_PROFILE = [
   { speed: "5.0 kts", input: "~1.2 kW continuous" },
   { speed: "6.5 kts", input: "~2.4 kW continuous" },
 ];
+
 
 export const PACKS = [
   {
