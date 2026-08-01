@@ -75,7 +75,7 @@ function Home() {
         <div className="relative mx-auto max-w-4xl px-5 pt-28 pb-16 text-center lg:px-8">
           <Logo className="mx-auto h-28 sm:h-36" />
           <h1 className="mt-8 text-3xl font-semibold leading-[1.1] sm:text-5xl lg:text-6xl">
-            Autonomous Cruising. Uncompromising Engineering. Infinite Range.
+            Ocean Passages, Powered by the Sun.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
             A 13.5-metre solar-electric aluminium blue-water catamaran, built for silent ocean
