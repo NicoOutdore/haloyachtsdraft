@@ -30,15 +30,15 @@ const PATHWAYS = [
   },
   {
     name: "Maltese maritime leasing",
-    term: "3-year term",
-    body: "A structured EU maritime lease over three years, widely used for cruising yachts operating within European waters.",
-    points: ["3-year structured lease term", "EU-compliant maritime structure", "Purchase option at term end"],
+    term: "Up to 36-month term",
+    body: "A structured EU maritime lease that reduces the effective VAT from 18% to 9% — a 50% VAT saving — widely used for cruising yachts operating within European waters.",
+    points: ["50% VAT reduction (18% → 9%)", "Up to 36-month lease term", "50% initial deposit", "EU-compliant maritime structure", "Purchase option at term end"],
   },
   {
     name: "Marine mortgage",
-    term: "7-year term",
+    term: "5 – 15 year term",
     body: "Conventional marine finance secured against the vessel, arranged with specialist marine lenders following survey and valuation.",
-    points: ["7-year amortising term", "Survey & valuation led", "Deposit and rate set by lender"],
+    points: ["5 – 15 year amortising term", "Deposit from 20%", "Survey & valuation led", "Rate set by lender"],
   },
 ];
 
