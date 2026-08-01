@@ -87,9 +87,13 @@ export const SOLAR_VS_DEMAND = [
   { condition: "Heavy overcast", input: "~0.8 – 1.5 kW", verdict: "Shortfall drawn from the 60 kWh bank" },
 ];
 
+// Hydro-regeneration under kite power. Per-pod values follow the ePropulsion
+// 20 kW pod regeneration curve; twin figures are the two pods combined.
 export const REGEN_PROFILE = [
-  { speed: "5.0 kts", input: "~1.2 kW continuous" },
-  { speed: "6.5 kts", input: "~2.4 kW continuous" },
+  { speed: 3.0, perPod: 0.15, twin: 0.3 },
+  { speed: 4.0, perPod: 0.35, twin: 0.7 },
+  { speed: 5.0, perPod: 0.6, twin: 1.2 },
+  { speed: 6.5, perPod: 1.2, twin: 2.4 },
 ];
 
 
