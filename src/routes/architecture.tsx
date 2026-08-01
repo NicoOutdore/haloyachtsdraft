@@ -130,19 +130,38 @@ function Architecture() {
 
 
         <h3 className="mt-16 text-xl font-semibold">Hydro-regeneration under kite power</h3>
-        <div className="mt-6 grid max-w-xl gap-4 sm:grid-cols-2">
-          {REGEN_PROFILE.map((r) => (
-            <div key={r.speed} className="surface-panel rounded-lg p-6">
-              <p className="text-sm text-muted-foreground">At {r.speed}</p>
-              <p className="mt-2 text-xl font-semibold">{r.input}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-6 max-w-2xl text-sm text-muted-foreground">
-          The standard 40 m² LibertyKite drives the yacht downwind while the ePropulsion pods
+        <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+          The standard 40 m² LibertyKite drives the yacht downwind while both ePropulsion pods
           freewheel as generators — CAN-bus integration authorises full regeneration back into the
-          96 V bank.
+          96 V bank. The dashed line is a single 20 kW pod; the solid line is the installed twin-pod
+          configuration.
         </p>
+        <RegenChart />
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          <div className="surface-panel rounded-lg p-6">
+            <p className="text-sm text-muted-foreground">3 – 4 kts under kite</p>
+            <p className="mt-2 text-xl font-semibold text-accent">~0.3 – 0.7 kW</p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Light-air drift: regeneration offsets most of the ~0.4 kW hotel load.
+            </p>
+          </div>
+          <div className="surface-panel rounded-lg p-6">
+            <p className="text-sm text-muted-foreground">5.0 kts under kite</p>
+            <p className="mt-2 text-xl font-semibold text-accent">~1.2 kW</p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Roughly 0.6 kW per pod — hotel load covered with surplus into the bank.
+            </p>
+          </div>
+          <div className="surface-panel rounded-lg p-6">
+            <p className="text-sm text-muted-foreground">6.5 kts under kite</p>
+            <p className="mt-2 text-xl font-semibold text-accent">~2.4 kW</p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              About 1.2 kW per pod — comparable to a clear-sky winter solar hour, sustained through
+              the night.
+            </p>
+          </div>
+        </div>
+
       </Section>
     </SiteShell>
   );
