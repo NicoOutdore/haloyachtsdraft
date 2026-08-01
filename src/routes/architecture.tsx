@@ -5,7 +5,10 @@ import {
   SHARED_SPECS,
   PROPULSION_SPECS,
   SOLAR_YIELDS,
+  CRUISE_DEMAND,
+  SOLAR_VS_DEMAND,
   REGEN_PROFILE,
+
 } from "@/components/site/data";
 
 const TITLE = "Naval Architecture & Technical Specifications | Halo Yachts";
