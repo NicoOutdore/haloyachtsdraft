@@ -13,12 +13,13 @@ export const MODELS = [
     id: "model-a",
     code: "Model A",
     name: "Explorer Edition",
-    subtitle: "Full-width saloon",
-    image: explorer.url,
+    subtitle: "Full length saloon",
+    image: med.url,
     summary:
-      "Prioritises internal volume, maximum all-weather protection and an expansive full-width main cabin for liveaboards, high-latitude explorers and extended-cruising couples.",
+      "Prioritises internal volume, maximum all-weather protection and an expansive full length main cabin for liveaboards, high-latitude explorers and extended-cruising couples.",
     features: [
-      "Full-width main saloon with panoramic glazing",
+      "Full length main saloon with panoramic glazing",
+
       "Single offshore-safe front access door",
       "Integrated indented handrails on the aluminium roof top",
       "Optimised for liveaboard and high-latitude passage-making",
