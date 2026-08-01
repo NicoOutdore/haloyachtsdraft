@@ -155,4 +155,4 @@ export const PARTNERS = [
   { name: "CE Category A", role: "Ocean certification standard" },
 ];
 
-export const BUILD_LOCATIONS = ["New Zealand", "Australia", "Germany", "Italy", "General EU"];
+export const BUILD_LOCATIONS = ["New Zealand", "Australia", "Germany", "Italy", "Undecided"];
