@@ -122,7 +122,8 @@ function Configure() {
 
             <div>
               <h2 className="text-xl font-semibold">2. Interior layout</h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <div className="mt-5 grid gap-4 sm:grid-cols-3">
+
                 {CABINS.map((c) => (
                   <Choice key={c} selected={cabins === c} onClick={() => setCabins(c)} title={c} />
                 ))}
