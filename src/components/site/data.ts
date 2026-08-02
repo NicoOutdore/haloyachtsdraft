@@ -52,6 +52,7 @@ export const SHARED_SPECS = [
   { label: "Target lightcraft displacement", value: "~4,600 kg fully outfitted" },
   { label: "Construction", value: "CNC-cut marine-grade aluminium (Sealium / 5083-H111)" },
   { label: "Insulation", value: "Spray-cork thermal & acoustic lining" },
+  { label: "Fresh water capacity", value: "400 L standard — integral structural lower-hull tanks (both models)" },
   { label: "Certification", value: "CE Category A — Ocean" },
 ];
 
@@ -106,8 +107,10 @@ export const PACKS = [
     items: [
       "Extended battery bank +30 kWh (90 kWh total)",
       "Solbian Maxeon high-efficiency flush solar laminate upgrade",
+      "High-efficiency 24 V DC marine watermaker — ~50 – 100 L/hour from the 24 V step-down architecture",
       "Marine climate control (A/C & heating)",
     ],
+    note: "Watermaker included: essential for high-latitude, off-grid liveaboards on extended passages where shore water is unavailable.",
   },
   {
     id: "blue-water-expedition",
@@ -118,6 +121,7 @@ export const PACKS = [
       "Advanced offshore navigation & comms suite — dual MFD chartplotters, radar, AIS transponder, satellite comms terminal",
       "Upgraded fast-charging shore power infrastructure (Victron MultiPlus)",
     ],
+    note: "",
   },
   {
     id: "med-comfort-power",
@@ -129,6 +133,7 @@ export const PACKS = [
       "Solbian Maxeon solar upgrade",
       "Upgraded fast-charging shore power infrastructure",
     ],
+    note: "No watermaker by design: charter and vacation cruising is port-to-port with frequent marina stopovers, so desalinator servicing and winterisation are deliberately kept off the boat. The 400 L standard tank covers the itinerary.",
   },
   {
     id: "charter-entertainment",
@@ -140,6 +145,7 @@ export const PACKS = [
       "Premium deck & cockpit lounging amenities",
       "Upgraded auxiliary systems",
     ],
+    note: "",
   },
 ] as const;
 
