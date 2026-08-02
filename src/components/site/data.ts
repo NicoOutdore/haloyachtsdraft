@@ -145,6 +145,7 @@ export const PACKS = [
       "Premium deck & cockpit lounging amenities",
       "Upgraded auxiliary systems",
     ],
+    note: "",
   },
 ] as const;
 
