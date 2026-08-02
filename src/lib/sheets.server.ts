@@ -10,7 +10,7 @@ export async function appendRow(tab: string, values: (string | number)[]) {
 
   const range = `${tab}!A1`;
   const res = await fetch(
-    `${GATEWAY_URL}/spreadsheets/${SPREADSHEET_ID}/values/${range}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
+    `${GATEWAY_URL}/spreadsheets/${SPREADSHEET_ID}/values/${range}:append?valueInputOption=RAW&insertDataOption=INSERT_ROWS`,
     {
       method: "POST",
       headers: {
