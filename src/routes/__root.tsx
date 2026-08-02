@@ -88,6 +88,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Halo Yachts" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Halo Yachts | Solar-Electric Aluminium Catamarans" },
+      { name: "twitter:title", content: "Halo Yachts | Solar-Electric Aluminium Catamarans" },
+      { property: "og:description", content: "Halo Yachts — 13.5m solar-electric aluminium blue-water cruising catamarans. Infinite range, zero noise." },
+      { name: "twitter:description", content: "Halo Yachts — 13.5m solar-electric aluminium blue-water cruising catamarans. Infinite range, zero noise." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3486883e-3f40-489c-b609-538f81891432" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3486883e-3f40-489c-b609-538f81891432" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
