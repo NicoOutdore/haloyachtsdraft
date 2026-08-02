@@ -250,21 +250,57 @@ function Configure() {
             <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
               <div>
                 <Label htmlFor="name">Full name</Label>
-                <Input id="name" name="name" required className="mt-2" autoComplete="name" />
+                <Input
+                  id="name"
+                  name="name"
+                  required
+                  maxLength={100}
+                  className="mt-2"
+                  autoComplete="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </div>
               <div>
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" required className="mt-2" autoComplete="email" />
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  maxLength={255}
+                  className="mt-2"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  aria-invalid={Boolean(errors.email)}
+                />
+                {errors.email && <p className="mt-2 text-sm text-destructive">{errors.email}</p>}
               </div>
-              <div>
-                <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" name="phone" className="mt-2" autoComplete="tel" />
-              </div>
+              <PhoneFields
+                dialCode={dialCode}
+                onDialCodeChange={setDialCode}
+                phone={phone}
+                onPhoneChange={setPhone}
+                error={errors.phone}
+              />
               <div>
                 <Label htmlFor="notes">Notes</Label>
-                <Textarea id="notes" name="notes" rows={3} className="mt-2" placeholder="Cruising plans, questions, timing" />
+                <Textarea
+                  id="notes"
+                  name="notes"
+                  rows={3}
+                  maxLength={1000}
+                  className="mt-2"
+                  placeholder="Cruising plans, questions, timing"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                />
               </div>
-              <Button type="submit" size="lg" className="w-full">Reserve a build slot</Button>
+              <Button type="submit" size="lg" className="w-full" disabled={submitting}>
+                {submitting ? "Submitting…" : "Reserve a build slot"}
+              </Button>
+
               <p className="text-xs text-muted-foreground">
                 Enquiry only — no payment is taken. {acquisition} · {timeline}.
               </p>
