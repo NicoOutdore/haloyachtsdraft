@@ -1,12 +1,16 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { SiteShell, Section, PageHero } from "@/components/site/SiteShell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { PhoneFields, PHONE_PATTERN, EMAIL_PATTERN } from "@/components/site/PhoneFields";
+import { submitConfiguration } from "@/lib/submissions.functions";
 import { MODELS, PACKS, BASE_PRICE, BUILD_LOCATIONS } from "@/components/site/data";
+
 
 const TITLE = "Configure & Reserve Your Halo 13.5 | Halo Yachts";
 const DESCRIPTION =
