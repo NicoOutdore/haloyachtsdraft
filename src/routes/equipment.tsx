@@ -55,6 +55,11 @@ function Equipment() {
                     </li>
                   ))}
                 </ul>
+                {pack.note && (
+                  <p className="mt-6 border-t border-border/60 pt-5 text-xs leading-relaxed text-muted-foreground">
+                    {pack.note}
+                  </p>
+                )}
               </article>
             ))}
           </div>
