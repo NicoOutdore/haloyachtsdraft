@@ -52,6 +52,7 @@ export const SHARED_SPECS = [
   { label: "Target lightcraft displacement", value: "~4,600 kg fully outfitted" },
   { label: "Construction", value: "CNC-cut marine-grade aluminium (Sealium / 5083-H111)" },
   { label: "Insulation", value: "Spray-cork thermal & acoustic lining" },
+  { label: "Fresh water capacity", value: "400 L standard — integral structural lower-hull tanks (both models)" },
   { label: "Certification", value: "CE Category A — Ocean" },
 ];
 
