@@ -1,12 +1,16 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { SiteShell, Section, PageHero } from "@/components/site/SiteShell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { PhoneFields, PHONE_PATTERN, EMAIL_PATTERN } from "@/components/site/PhoneFields";
+import { submitConfiguration } from "@/lib/submissions.functions";
 import { MODELS, PACKS, BASE_PRICE, BUILD_LOCATIONS } from "@/components/site/data";
+
 
 const TITLE = "Configure & Reserve Your Halo 13.5 | Halo Yachts";
 const DESCRIPTION =
@@ -69,6 +73,16 @@ function Configure() {
   const [acquisition, setAcquisition] = useState(ACQUISITION[0]);
   const [timeline, setTimeline] = useState(TIMELINES[0]);
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [dialCode, setDialCode] = useState("+44");
+  const [phone, setPhone] = useState("");
+  const [notes, setNotes] = useState("");
+  const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
+  const [submitting, setSubmitting] = useState(false);
+
+  const send = useServerFn(submitConfiguration);
+
   const availablePacks = useMemo(() => PACKS.filter((p) => p.model === model), [model]);
   const total = useMemo(
     () => BASE_PRICE + PACKS.filter((p) => packs.includes(p.id)).reduce((s, p) => s + p.price, 0),
@@ -84,13 +98,50 @@ function Configure() {
     setPacks((prev) => (prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]));
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    toast.success("Reservation enquiry received", {
-      description: "Our team will contact you within two business days with a build slot proposal.",
-    });
-    e.currentTarget.reset();
+
+    const nextErrors: { email?: string; phone?: string } = {};
+    if (!EMAIL_PATTERN.test(email.trim())) nextErrors.email = "Enter a valid email address";
+    if (phone.trim() && !PHONE_PATTERN.test(phone.trim()))
+      nextErrors.phone = "Enter a valid phone number (digits, spaces or dashes)";
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
+
+    setSubmitting(true);
+    try {
+      await send({
+        data: {
+          name: name.trim(),
+          email: email.trim(),
+          dialCode: phone.trim() ? dialCode : "",
+          phone: phone.trim(),
+          model: `${selectedModel.code} — ${selectedModel.name}`,
+          cabins,
+          packs: PACKS.filter((p) => packs.includes(p.id)).map((p) => p.name).join(", "),
+          location,
+          acquisition,
+          timeline,
+          total,
+          notes: notes.trim(),
+        },
+      });
+      toast.success("Reservation enquiry received", {
+        description: "Our team will contact you within two business days with a build slot proposal.",
+      });
+      setName("");
+      setEmail("");
+      setPhone("");
+      setNotes("");
+    } catch {
+      toast.error("We could not submit your enquiry", {
+        description: "Please try again in a moment or email us directly.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   }
+
 
   const selectedModel = MODELS.find((m) => m.code === model)!;
 
@@ -199,21 +250,57 @@ function Configure() {
             <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
               <div>
                 <Label htmlFor="name">Full name</Label>
-                <Input id="name" name="name" required className="mt-2" autoComplete="name" />
+                <Input
+                  id="name"
+                  name="name"
+                  required
+                  maxLength={100}
+                  className="mt-2"
+                  autoComplete="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </div>
               <div>
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" required className="mt-2" autoComplete="email" />
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  maxLength={255}
+                  className="mt-2"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  aria-invalid={Boolean(errors.email)}
+                />
+                {errors.email && <p className="mt-2 text-sm text-destructive">{errors.email}</p>}
               </div>
-              <div>
-                <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" name="phone" className="mt-2" autoComplete="tel" />
-              </div>
+              <PhoneFields
+                dialCode={dialCode}
+                onDialCodeChange={setDialCode}
+                phone={phone}
+                onPhoneChange={setPhone}
+                error={errors.phone}
+              />
               <div>
                 <Label htmlFor="notes">Notes</Label>
-                <Textarea id="notes" name="notes" rows={3} className="mt-2" placeholder="Cruising plans, questions, timing" />
+                <Textarea
+                  id="notes"
+                  name="notes"
+                  rows={3}
+                  maxLength={1000}
+                  className="mt-2"
+                  placeholder="Cruising plans, questions, timing"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                />
               </div>
-              <Button type="submit" size="lg" className="w-full">Reserve a build slot</Button>
+              <Button type="submit" size="lg" className="w-full" disabled={submitting}>
+                {submitting ? "Submitting…" : "Reserve a build slot"}
+              </Button>
+
               <p className="text-xs text-muted-foreground">
                 Enquiry only — no payment is taken. {acquisition} · {timeline}.
               </p>
