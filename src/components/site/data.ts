@@ -22,7 +22,7 @@ export const MODELS = [
 
       "Single offshore-safe front access door",
       "Integrated indented handrails on the aluminium roof top",
-      "Optimised for liveaboard and high-latitude passage-making",
+      "Optimised for liveaboard and blue water passage-making",
     ],
   },
   {
