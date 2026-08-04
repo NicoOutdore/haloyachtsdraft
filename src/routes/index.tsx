@@ -78,7 +78,7 @@ function Home() {
             Freedom Without Compromise.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Discover the Med and Explorer editions—unpainted aluminium solar-electric catamarans
+            Discover the Med and Explorer editions - unpainted aluminium solar-electric catamarans
             built for silent passages, effortless cruising, and true off-grid self-sufficiency.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
@@ -90,7 +90,7 @@ function Home() {
             </Button>
           </div>
           <p className="mx-auto mt-10 max-w-2xl text-sm italic leading-relaxed text-muted-foreground/80">
-            The Future of Offshore Cruising — Designed with Dixon Yacht Design, Halo is creating a
+            The Future of Offshore Cruising. Designed with Dixon Yacht Design, Halo is creating a
             new generation of aluminium, solar-electric cruising catamarans engineered for
             intelligent ownership, exceptional efficiency and blue-water capability.
           </p>
