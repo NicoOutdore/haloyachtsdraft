@@ -75,11 +75,11 @@ function Home() {
         <div className="relative mx-auto max-w-4xl px-5 pt-28 pb-16 text-center lg:px-8">
           <Logo className="mx-auto h-28 sm:h-36" />
           <h1 className="mt-8 text-3xl font-semibold leading-[1.1] sm:text-5xl lg:text-6xl">
-            Ocean Passages, Powered by the Sun.
+            Freedom Without Compromise.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            A 13.5-metre solar-electric aluminium blue-water catamaran, built for silent ocean
-            passages and true off-grid self-sufficiency.
+            Discover the Med and Explorer editions—unpainted aluminium solar-electric catamarans
+            built for silent passages, effortless cruising, and true off-grid self-sufficiency.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg">
@@ -89,6 +89,11 @@ function Home() {
               <Link to="/architecture">Explore Architecture</Link>
             </Button>
           </div>
+          <p className="mx-auto mt-10 max-w-2xl text-sm italic leading-relaxed text-muted-foreground/80">
+            The Future of Offshore Cruising — Designed with Dixon Yacht Design, Halo is creating a
+            new generation of aluminium, solar-electric cruising catamarans engineered for
+            intelligent ownership, exceptional efficiency and blue-water capability.
+          </p>
         </div>
       </section>
 
