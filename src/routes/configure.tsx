@@ -14,7 +14,7 @@ import { MODELS, PACKS, BASE_PRICE, BUILD_LOCATIONS } from "@/components/site/da
 
 const TITLE = "Configure & Reserve Your Halo 13.5 | Halo Yachts";
 const DESCRIPTION =
-  "Configure your Halo 13.5m solar-electric catamaran — choose the Explorer or Med edition, 3 or 4 cabin layout, equipment packs, preferred partner yard location and acquisition route.";
+  "Configure your Halo 13.5m solar-electric catamaran — choose the Explorer or Coastal edition, 2, 3 or 4 cabin layout, equipment packs, preferred partner yard location and acquisition route.";
 
 export const Route = createFileRoute("/configure")({
   head: () => ({
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/configure")({
   component: Configure,
 });
 
-const ACQUISITION = ["Outright cash purchase", "Maltese maritime lease (3 years)", "Marine mortgage (7 years)", "Undecided"];
+const ACQUISITION = ["Outright cash purchase", "Maltese maritime lease (3 years)", "Marine mortgage (5 to 15 years)", "Undecided"];
 const TIMELINES = ["Within 12 months", "12 – 24 months", "24 – 36 months", "Exploring"];
 const CABINS = ["2 cabins", "3 cabins", "4 cabins"];
 

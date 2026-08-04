@@ -78,7 +78,7 @@ function Home() {
             Freedom Without Compromise.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Discover the Med and Explorer editions - aluminium solar-electric catamarans engineered
+            Discover the Coastal and Explorer editions - aluminium solar-electric catamarans engineered
             for extended cruising, quiet luxury, and true off-grid self-sufficiency.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">

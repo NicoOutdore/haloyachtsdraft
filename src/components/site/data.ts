@@ -28,7 +28,7 @@ export const MODELS = [
   {
     id: "model-b",
     code: "Model B",
-    name: "Med / Vacation Edition",
+    name: "Coastal Edition",
     subtitle: "Forward recessed cockpit",
     image: explorer.url,
 
