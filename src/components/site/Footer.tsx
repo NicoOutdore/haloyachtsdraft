@@ -16,6 +16,7 @@ export function Footer() {
         <nav aria-label="Yachts">
           <h2 className="eyebrow">Yachts</h2>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+            <li><Link to="/models" className="hover:text-foreground">Explorer vs Coastal comparison</Link></li>
             <li><Link to="/architecture" className="hover:text-foreground">Naval architecture</Link></li>
             <li><Link to="/architecture" hash="model-a" className="hover:text-foreground">Model A — Explorer Edition</Link></li>
             <li><Link to="/architecture" hash="model-b" className="hover:text-foreground">Model B — Coastal Edition</Link></li>
