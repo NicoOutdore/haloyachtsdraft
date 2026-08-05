@@ -140,12 +140,21 @@ function Home() {
                 <p className="eyebrow">{m.code} — {m.subtitle}</p>
                 <h3 className="mt-3 text-2xl font-semibold">{m.name}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{m.summary}</p>
+                <dl className="mt-6 grid gap-3 border-t border-border/60 pt-5 text-sm sm:grid-cols-2">
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Capacity</dt>
+                    <dd className="mt-1">{m.capacity}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Solar cruise</dt>
+                    <dd className="mt-1 text-accent">{m.cruise}</dd>
+                  </div>
+                </dl>
                 <Link
-                  to="/architecture"
-                  hash={m.id}
+                  to="/models"
                   className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
                 >
-                  View full specification <ArrowRight className="size-4" />
+                  Compare Explorer & Coastal <ArrowRight className="size-4" />
                 </Link>
               </div>
             </article>
