@@ -10,7 +10,7 @@ A side-by-side comparison table (stacked cards on mobile) with the rows you supp
 - Passenger capacity: 4 guests (short-handed) / 8 guests + 2 professional crew
 - Base deployed weight: 7,270 kg / 8,335 kg
 - Standard energy storage: 47.0 kWh (2 x 23.5 kWh, one block per hull) — both models
-- Long-range option: +20.4 kWh (2 x 10.2 kWh) = 67.4 kWh; single-hull +10.2 kWh also available
+- Long-range option (via the Off-Grid Endurance Pack): +20.4 kWh (2 x 10.2 kWh, one per hull) = 67.4 kWh
 - Long-range weight impact: 7,470 kg / 8,535 kg
 - Base infinite solar cruise: 5.0 kts / 4.5 kts
 - Upgraded infinite solar cruise: 4.9 kts / 4.4 kts
