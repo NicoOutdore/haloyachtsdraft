@@ -10,7 +10,7 @@ A side-by-side comparison table (stacked cards on mobile) with the rows you supp
 - Passenger capacity: 4 guests (short-handed) / 8 guests + 2 professional crew
 - Base deployed weight: 7,270 kg / 8,335 kg
 - Standard energy storage: 47.0 kWh (2 x 23.5 kWh, one block per hull) — both models
-- Long-range option: +20.4 kWh (2 x 10.2 kWh) = 67.4 kWh; single-hull +10.2 kWh also available
+- Long-range option (via the Off-Grid Endurance Pack): +20.4 kWh (2 x 10.2 kWh, one per hull) = 67.4 kWh
 - Long-range weight impact: 7,470 kg / 8,535 kg
 - Base infinite solar cruise: 5.0 kts / 4.5 kts
 - Upgraded infinite solar cruise: 4.9 kts / 4.4 kts
@@ -30,12 +30,8 @@ Linked from the main header nav, the footer, and the two model cards on the home
 - Pricing: "60 kWh" reference in the base-specification copy becomes 47.0 kWh standard, with the 67.4 kWh upgrade noted.
 - Homepage: meta description and the Solar-Electric Autonomy value card updated to 47 kWh standard / 67.4 kWh optional; model cards gain the headline cruise speed and guest capacity.
 - FAQ: the answer citing "the 60 kWh bank" updated to 47 kWh standard / 67.4 kWh optional.
-- Configurator: an optional battery step offering Standard 47.0 kWh, +10.2 kWh (single hull) or +20.4 kWh (67.4 kWh total). No price shown for the standalone upgrade until you supply one; the summary and the Google Sheet row include the chosen battery.
+- Configurator: no standalone battery option — the 67.4 kWh upgrade stays inside the Off-Grid Endurance Pack, with the pack description noting it.
 
 ## Technical notes
 
-New `src/routes/models.tsx`; new `MODEL_COMPARISON` and battery-option constants in `src/components/site/data.ts` so every page reads one source. Existing per-model data extended with capacity, deployed weight, cruise speeds and tender. Configurator gains a battery field written into the existing Configurator sheet tab (new column). No backend or schema changes.
-
-## Open item
-
-The standalone long-range battery upgrade price is not yet set — send it over and it drops straight into the configurator and equipment pages.
+New `src/routes/models.tsx`; new `MODEL_COMPARISON` constant in `src/components/site/data.ts` so every page reads one source. Existing per-model data extended with capacity, deployed weight, cruise speeds and tender. No configurator field, backend or schema changes.
