@@ -67,6 +67,24 @@ function Architecture() {
                   </li>
                 ))}
               </ul>
+              <dl className="mt-7 grid gap-4 border-t border-border/60 pt-6 text-sm sm:grid-cols-3">
+                <div>
+                  <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Capacity</dt>
+                  <dd className="mt-1">{m.capacity}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Deployed weight</dt>
+                  <dd className="mt-1">{m.weight}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Tender & toys</dt>
+                  <dd className="mt-1">{m.tender}</dd>
+                </div>
+              </dl>
+              <p className="mt-6 text-sm font-medium text-accent">{m.cruise}</p>
+              <Link to="/models" className="mt-4 inline-block text-sm font-medium text-accent hover:underline">
+                Compare Explorer &amp; Coastal side by side →
+              </Link>
             </div>
           </div>
         </section>
