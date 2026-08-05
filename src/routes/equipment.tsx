@@ -6,7 +6,7 @@ import { PACKS, MODELS } from "@/components/site/data";
 
 const TITLE = "Curated Equipment Packs & Upgrades | Halo Yachts";
 const DESCRIPTION =
-  "Factory-fitted equipment packs for the Halo 13.5m catamaran — extended 90 kWh battery bank, Solbian Maxeon solar upgrade, offshore navigation suites and Victron fast-charging infrastructure.";
+  "Factory-fitted equipment packs for the Halo 13.5m catamaran — the 67.4 kWh long-range battery upgrade, Solbian Maxeon solar upgrade, offshore navigation suites and Victron fast-charging infrastructure.";
 
 export const Route = createFileRoute("/equipment")({
   head: () => ({

@@ -44,7 +44,7 @@ const SAFETY: Faq[] = [
   },
   {
     q: "Can the yacht get home if solar output is lost for days?",
-    a: "The 60 kWh bank holds a full reserve for motoring, and the kite plus hydro-regeneration can rebuild charge overnight without any fuel aboard.",
+    a: "The 47 kWh standard bank — 67.4 kWh with the long-range upgrade — holds a full reserve for motoring, and the kite plus hydro-regeneration can rebuild charge overnight without any fuel aboard.",
   },
   {
     q: "What safety equipment is fitted as standard?",

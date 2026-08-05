@@ -13,7 +13,7 @@ import {
 
 const TITLE = "Naval Architecture & Technical Specifications | Halo Yachts";
 const DESCRIPTION =
-  "Full technical hub for the Halo 13.5m catamaran: 6.6m beam, 800mm bridge-deck clearance, Sealium aluminium construction, 60 kWh ePropulsion 96V drivetrain, 38m² solar array and kite hydro-regeneration.";
+  "Full technical hub for the Halo 13.5m catamaran: 6.6m beam, 800mm bridge-deck clearance, Sealium aluminium construction, 47 kWh (67.4 kWh optional) ePropulsion 96V drivetrain, 38m² solar array and kite hydro-regeneration.";
 
 export const Route = createFileRoute("/architecture")({
   head: () => ({

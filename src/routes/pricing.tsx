@@ -58,7 +58,7 @@ function Pricing() {
             <p className="mt-4 text-5xl font-semibold">£{BASE_PRICE.toLocaleString("en-GB")}</p>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground">
               Complete, sailaway 13.5 m solar-electric aluminium catamaran in Model A or Model B
-              configuration, including the 60 kWh ePropulsion 96 V system, ~38 m² hardtop solar array
+              configuration, including the 47.0 kWh ePropulsion 96 V system (67.4 kWh optional via equipment pack), ~38 m² hardtop solar array
               and standard 40 m² LibertyKite auxiliary drive.
             </p>
           </div>

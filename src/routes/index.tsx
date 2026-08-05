@@ -7,7 +7,7 @@ import { IMAGES, PARTNERS, MODELS, RUNNING_COSTS } from "@/components/site/data"
 
 const TITLE = "Halo Yachts | 13.5m Solar-Electric Aluminium Catamarans";
 const DESCRIPTION =
-  "Halo Yachts builds 13.5m solar-electric aluminium blue-water cruising catamarans — CE Category A ocean certified, 60 kWh ePropulsion 96V architecture and standard LibertyKite auxiliary drive.";
+  "Halo Yachts builds 13.5m solar-electric aluminium blue-water cruising catamarans — CE Category A ocean certified, 47 kWh (67.4 kWh optional) ePropulsion 96V architecture and standard LibertyKite auxiliary drive.";
 
 const JSON_LD = {
   "@context": "https://schema.org",
@@ -53,7 +53,7 @@ const VALUES = [
   {
     icon: Sun,
     title: "Solar-Electric Autonomy",
-    body: "Continuous daytime range from ~38 m² of rigid industrial hardtop solar, ePropulsion 96V architecture, and standard LibertyKite auxiliary downwind drive with hydro-regeneration.",
+    body: "Continuous daytime range from ~38 m² of rigid industrial hardtop solar, a 47 kWh standard bank (67.4 kWh optional), and standard LibertyKite auxiliary downwind drive with hydro-regeneration.",
   },
   {
     icon: Factory,
