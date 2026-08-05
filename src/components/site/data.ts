@@ -180,7 +180,7 @@ export const PACKS = [
     name: "Off-Grid Endurance Pack",
     price: 28000,
     items: [
-      "Extended battery bank +30 kWh (90 kWh total)",
+      "Long-range battery upgrade +20.4 kWh (2 × 10.2 kWh, one per hull) — 67.4 kWh total",
       "Solbian Maxeon high-efficiency flush solar laminate upgrade",
       "High-efficiency 24 V DC marine watermaker — ~50 – 100 L/hour from the 24 V step-down architecture",
       "Marine climate control (A/C & heating)",
