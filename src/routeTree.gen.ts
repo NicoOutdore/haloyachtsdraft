@@ -14,6 +14,7 @@ import { Route as ArchitectureRouteImport } from './routes/architecture'
 import { Route as BuildWithUsRouteImport } from './routes/build-with-us'
 import { Route as ConfigureRouteImport } from './routes/configure'
 import { Route as EquipmentRouteImport } from './routes/equipment'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as PricingRouteImport } from './routes/pricing'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const EquipmentRoute = EquipmentRouteImport.update({
   path: '/equipment',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/build-with-us': typeof BuildWithUsRoute
   '/configure': typeof ConfigureRoute
   '/equipment': typeof EquipmentRoute
+  '/faq': typeof FaqRoute
   '/pricing': typeof PricingRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/build-with-us': typeof BuildWithUsRoute
   '/configure': typeof ConfigureRoute
   '/equipment': typeof EquipmentRoute
+  '/faq': typeof FaqRoute
   '/pricing': typeof PricingRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/build-with-us': typeof BuildWithUsRoute
   '/configure': typeof ConfigureRoute
   '/equipment': typeof EquipmentRoute
+  '/faq': typeof FaqRoute
   '/pricing': typeof PricingRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/build-with-us'
     | '/configure'
     | '/equipment'
+    | '/faq'
     | '/pricing'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/build-with-us'
     | '/configure'
     | '/equipment'
+    | '/faq'
     | '/pricing'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/build-with-us'
     | '/configure'
     | '/equipment'
+    | '/faq'
     | '/pricing'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   BuildWithUsRoute: typeof BuildWithUsRoute
   ConfigureRoute: typeof ConfigureRoute
   EquipmentRoute: typeof EquipmentRoute
+  FaqRoute: typeof FaqRoute
   PricingRoute: typeof PricingRoute
 }
 
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EquipmentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -161,8 +181,19 @@ const rootRouteChildren: RootRouteChildren = {
   BuildWithUsRoute: BuildWithUsRoute,
   ConfigureRoute: ConfigureRoute,
   EquipmentRoute: EquipmentRoute,
+  FaqRoute: FaqRoute,
   PricingRoute: PricingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
