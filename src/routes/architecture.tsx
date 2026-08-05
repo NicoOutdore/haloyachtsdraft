@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell, Section, PageHero, SpecRow } from "@/components/site/SiteShell";
 import { RegenChart } from "@/components/site/RegenChart";
 import {
@@ -13,7 +13,7 @@ import {
 
 const TITLE = "Naval Architecture & Technical Specifications | Halo Yachts";
 const DESCRIPTION =
-  "Full technical hub for the Halo 13.5m catamaran: 6.6m beam, 800mm bridge-deck clearance, Sealium aluminium construction, 60 kWh ePropulsion 96V drivetrain, 38m² solar array and kite hydro-regeneration.";
+  "Full technical hub for the Halo 13.5m catamaran: 6.6m beam, 800mm bridge-deck clearance, Sealium aluminium construction, 47 kWh (67.4 kWh optional) ePropulsion 96V drivetrain, 38m² solar array and kite hydro-regeneration.";
 
 export const Route = createFileRoute("/architecture")({
   head: () => ({
@@ -67,6 +67,24 @@ function Architecture() {
                   </li>
                 ))}
               </ul>
+              <dl className="mt-7 grid gap-4 border-t border-border/60 pt-6 text-sm sm:grid-cols-3">
+                <div>
+                  <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Capacity</dt>
+                  <dd className="mt-1">{m.capacity}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Deployed weight</dt>
+                  <dd className="mt-1">{m.weight}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Tender & toys</dt>
+                  <dd className="mt-1">{m.tender}</dd>
+                </div>
+              </dl>
+              <p className="mt-6 text-sm font-medium text-accent">{m.cruise}</p>
+              <Link to="/models" className="mt-4 inline-block text-sm font-medium text-accent hover:underline">
+                Compare Explorer &amp; Coastal side by side →
+              </Link>
             </div>
           </div>
         </section>

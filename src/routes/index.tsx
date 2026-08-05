@@ -7,7 +7,7 @@ import { IMAGES, PARTNERS, MODELS, RUNNING_COSTS } from "@/components/site/data"
 
 const TITLE = "Halo Yachts | 13.5m Solar-Electric Aluminium Catamarans";
 const DESCRIPTION =
-  "Halo Yachts builds 13.5m solar-electric aluminium blue-water cruising catamarans — CE Category A ocean certified, 60 kWh ePropulsion 96V architecture and standard LibertyKite auxiliary drive.";
+  "Halo Yachts builds 13.5m solar-electric aluminium blue-water cruising catamarans — CE Category A ocean certified, 47 kWh (67.4 kWh optional) ePropulsion 96V architecture and standard LibertyKite auxiliary drive.";
 
 const JSON_LD = {
   "@context": "https://schema.org",
@@ -53,7 +53,7 @@ const VALUES = [
   {
     icon: Sun,
     title: "Solar-Electric Autonomy",
-    body: "Continuous daytime range from ~38 m² of rigid industrial hardtop solar, ePropulsion 96V architecture, and standard LibertyKite auxiliary downwind drive with hydro-regeneration.",
+    body: "Continuous daytime range from ~38 m² of rigid industrial hardtop solar, a 47 kWh standard bank (67.4 kWh optional), and standard LibertyKite auxiliary downwind drive with hydro-regeneration.",
   },
   {
     icon: Factory,
@@ -140,12 +140,21 @@ function Home() {
                 <p className="eyebrow">{m.code} — {m.subtitle}</p>
                 <h3 className="mt-3 text-2xl font-semibold">{m.name}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{m.summary}</p>
+                <dl className="mt-6 grid gap-3 border-t border-border/60 pt-5 text-sm sm:grid-cols-2">
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Capacity</dt>
+                    <dd className="mt-1">{m.capacity}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Solar cruise</dt>
+                    <dd className="mt-1 text-accent">{m.cruise}</dd>
+                  </div>
+                </dl>
                 <Link
-                  to="/architecture"
-                  hash={m.id}
+                  to="/models"
                   className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
                 >
-                  View full specification <ArrowRight className="size-4" />
+                  Compare Explorer & Coastal <ArrowRight className="size-4" />
                 </Link>
               </div>
             </article>
