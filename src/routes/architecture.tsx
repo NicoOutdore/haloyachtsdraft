@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell, Section, PageHero, SpecRow } from "@/components/site/SiteShell";
 import { RegenChart } from "@/components/site/RegenChart";
 import {
