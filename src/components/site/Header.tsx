@@ -5,7 +5,8 @@ import { LogoLink } from "./Logo";
 import { Button } from "@/components/ui/button";
 
 const NAV = [
-  { to: "/architecture", label: "Architecture & Models" },
+  { to: "/models", label: "Models" },
+  { to: "/architecture", label: "Architecture" },
   { to: "/equipment", label: "Equipment Packs" },
   { to: "/pricing", label: "Pricing & Ownership" },
   { to: "/build-with-us", label: "Build With Us" },
