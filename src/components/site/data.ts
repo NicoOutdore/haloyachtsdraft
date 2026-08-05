@@ -160,7 +160,7 @@ export const SOLAR_VS_DEMAND = [
   { condition: "Clear summer midday", input: "~6.0 – 6.8 kW", verdict: "Cruise + hotel load covered, surplus charges the bank" },
   { condition: "Light / high cloud", input: "~3.5 – 4.5 kW", verdict: "Cruise + hotel load covered, modest surplus" },
   { condition: "Broken cloud", input: "~2.5 – 3.2 kW", verdict: "Break-even to slight surplus at 5 kts" },
-  { condition: "Heavy overcast", input: "~0.8 – 1.5 kW", verdict: "Shortfall drawn from the 60 kWh bank" },
+  { condition: "Heavy overcast", input: "~0.8 – 1.5 kW", verdict: "Shortfall drawn from the 47 kWh bank" },
 ];
 
 // Hydro-regeneration under kite power. Per-pod values follow the ePropulsion
