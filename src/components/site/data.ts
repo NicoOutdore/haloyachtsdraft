@@ -206,6 +206,7 @@ export const PACKS = [
     items: [
       "Marine climate control (A/C & heating)",
       "Solbian Maxeon solar upgrade",
+      "Long-range battery upgrade +20.4 kWh (2 × 10.2 kWh, one per hull) — 67.4 kWh total",
       "Upgraded fast-charging shore power infrastructure",
     ],
     note: "No watermaker by design: charter and vacation cruising is port-to-port with frequent marina stopovers, so desalinator servicing and winterisation are deliberately kept off the boat. The 400 L standard tank covers the itinerary.",
