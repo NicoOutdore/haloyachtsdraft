@@ -170,7 +170,24 @@ function BuildWithUs() {
         intro="We pair world-class naval architecture with premier regional aluminium yards. If your workshop meets the standard, we supply the kit, systems and specification — you build locally."
       />
 
-      <Section eyebrow="Requirements" title="What we look for in a partner yard">
+      <Section eyebrow="Framework" title="Precision CNC kit-set, local fabrication">
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {FRAMEWORK.map((f) => (
+            <article key={f.title} className="surface-panel rounded-lg p-8">
+              <p className="eyebrow">{f.step}</p>
+              <h3 className="mt-3 text-lg font-semibold">{f.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+            </article>
+          ))}
+        </div>
+        <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          Major systems are specified to standards partner yards can source locally — including
+          Maxeon all-black rigid glass solar modules in standard ISO/IEC structural dimensions,
+          rail-mounted with airflow beneath, avoiding international freight markups on bulky items.
+        </p>
+      </Section>
+
+      <Section eyebrow="Requirements" title="What we look for in a partner yard" className="border-t border-border">
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {CRITERIA.map((c) => (
             <article key={c.title} className="surface-panel rounded-lg p-8">
@@ -180,6 +197,7 @@ function BuildWithUs() {
           ))}
         </div>
       </Section>
+
 
       <Section eyebrow="Application" title="Yard application" className="border-t border-border">
         <form onSubmit={handleSubmit} className="surface-panel mt-10 grid max-w-3xl gap-5 rounded-lg p-8">
