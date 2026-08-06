@@ -103,6 +103,22 @@ export const MODEL_COMPARISON = [
     coastal: "4.4+ kts with net battery generation",
   },
   {
+    metric: "Battery-only range (no solar, no kite)",
+    explorer: "~55 – 65 nm at 5.0 kts · ~30 – 35 nm at 6.5 kts",
+    coastal: "~55 – 65 nm at 4.5 kts · ~30 – 35 nm at 6.5 kts",
+  },
+  {
+    metric: "Battery-only range with 67.4 kWh upgrade",
+    explorer: "~80 – 90 nm at 5.0 kts",
+    coastal: "~80 – 90 nm at 4.5 kts",
+  },
+  {
+    metric: "Meaningful hydro-regeneration",
+    explorer: "Above ~6 kts under kite (~2.4 kW twin pods)",
+    coastal: "Above ~6 kts under kite (~2.4 kW twin pods)",
+  },
+
+  {
     metric: "Fresh water utility tankage",
     explorer: "400 L symmetrical (2 × 200 L tanks)",
     coastal: "400 L symmetrical (2 × 200 L tanks)",
@@ -135,7 +151,7 @@ export const PROPULSION_SPECS = [
   { label: "Energy reservoir", value: "ePropulsion 96 V lithium — 47.0 kWh standard (2 × 23.5 kWh, one block per hull)" },
   { label: "Long-range battery option", value: "+2 × 10.2 kWh, one per hull = 67.4 kWh total (via equipment pack)" },
   { label: "Power conversion", value: "DC-DC step-down to isolated 24 V and 12 V circuits" },
-  { label: "Solar array", value: "~38 m² Tier-1 rigid monocrystalline, flush hardtop" },
+  { label: "Solar array", value: "~38 m² Maxeon all-black rigid glass modules, rail-mounted on the hardtop with airflow beneath" },
   { label: "Peak solar output", value: "~7.5 – 8.0 kWp (Victron SmartSolar MPPT)" },
   { label: "Auxiliary drive", value: "Standard 40 m² LibertyKite with deployment bag" },
   { label: "Deck hardware", value: "Reinforced cleats/padeyes, backing plates to bulkheads" },
@@ -172,16 +188,46 @@ export const REGEN_PROFILE = [
   { speed: 6.5, perPod: 1.2, twin: 2.4 },
 ];
 
+// Regeneration only becomes a meaningful contributor above ~6 kts under kite.
+export const REGEN_THRESHOLD = {
+  headline: "Meaningful passive recharging begins above ~6 knots under kite",
+  detail:
+    "Regenerated power falls away non-linearly below 6 kts: at 3 – 4 kts the pods trickle 0.3 – 0.7 kW, which offsets part of the hotel load rather than building charge, and at 5 kts ~1.2 kW is still a trickle. Above ~6 kts the twin pods return ~2.4 kW and the bank genuinely refills. Kite regeneration supplements the solar array; it does not replace it.",
+};
+
+// Three honest range modes, derived from the published 2.6 kW propulsion +
+// 0.4 kW hotel draw at 5.0 kts against a ~90% usable 47.0 kWh bank.
+export const RANGE_MODES = [
+  {
+    mode: "Battery only (no solar, no kite)",
+    figures: "~55 – 65 nm at 5.0 kts · ~30 – 35 nm at 6.5 kts",
+    upgrade: "~80 – 90 nm at 5.0 kts with the 67.4 kWh long-range bank",
+    note: "Night passages, prolonged overcast or engine-only manoeuvring. Overnight reserve mode holds 3.8 kts (Explorer) / 3.5 kts (Coastal) for 12 hours on the battery alone.",
+  },
+  {
+    mode: "Daylight solar-assisted",
+    figures: "Effectively unlimited at 5.0 kts (Explorer) / 4.5 kts (Coastal)",
+    upgrade: "Conditional on irradiance — see the solar yield and live-input tables",
+    note: "In clear to lightly clouded Mediterranean conditions the array covers propulsion plus hotel load and still charges the bank. Under heavy overcast the shortfall is drawn from the battery.",
+  },
+  {
+    mode: "Kite assisted + hydro-regeneration",
+    figures: "4.4 – 4.5+ kts overnight with net battery generation",
+    upgrade: "~2.4 kW regenerated above ~6 kts under kite",
+    note: "The kite carries the boat while the pods free-wheel, so daylight solar starts each morning from a fuller bank instead of a depleted one.",
+  },
+];
+
+
 
 export const PACKS = [
   {
     id: "off-grid-endurance",
     model: "Model A",
     name: "Off-Grid Endurance Pack",
-    price: 28000,
+    price: 32500,
     items: [
       "Long-range battery upgrade +20.4 kWh (2 × 10.2 kWh, one per hull) — 67.4 kWh total",
-      "Solbian Maxeon high-efficiency flush solar laminate upgrade",
       "High-efficiency 24 V DC marine watermaker — ~50 – 100 L/hour from the 24 V step-down architecture",
       "Marine climate control (A/C & heating)",
     ],
@@ -191,7 +237,7 @@ export const PACKS = [
     id: "blue-water-expedition",
     model: "Model A",
     name: "Blue-Water Expedition Pack",
-    price: 31000,
+    price: 35000,
     items: [
       "Advanced offshore navigation & comms suite — dual MFD chartplotters, radar, AIS transponder, satellite comms terminal",
       "Upgraded fast-charging shore power infrastructure (Victron MultiPlus)",
@@ -202,10 +248,9 @@ export const PACKS = [
     id: "med-comfort-power",
     model: "Model B",
     name: "Mediterranean Comfort & Power Pack",
-    price: 29500,
+    price: 35000,
     items: [
       "Marine climate control (A/C & heating)",
-      "Solbian Maxeon solar upgrade",
       "Long-range battery upgrade +20.4 kWh (2 × 10.2 kWh, one per hull) — 67.4 kWh total",
       "Upgraded fast-charging shore power infrastructure",
     ],
@@ -215,7 +260,7 @@ export const PACKS = [
     id: "charter-entertainment",
     model: "Model B",
     name: "Charter & Entertainment Navigation Pack",
-    price: 27000,
+    price: 32500,
     items: [
       "Advanced offshore navigation & comms suite",
       "Premium deck & cockpit lounging amenities",
@@ -225,20 +270,28 @@ export const PACKS = [
   },
 ] as const;
 
-export const BASE_PRICE = 450000;
+
+// Euro is the contract currency. Legacy GBP figures were converted at the
+// standard rate of 1.168 and rounded to the nearest €2,500.
+export const EUR_RATE = 1.168;
+
+export const BASE_PRICE = 525000;
+
+export const formatEur = (value: number) => `€${value.toLocaleString("en-GB")}`;
 
 export const RUNNING_COSTS = [
-  { craft: "Halo 13.5 m solar-electric", cost: "£1,650 – £2,500 / year", note: "Zero engine service, minimal energy and winterisation", highlight: true },
-  { craft: "Traditional diesel sailing catamaran (13.5 m)", cost: "£5,500 – £7,500 / year", note: "Engine servicing, fuel, rig and sail maintenance", highlight: false },
-  { craft: "Traditional high-power outboard power cat (13.5 m)", cost: "£14,000 – £22,000+ / year", note: "Fuel-dominated running costs and outboard servicing", highlight: false },
+  { craft: "Halo 13.5 m solar-electric", cost: "€1,950 – €2,900 / year", note: "Zero engine service, minimal energy and winterisation", highlight: true },
+  { craft: "Traditional diesel sailing catamaran (13.5 m)", cost: "€6,400 – €8,750 / year", note: "Engine servicing, fuel, rig and sail maintenance", highlight: false },
+  { craft: "Traditional high-power outboard power cat (13.5 m)", cost: "€16,350 – €25,700+ / year", note: "Fuel-dominated running costs and outboard servicing", highlight: false },
 ];
 
 export const PARTNERS = [
   { name: "Dixon Yacht Design", role: "Naval architecture" },
   { name: "LibertyKites", role: "Auxiliary kite propulsion" },
   { name: "ePropulsion", role: "96 V electric drivetrain" },
-  { name: "Solbian", role: "High-efficiency solar laminates" },
+  { name: "Maxeon", role: "All-black rigid glass solar modules" },
   { name: "CE Category A", role: "Ocean certification standard" },
 ];
+
 
 export const BUILD_LOCATIONS = ["New Zealand", "Australia", "Germany", "Italy", "Undecided"];

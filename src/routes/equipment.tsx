@@ -2,11 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { SiteShell, Section, PageHero } from "@/components/site/SiteShell";
 import { Button } from "@/components/ui/button";
-import { PACKS, MODELS } from "@/components/site/data";
+import { PACKS, MODELS, formatEur } from "@/components/site/data";
 
 const TITLE = "Curated Equipment Packs & Upgrades | Halo Yachts";
 const DESCRIPTION =
-  "Factory-fitted equipment packs for the Halo 13.5m catamaran — the 67.4 kWh long-range battery upgrade, Solbian Maxeon solar upgrade, offshore navigation suites and Victron fast-charging infrastructure.";
+  "Factory-fitted equipment packs for the Halo 13.5m catamaran — the 67.4 kWh long-range battery upgrade, offshore navigation suites and Victron fast-charging infrastructure.";
 
 export const Route = createFileRoute("/equipment")({
   head: () => ({
@@ -44,7 +44,7 @@ function Equipment() {
                 <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
                   <h3 className="min-w-0 text-xl font-semibold">{pack.name}</h3>
                   <p className="shrink-0 text-lg font-semibold text-accent">
-                    £{pack.price.toLocaleString("en-GB")}
+                    {formatEur(pack.price)}
                   </p>
                 </div>
                 <ul className="mt-6 space-y-3">

@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { PhoneFields, PHONE_PATTERN, EMAIL_PATTERN } from "@/components/site/PhoneFields";
 import { submitConfiguration } from "@/lib/submissions.functions";
-import { MODELS, PACKS, BASE_PRICE, BUILD_LOCATIONS } from "@/components/site/data";
+import { MODELS, PACKS, BASE_PRICE, BUILD_LOCATIONS, formatEur } from "@/components/site/data";
 
 
 const TITLE = "Configure & Reserve Your Halo 13.5 | Halo Yachts";
@@ -191,7 +191,7 @@ function Configure() {
                     onClick={() => togglePack(p.id)}
                     title={p.name}
                     subtitle={p.items.join(" · ")}
-                    price={`£${p.price.toLocaleString("en-GB")}`}
+                    price={formatEur(p.price)}
                   />
                 ))}
               </div>
@@ -227,7 +227,7 @@ function Configure() {
             <dl className="mt-6 space-y-3 text-sm">
               <div className="flex justify-between gap-4 border-b border-border/70 pb-3">
                 <dt className="text-muted-foreground">Base build (pre-VAT)</dt>
-                <dd>£{BASE_PRICE.toLocaleString("en-GB")}</dd>
+                <dd>{formatEur(BASE_PRICE)}</dd>
               </div>
               <div className="flex justify-between gap-4 border-b border-border/70 pb-3">
                 <dt className="text-muted-foreground">Layout</dt>
@@ -236,7 +236,7 @@ function Configure() {
               {PACKS.filter((p) => packs.includes(p.id)).map((p) => (
                 <div key={p.id} className="flex justify-between gap-4 border-b border-border/70 pb-3">
                   <dt className="min-w-0 text-muted-foreground">{p.name}</dt>
-                  <dd className="shrink-0">£{p.price.toLocaleString("en-GB")}</dd>
+                  <dd className="shrink-0">{formatEur(p.price)}</dd>
                 </div>
               ))}
               <div className="flex justify-between gap-4 border-b border-border/70 pb-3">
@@ -245,7 +245,7 @@ function Configure() {
               </div>
             </dl>
             <p className="mt-6 text-xs uppercase tracking-[0.18em] text-muted-foreground">Indicative total</p>
-            <p className="mt-1 text-3xl font-semibold text-accent">£{total.toLocaleString("en-GB")}</p>
+            <p className="mt-1 text-3xl font-semibold text-accent">{formatEur(total)}</p>
 
             <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
               <div>

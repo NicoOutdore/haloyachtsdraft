@@ -8,6 +8,8 @@ import {
   SOLAR_YIELDS,
   CRUISE_DEMAND,
   SOLAR_VS_DEMAND,
+  RANGE_MODES,
+  REGEN_THRESHOLD,
 } from "@/components/site/data";
 
 
@@ -147,6 +149,24 @@ function Architecture() {
 
 
 
+        <h3 className="mt-16 text-xl font-semibold">Range modes</h3>
+        <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+          Three honest ways of stating range. Battery-only figures assume no solar and no kite;
+          solar-assisted figures depend on irradiance.
+        </p>
+        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          {RANGE_MODES.map((m) => (
+            <div key={m.mode} className="surface-panel rounded-lg p-6">
+              <p className="eyebrow">{m.mode}</p>
+              <p className="mt-3 text-lg font-semibold text-accent">{m.figures}</p>
+              <p className="mt-2 text-xs text-muted-foreground">{m.upgrade}</p>
+              <p className="mt-4 border-t border-border/60 pt-4 text-xs leading-relaxed text-muted-foreground">
+                {m.note}
+              </p>
+            </div>
+          ))}
+        </div>
+
         <h3 className="mt-16 text-xl font-semibold">Hydro-regeneration under kite power</h3>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
           The standard 40 m² LibertyKite drives the yacht downwind while both ePropulsion pods
@@ -154,31 +174,38 @@ function Architecture() {
           96 V bank. The dashed line is a single 20 kW pod; the solid line is the installed twin-pod
           configuration.
         </p>
+        <p className="mt-4 max-w-2xl text-sm font-medium text-accent">
+          {REGEN_THRESHOLD.headline}
+        </p>
         <RegenChart />
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          {REGEN_THRESHOLD.detail}
+        </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
           <div className="surface-panel rounded-lg p-6">
             <p className="text-sm text-muted-foreground">3 – 4 kts under kite</p>
             <p className="mt-2 text-xl font-semibold text-accent">~0.3 – 0.7 kW</p>
             <p className="mt-2 text-xs text-muted-foreground">
-              Light-air drift: regeneration offsets most of the ~0.4 kW hotel load.
+              Hotel-load offset only — this trickle does not build charge in the bank.
             </p>
           </div>
           <div className="surface-panel rounded-lg p-6">
             <p className="text-sm text-muted-foreground">5.0 kts under kite</p>
             <p className="mt-2 text-xl font-semibold text-accent">~1.2 kW</p>
             <p className="mt-2 text-xs text-muted-foreground">
-              Roughly 0.6 kW per pod — hotel load covered with surplus into the bank.
+              Roughly 0.6 kW per pod — covers the hotel load with only a marginal trickle beyond it.
             </p>
           </div>
           <div className="surface-panel rounded-lg p-6">
-            <p className="text-sm text-muted-foreground">6.5 kts under kite</p>
+            <p className="text-sm text-muted-foreground">Above ~6 kts under kite</p>
             <p className="mt-2 text-xl font-semibold text-accent">~2.4 kW</p>
             <p className="mt-2 text-xs text-muted-foreground">
-              About 1.2 kW per pod — comparable to a clear-sky winter solar hour, sustained through
-              the night.
+              About 1.2 kW per pod at 6.5 kts — the threshold where the bank genuinely refills
+              overnight.
             </p>
           </div>
         </div>
+
 
       </Section>
     </SiteShell>
