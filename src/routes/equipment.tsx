@@ -44,7 +44,7 @@ function Equipment() {
                 <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
                   <h3 className="min-w-0 text-xl font-semibold">{pack.name}</h3>
                   <p className="shrink-0 text-lg font-semibold text-accent">
-                    £{pack.price.toLocaleString("en-GB")}
+                    {formatEur(pack.price)}
                   </p>
                 </div>
                 <ul className="mt-6 space-y-3">

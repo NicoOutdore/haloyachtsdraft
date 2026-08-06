@@ -55,7 +55,7 @@ function Pricing() {
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.2fr_1fr]">
           <div className="surface-panel rounded-lg p-10">
             <p className="eyebrow">End customer, pre-VAT</p>
-            <p className="mt-4 text-5xl font-semibold">£{BASE_PRICE.toLocaleString("en-GB")}</p>
+            <p className="mt-4 text-5xl font-semibold">{formatEur(BASE_PRICE)}</p>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground">
               Complete, sailaway 13.5 m solar-electric aluminium catamaran in Model A or Model B
               configuration, including the 47.0 kWh ePropulsion 96 V system (67.4 kWh optional via equipment pack), ~38 m² hardtop solar array
