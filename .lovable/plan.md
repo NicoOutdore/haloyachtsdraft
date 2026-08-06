@@ -38,16 +38,24 @@ On /build-with-us, add a "Scope of work" section before the criteria, stating th
 
 The hero intro and the criteria copy are updated to reflect this framing, and the homepage "Decentralised Build Model" card gains a one-line scope clarification.
 
-## 4. Currency toggle, with the Euro as contract currency
+## 4. Euro as contract currency, converted at 1.168
 
-Add a currency toggle affecting all prices site-wide:
+All GBP figures are converted at the standard rate of **1.168** and rounded to the nearest €2,500. Euro becomes the single quoted contract currency site-wide (£ symbols removed everywhere, `priceCurrency: "EUR"` in JSON-LD).
 
-- Toggle control in the header (compact select) and repeated on /pricing and /configure.
-- **Euro is the base and contract currency.** GBP and USD are shown at fixed indicative rates held in one place, with a visible "indicative conversion, contract currency EUR" note.
-- Applies to base price, equipment pack prices, configurator totals and the running-cost table (those are ranges - converted and rounded).
-- Selection persists in localStorage; default EUR.
+| Item | GBP | × 1.168 | Quoted EUR |
+| --- | --- | --- | --- |
+| Base build price | £450,000 | 525,600 | **€525,000** |
+| Off-Grid Endurance Pack | £28,000 | 32,704 | **€32,500** |
+| Blue-Water Expedition Pack | £31,000 | 36,208 | **€35,000** |
+| Mediterranean Comfort & Power Pack | £29,500 | 34,456 | **€35,000** |
+| Charter & Entertainment Pack | £27,000 | 31,536 | **€32,500** |
 
-Open point: the current figures (450,000 base; 28,000 / 31,000 / 29,500 / 27,000 packs; 1,650-2,500 running costs) were written as GBP. I will re-denominate them as EUR at those same round numbers, so the headline becomes €450,000, unless you want them converted from GBP instead.
+Build-price allocation on /pricing splits the new base evenly: €262,500 partner yard / €262,500 Halo Yachts.
+
+Annual running costs are converted at the same rate but rounded to the nearest €50 (€2,500 steps would be meaningless at this scale): Halo €1,950 – €2,900; traditional diesel cat €6,400 – €8,750. Confirm if you would rather these also snap to €2,500.
+
+A currency toggle is not included - one contract currency, quoted in Euro.
+
 
 ## 5. Solar specification: Maxeon glass modules, Solbian removed
 
