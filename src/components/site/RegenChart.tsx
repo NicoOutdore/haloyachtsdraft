@@ -67,8 +67,27 @@ export function RegenChart() {
           kW
         </text>
 
+        <line
+          x1={x(6)}
+          x2={x(6)}
+          y1={PAD.top}
+          y2={H - PAD.bottom}
+          stroke="currentColor"
+          className="text-accent opacity-50"
+          strokeWidth={1.5}
+          strokeDasharray="4 4"
+        />
+        <text
+          x={x(6) + 6}
+          y={PAD.top + 12}
+          className="fill-accent text-[10px] uppercase tracking-[0.14em]"
+        >
+          ~6 kts threshold
+        </text>
+
         <path d={line("perPod")} fill="none" stroke="currentColor" className="text-muted-foreground" strokeWidth={2} strokeDasharray="5 4" />
         <path d={line("twin")} fill="none" stroke="currentColor" className="text-accent" strokeWidth={2.5} />
+
 
         {REGEN_PROFILE.map((p) => (
           <g key={p.speed}>
