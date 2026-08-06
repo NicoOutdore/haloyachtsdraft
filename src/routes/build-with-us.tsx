@@ -28,7 +28,26 @@ export const Route = createFileRoute("/build-with-us")({
   component: BuildWithUs,
 });
 
+const FRAMEWORK = [
+  {
+    step: "01 — Central engineering",
+    title: "Nested CNC kit supplied by Halo",
+    body: "Every hull, bulkhead and structural component is nested and CNC-cut to the Dixon Yacht Design definition, delivered as a numbered kit with build manual and weld procedures. No lofting, no interpretation.",
+  },
+  {
+    step: "02 — Local fabrication",
+    title: "Your yard welds and fits out",
+    body: "The partner yard welds, fairs and fits out to the Halo specification using local labour and locally sourced standard components, under Halo engineering supervision and staged inspection.",
+  },
+  {
+    step: "03 — Regional delivery",
+    title: "Built near the owner",
+    body: "Boats are built in the region they will be sailed — New Zealand, Australia, Germany, Italy — cutting freight, import duty and delivery miles while keeping the specification identical worldwide.",
+  },
+];
+
 const CRITERIA = [
+
   { title: "Aluminium fabrication", body: "Demonstrable marine-grade aluminium welding to 5083-H111 / Sealium, with certified welders and documented procedures." },
   { title: "CNC & assembly capacity", body: "Capability to assemble precision CNC-cut kits under cover, with jigging space for a 13.5 × 6.6 m multihull." },
   { title: "Crane & slipway", body: "In-house or contracted lifting and launching capacity appropriate to a ~5-tonne lightship catamaran." },
