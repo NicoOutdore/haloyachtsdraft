@@ -66,8 +66,8 @@ A currency toggle is not included - one contract currency, quoted in Euro.
 
 ## Technical notes
 
-- `src/components/site/data.ts`: add `RANGE_MODES`, regen threshold copy, `CURRENCIES` with EUR base and indicative GBP/USD rates; convert `RUNNING_COSTS` strings into numeric ranges so they can be converted; edit `PACKS` items and the `PARTNERS` badge list (Solbian → Maxeon); update `PROPULSION_SPECS` solar rows.
-- New `src/components/site/currency.tsx`: context provider + `useCurrency()` + `<CurrencyToggle />` + `formatPrice()`. Provider mounts in `src/routes/__root.tsx`.
-- Edits: `architecture.tsx` (range modes, regen threshold, chart annotation, solar spec), `models.tsx` (new comparison rows, Product JSON-LD `priceCurrency: "EUR"`), `faq.tsx`, `index.tsx`, `pricing.tsx`, `configure.tsx`, `equipment.tsx`, `build-with-us.tsx`, `RegenChart.tsx`, `Header.tsx`.
-- Head metadata on touched routes updated where the description quotes the old claims or Solbian.
+- `src/components/site/data.ts`: add `RANGE_MODES` and regen threshold copy; convert `BASE_PRICE`, `PACKS` prices and `RUNNING_COSTS` to Euro values; edit `PACKS` items and the `PARTNERS` badge list (Solbian → Maxeon); update `PROPULSION_SPECS` solar rows.
+- Currency formatting via a small `formatEur()` helper in `data.ts` (`€525,000`, de-DE/en-GB grouping consistent with existing usage) - no provider or toggle component.
+- Edits: `architecture.tsx` (range modes, regen threshold, chart annotation, solar spec), `models.tsx` (new comparison rows, Product JSON-LD `priceCurrency: "EUR"`), `faq.tsx`, `index.tsx`, `pricing.tsx` (£ → € incl. allocation rows and meta description), `configure.tsx` (totals, finance copy), `equipment.tsx`, `build-with-us.tsx`, `RegenChart.tsx`.
+- Head metadata on touched routes updated where the description quotes the old claims, £ prices or Solbian.
 
