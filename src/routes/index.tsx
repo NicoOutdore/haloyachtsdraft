@@ -3,7 +3,7 @@ import { Anchor, Sun, Factory, ArrowRight } from "lucide-react";
 import { SiteShell, Section } from "@/components/site/SiteShell";
 import { Logo } from "@/components/site/Logo";
 import { Button } from "@/components/ui/button";
-import { IMAGES, PARTNERS, MODELS, RUNNING_COSTS } from "@/components/site/data";
+import { IMAGES, PARTNERS, MODELS, RUNNING_COSTS, BASE_PRICE } from "@/components/site/data";
 
 const TITLE = "Halo Yachts | 13.5m Solar-Electric Aluminium Catamarans";
 const DESCRIPTION =
@@ -53,7 +53,7 @@ const VALUES = [
   {
     icon: Sun,
     title: "Solar-Electric Autonomy",
-    body: "Continuous daytime range from ~38 m² of rigid industrial hardtop solar, a 47 kWh standard bank (67.4 kWh optional), and standard LibertyKite auxiliary downwind drive with hydro-regeneration.",
+    body: "Continuous daytime range from ~38 m² of Maxeon all-black rigid glass modules rail-mounted on the hardtop, a 47 kWh standard bank (67.4 kWh optional), and standard LibertyKite auxiliary downwind drive with hydro-regeneration.",
   },
   {
     icon: Factory,
