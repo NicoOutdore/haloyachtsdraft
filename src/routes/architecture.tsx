@@ -8,6 +8,8 @@ import {
   SOLAR_YIELDS,
   CRUISE_DEMAND,
   SOLAR_VS_DEMAND,
+  RANGE_MODES,
+  REGEN_THRESHOLD,
 } from "@/components/site/data";
 
 
