@@ -135,7 +135,7 @@ export const PROPULSION_SPECS = [
   { label: "Energy reservoir", value: "ePropulsion 96 V lithium — 47.0 kWh standard (2 × 23.5 kWh, one block per hull)" },
   { label: "Long-range battery option", value: "+2 × 10.2 kWh, one per hull = 67.4 kWh total (via equipment pack)" },
   { label: "Power conversion", value: "DC-DC step-down to isolated 24 V and 12 V circuits" },
-  { label: "Solar array", value: "~38 m² Tier-1 rigid monocrystalline, flush hardtop" },
+  { label: "Solar array", value: "~38 m² Maxeon all-black rigid glass modules, rail-mounted on the hardtop with airflow beneath" },
   { label: "Peak solar output", value: "~7.5 – 8.0 kWp (Victron SmartSolar MPPT)" },
   { label: "Auxiliary drive", value: "Standard 40 m² LibertyKite with deployment bag" },
   { label: "Deck hardware", value: "Reinforced cleats/padeyes, backing plates to bulkheads" },
