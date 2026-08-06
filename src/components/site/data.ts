@@ -103,6 +103,22 @@ export const MODEL_COMPARISON = [
     coastal: "4.4+ kts with net battery generation",
   },
   {
+    metric: "Battery-only range (no solar, no kite)",
+    explorer: "~55 – 65 nm at 5.0 kts · ~30 – 35 nm at 6.5 kts",
+    coastal: "~55 – 65 nm at 4.5 kts · ~30 – 35 nm at 6.5 kts",
+  },
+  {
+    metric: "Battery-only range with 67.4 kWh upgrade",
+    explorer: "~80 – 90 nm at 5.0 kts",
+    coastal: "~80 – 90 nm at 4.5 kts",
+  },
+  {
+    metric: "Meaningful hydro-regeneration",
+    explorer: "Above ~6 kts under kite (~2.4 kW twin pods)",
+    coastal: "Above ~6 kts under kite (~2.4 kW twin pods)",
+  },
+
+  {
     metric: "Fresh water utility tankage",
     explorer: "400 L symmetrical (2 × 200 L tanks)",
     coastal: "400 L symmetrical (2 × 200 L tanks)",
