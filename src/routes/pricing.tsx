@@ -75,7 +75,9 @@ function Pricing() {
               </div>
             </dl>
             <p className="mt-6 text-xs text-muted-foreground">
-              Equipment packs, local VAT, delivery and commissioning are quoted separately.
+              All prices are quoted in euro, the contract currency. Equipment packs, local VAT,
+              delivery and commissioning are quoted separately.
+
             </p>
           </div>
         </div>
