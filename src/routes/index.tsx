@@ -18,8 +18,8 @@ const JSON_LD = {
   brand: { "@type": "Brand", name: "Halo Yachts" },
   makesOffer: MODELS.map((m) => ({
     "@type": "Offer",
-    priceCurrency: "GBP",
-    price: 450000,
+    priceCurrency: "EUR",
+    price: BASE_PRICE,
     itemOffered: {
       "@type": "Product",
       name: `Halo 13.5 ${m.code} — ${m.name}`,
