@@ -178,10 +178,9 @@ export const PACKS = [
     id: "off-grid-endurance",
     model: "Model A",
     name: "Off-Grid Endurance Pack",
-    price: 28000,
+    price: 32500,
     items: [
       "Long-range battery upgrade +20.4 kWh (2 × 10.2 kWh, one per hull) — 67.4 kWh total",
-      "Solbian Maxeon high-efficiency flush solar laminate upgrade",
       "High-efficiency 24 V DC marine watermaker — ~50 – 100 L/hour from the 24 V step-down architecture",
       "Marine climate control (A/C & heating)",
     ],
@@ -191,7 +190,7 @@ export const PACKS = [
     id: "blue-water-expedition",
     model: "Model A",
     name: "Blue-Water Expedition Pack",
-    price: 31000,
+    price: 35000,
     items: [
       "Advanced offshore navigation & comms suite — dual MFD chartplotters, radar, AIS transponder, satellite comms terminal",
       "Upgraded fast-charging shore power infrastructure (Victron MultiPlus)",
@@ -202,10 +201,9 @@ export const PACKS = [
     id: "med-comfort-power",
     model: "Model B",
     name: "Mediterranean Comfort & Power Pack",
-    price: 29500,
+    price: 35000,
     items: [
       "Marine climate control (A/C & heating)",
-      "Solbian Maxeon solar upgrade",
       "Long-range battery upgrade +20.4 kWh (2 × 10.2 kWh, one per hull) — 67.4 kWh total",
       "Upgraded fast-charging shore power infrastructure",
     ],
@@ -215,7 +213,7 @@ export const PACKS = [
     id: "charter-entertainment",
     model: "Model B",
     name: "Charter & Entertainment Navigation Pack",
-    price: 27000,
+    price: 32500,
     items: [
       "Advanced offshore navigation & comms suite",
       "Premium deck & cockpit lounging amenities",
@@ -224,6 +222,7 @@ export const PACKS = [
     note: "",
   },
 ] as const;
+
 
 // Euro is the contract currency. Legacy GBP figures were converted at the
 // standard rate of 1.168 and rounded to the nearest €2,500.
