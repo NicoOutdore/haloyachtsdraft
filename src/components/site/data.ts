@@ -225,20 +225,27 @@ export const PACKS = [
   },
 ] as const;
 
-export const BASE_PRICE = 450000;
+// Euro is the contract currency. Legacy GBP figures were converted at the
+// standard rate of 1.168 and rounded to the nearest €2,500.
+export const EUR_RATE = 1.168;
+
+export const BASE_PRICE = 525000;
+
+export const formatEur = (value: number) => `€${value.toLocaleString("en-GB")}`;
 
 export const RUNNING_COSTS = [
-  { craft: "Halo 13.5 m solar-electric", cost: "£1,650 – £2,500 / year", note: "Zero engine service, minimal energy and winterisation", highlight: true },
-  { craft: "Traditional diesel sailing catamaran (13.5 m)", cost: "£5,500 – £7,500 / year", note: "Engine servicing, fuel, rig and sail maintenance", highlight: false },
-  { craft: "Traditional high-power outboard power cat (13.5 m)", cost: "£14,000 – £22,000+ / year", note: "Fuel-dominated running costs and outboard servicing", highlight: false },
+  { craft: "Halo 13.5 m solar-electric", cost: "€1,950 – €2,900 / year", note: "Zero engine service, minimal energy and winterisation", highlight: true },
+  { craft: "Traditional diesel sailing catamaran (13.5 m)", cost: "€6,400 – €8,750 / year", note: "Engine servicing, fuel, rig and sail maintenance", highlight: false },
+  { craft: "Traditional high-power outboard power cat (13.5 m)", cost: "€16,350 – €25,700+ / year", note: "Fuel-dominated running costs and outboard servicing", highlight: false },
 ];
 
 export const PARTNERS = [
   { name: "Dixon Yacht Design", role: "Naval architecture" },
   { name: "LibertyKites", role: "Auxiliary kite propulsion" },
   { name: "ePropulsion", role: "96 V electric drivetrain" },
-  { name: "Solbian", role: "High-efficiency solar laminates" },
+  { name: "Maxeon", role: "All-black rigid glass solar modules" },
   { name: "CE Category A", role: "Ocean certification standard" },
 ];
+
 
 export const BUILD_LOCATIONS = ["New Zealand", "Australia", "Germany", "Italy", "Undecided"];
