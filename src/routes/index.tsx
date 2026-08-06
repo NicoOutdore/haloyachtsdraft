@@ -58,7 +58,7 @@ const VALUES = [
   {
     icon: Factory,
     title: "Decentralised Build Model",
-    body: "World-class naval architecture paired with licensed regional partner yards in New Zealand, Australia, Germany and Italy.",
+    body: "World-class naval architecture and precision CNC kit-sets, fabricated by licensed regional partner yards in New Zealand, Australia, Germany and Italy.",
   },
 ];
 
