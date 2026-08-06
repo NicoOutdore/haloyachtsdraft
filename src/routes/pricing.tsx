@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell, Section, PageHero } from "@/components/site/SiteShell";
 import { Button } from "@/components/ui/button";
-import { BASE_PRICE, RUNNING_COSTS } from "@/components/site/data";
+import { BASE_PRICE, RUNNING_COSTS, formatEur } from "@/components/site/data";
 
 const TITLE = "Pricing, Ownership Pathways & Running Costs | Halo Yachts";
 const DESCRIPTION =
-  "Halo 13.5m base build price £450,000 pre-VAT, with outright purchase, Maltese maritime leasing (50% VAT reduction) and marine mortgage pathways — plus annual running cost comparisons against diesel cats.";
+  "Halo 13.5m base build price €525,000 pre-VAT, with outright purchase, Maltese maritime leasing (50% VAT reduction) and marine mortgage pathways — plus annual running cost comparisons against diesel cats.";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -67,11 +67,11 @@ function Pricing() {
             <dl className="mt-6 space-y-4">
               <div className="flex items-baseline justify-between gap-4 border-b border-border/70 pb-3">
                 <dt className="text-sm text-muted-foreground">Licensed partner yard</dt>
-                <dd className="text-sm font-medium">£225,000</dd>
+                <dd className="text-sm font-medium">€262,500</dd>
               </div>
               <div className="flex items-baseline justify-between gap-4">
                 <dt className="text-sm text-muted-foreground">Halo Yachts (design, kit, systems)</dt>
-                <dd className="text-sm font-medium">£225,000</dd>
+                <dd className="text-sm font-medium">€262,500</dd>
               </div>
             </dl>
             <p className="mt-6 text-xs text-muted-foreground">

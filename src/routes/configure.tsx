@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { PhoneFields, PHONE_PATTERN, EMAIL_PATTERN } from "@/components/site/PhoneFields";
 import { submitConfiguration } from "@/lib/submissions.functions";
-import { MODELS, PACKS, BASE_PRICE, BUILD_LOCATIONS } from "@/components/site/data";
+import { MODELS, PACKS, BASE_PRICE, BUILD_LOCATIONS, formatEur } from "@/components/site/data";
 
 
 const TITLE = "Configure & Reserve Your Halo 13.5 | Halo Yachts";
