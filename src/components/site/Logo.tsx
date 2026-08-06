@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/halo-logo.jpg.asset.json";
+const logo = { url: "/images/halo-logo.jpg" };
 
 /**
  * The source logo is a JPG on white. On the dark navy shell we invert +
