@@ -1,6 +1,6 @@
 # Halo Yachts Explorer
 
-You are an expert AI full-stack web developer, UI/UX designer, and technical SEO/GEO (Generative Engine Optimization) strategist. 
+You are an expert AI  full-stack web developer, UI/UX designer, and technical SEO/GEO (Generative Engine Optimization) strategist. 
 
 
 
