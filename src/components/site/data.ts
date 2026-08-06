@@ -172,6 +172,37 @@ export const REGEN_PROFILE = [
   { speed: 6.5, perPod: 1.2, twin: 2.4 },
 ];
 
+// Regeneration only becomes a meaningful contributor above ~6 kts under kite.
+export const REGEN_THRESHOLD = {
+  headline: "Meaningful passive recharging begins above ~6 knots under kite",
+  detail:
+    "Regenerated power falls away non-linearly below 6 kts: at 3 – 4 kts the pods trickle 0.3 – 0.7 kW, which offsets part of the hotel load rather than building charge, and at 5 kts ~1.2 kW is still a trickle. Above ~6 kts the twin pods return ~2.4 kW and the bank genuinely refills. Kite regeneration supplements the solar array; it does not replace it.",
+};
+
+// Three honest range modes, derived from the published 2.6 kW propulsion +
+// 0.4 kW hotel draw at 5.0 kts against a ~90% usable 47.0 kWh bank.
+export const RANGE_MODES = [
+  {
+    mode: "Battery only (no solar, no kite)",
+    figures: "~55 – 65 nm at 5.0 kts · ~30 – 35 nm at 6.5 kts",
+    upgrade: "~80 – 90 nm at 5.0 kts with the 67.4 kWh long-range bank",
+    note: "Night passages, prolonged overcast or engine-only manoeuvring. Overnight reserve mode holds 3.8 kts (Explorer) / 3.5 kts (Coastal) for 12 hours on the battery alone.",
+  },
+  {
+    mode: "Daylight solar-assisted",
+    figures: "Effectively unlimited at 5.0 kts (Explorer) / 4.5 kts (Coastal)",
+    upgrade: "Conditional on irradiance — see the solar yield and live-input tables",
+    note: "In clear to lightly clouded Mediterranean conditions the array covers propulsion plus hotel load and still charges the bank. Under heavy overcast the shortfall is drawn from the battery.",
+  },
+  {
+    mode: "Kite assisted + hydro-regeneration",
+    figures: "4.4 – 4.5+ kts overnight with net battery generation",
+    upgrade: "~2.4 kW regenerated above ~6 kts under kite",
+    note: "The kite carries the boat while the pods free-wheel, so daylight solar starts each morning from a fuller bank instead of a depleted one.",
+  },
+];
+
+
 
 export const PACKS = [
   {
