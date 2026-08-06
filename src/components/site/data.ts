@@ -1,6 +1,6 @@
-import explorer from "@/assets/halo-explorer.jpg.asset.json";
-import med from "@/assets/halo-med.jpg.asset.json";
-import logo from "@/assets/halo-logo.jpg.asset.json";
+const explorer = { url: "/images/halo-explorer.jpg" };
+const med = { url: "/images/halo-med.jpg" };
+const logo = { url: "/images/halo-logo.jpg" };
 
 export const IMAGES = {
   explorer: explorer.url,
