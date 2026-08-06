@@ -38,18 +38,28 @@ On /build-with-us, add a "Scope of work" section before the criteria, stating th
 
 The hero intro and the criteria copy are updated to reflect this framing, and the homepage "Decentralised Build Model" card gains a one-line scope clarification.
 
-## 4. Currency toggle (GBP / EUR / USD)
+## 4. Currency toggle, with the Euro as contract currency
 
 Add a currency toggle affecting all prices site-wide:
 
 - Toggle control in the header (compact select) and repeated on /pricing and /configure.
-- Base currency stays GBP; EUR and USD shown at fixed indicative rates held in one place, with a visible "indicative conversion, contract currency GBP" note.
+- **Euro is the base and contract currency.** GBP and USD are shown at fixed indicative rates held in one place, with a visible "indicative conversion, contract currency EUR" note.
 - Applies to base price, equipment pack prices, configurator totals and the running-cost table (those are ranges - converted and rounded).
-- Selection persists in localStorage; default GBP.
+- Selection persists in localStorage; default EUR.
+
+Open point: the current figures (450,000 base; 28,000 / 31,000 / 29,500 / 27,000 packs; 1,650-2,500 running costs) were written as GBP. I will re-denominate them as EUR at those same round numbers, so the headline becomes €450,000, unless you want them converted from GBP instead.
+
+## 5. Solar specification: Maxeon glass modules, Solbian removed
+
+- Remove the "Solbian Maxeon high-efficiency flush solar laminate upgrade" item from the Off-Grid Endurance Pack and the "Solbian Maxeon solar upgrade" item from the Mediterranean Comfort & Power Pack. Pack prices stay unchanged at 28,000 and 29,500.
+- Replace Solbian in the partner/trust badge row with **Maxeon**, described as the rigid glass module supplier.
+- Update the array specification everywhere it appears (architecture propulsion specs, homepage value prop, models, FAQ, pricing base-spec copy): Maxeon All-Black rigid glass modules, standard ISO/IEC module dimensions, rail-mounted on the hardtop with airflow underneath for cooling, durability and single-module replacement. Add a short line that standard dimensions let partner yards source locally without international freight markups.
+- Remove any remaining "flush hardtop" / "laminate" wording that contradicts the rail-mounted glass approach.
 
 ## Technical notes
 
-- `src/components/site/data.ts`: add `RANGE_MODES`, regen threshold copy, `CURRENCIES` with indicative rates; convert `RUNNING_COSTS` strings into numeric ranges so they can be converted.
+- `src/components/site/data.ts`: add `RANGE_MODES`, regen threshold copy, `CURRENCIES` with EUR base and indicative GBP/USD rates; convert `RUNNING_COSTS` strings into numeric ranges so they can be converted; edit `PACKS` items and the `PARTNERS` badge list (Solbian → Maxeon); update `PROPULSION_SPECS` solar rows.
 - New `src/components/site/currency.tsx`: context provider + `useCurrency()` + `<CurrencyToggle />` + `formatPrice()`. Provider mounts in `src/routes/__root.tsx`.
-- Edits: `architecture.tsx` (range modes, regen threshold, chart annotation), `models.tsx` (new comparison rows, Product JSON-LD offer currency follows selection default GBP), `faq.tsx`, `index.tsx`, `pricing.tsx`, `configure.tsx`, `equipment.tsx`, `build-with-us.tsx`, `RegenChart.tsx`.
-- Head metadata on touched routes updated where the description quotes the old claims.
+- Edits: `architecture.tsx` (range modes, regen threshold, chart annotation, solar spec), `models.tsx` (new comparison rows, Product JSON-LD `priceCurrency: "EUR"`), `faq.tsx`, `index.tsx`, `pricing.tsx`, `configure.tsx`, `equipment.tsx`, `build-with-us.tsx`, `RegenChart.tsx`, `Header.tsx`.
+- Head metadata on touched routes updated where the description quotes the old claims or Solbian.
+
