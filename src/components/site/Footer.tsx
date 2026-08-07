@@ -30,7 +30,7 @@ export function Footer() {
             <li><Link to="/pricing" className="hover:text-foreground">Pricing & ownership</Link></li>
             <li><Link to="/configure" className="hover:text-foreground">Configure & reserve</Link></li>
             <li><Link to="/build-with-us" className="hover:text-foreground">Partner yard application</Link></li>
-            <li><Link to="/faq" className="hover:text-foreground">FAQ — safety & sustainability</Link></li>
+            <li><Link to="/faq" className="hover:text-foreground">FAQ — buying, safety & sustainability</Link></li>
           </ul>
 
         </nav>

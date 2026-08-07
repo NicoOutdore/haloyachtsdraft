@@ -108,6 +108,29 @@ function Home() {
         </div>
       </Section>
 
+      <Section
+        eyebrow="Our philosophy"
+        title="Substance over spectacle."
+        className="border-t border-border"
+      >
+        <div className="surface-panel mt-10 max-w-4xl rounded-lg p-8 sm:p-12">
+          <p className="text-lg leading-relaxed text-foreground sm:text-xl">
+            For discerning ocean navigators and eco-conscious yacht owners who value substance over
+            spectacle, Halo Yachts delivers 44ft solar-electric catamarans that unite
+            commercial-grade engineering with pragmatic quiet luxury.
+          </p>
+          <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+            Unlike conventional leisure yachts - often plagued by fragile systems, high maintenance
+            downtime, and noisy diesel generators - Halo combines zero-emission blue-water autonomy
+            and industrial-grade continuous-duty reliability with a quiet, beautifully understated
+            aesthetic. We engineer for absolute peace of mind at sea, so you can focus on the
+            journey, silent and uninterrupted.
+          </p>
+        </div>
+      </Section>
+
+
+
       <section className="border-y border-border bg-navy-deep">
         <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
           <p className="eyebrow text-center">Engineering & technology partners</p>
