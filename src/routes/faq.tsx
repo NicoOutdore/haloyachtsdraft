@@ -7,13 +7,41 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const TITLE = "FAQ — Safety & Sustainability | Halo Yachts";
+const TITLE = "FAQ — Buying, Safety & Sustainability | Halo Yachts";
 const DESCRIPTION =
-  "Answers on Halo's CE Category A safety engineering and its solar-electric sustainability: infinite solar cruising, LibertyKite hydro-regeneration, energy management and low-impact interior outfitting.";
+  "Answers on buying a Halo yacht — escrow-protected stage payments, single-point warranty and standardised specification — plus CE Category A safety engineering and solar-electric autonomy.";
 
 type Faq = { q: string; a: string };
 
+const BUYING: Faq[] = [
+  {
+    q: "How does purchasing a Halo yacht work?",
+    a: "You contract directly with Halo Yachts under a single, comprehensive purchase agreement for €525,000 + VAT. Halo manages the entire manufacturing process, quality control, independent surveys, and CE Category A certification, delivering a complete, turnkey vessel to you.",
+  },
+  {
+    q: "Who is my point of contact during the build?",
+    a: "Halo Yachts is your single point of contact. You are assigned a dedicated Halo Program Manager who handles your build from deposit to handover. You deal directly with us — we manage the shipyard, suppliers, and sub-contractors on your behalf.",
+  },
+  {
+    q: "How is my money protected during construction?",
+    a: "Your stage payments sit in a dedicated escrow account. Funds are only released to the shipyard at key build milestones once a Halo-appointed independent marine surveyor inspects the vessel on-site and issues a formal completion certificate.",
+  },
+  {
+    q: "Can I choose the interior finishes and colours?",
+    a: "Yes. While structural layouts and electrical systems are 100% standardised for safety and performance, you can select from our Curated Interior Palettes — upholstery fabrics, galley surfaces and cork trims — when placing your order.",
+  },
+  {
+    q: "Why does Halo use standardised specifications?",
+    a: "Standardising our structural CAD engineering and system specifications allows us to guarantee strict CE Category A (Ocean) certification, a 24-week delivery timeline, and maximum fleet uptime for charter operators.",
+  },
+  {
+    q: "What warranty comes with my Halo yacht?",
+    a: "Halo provides single-point warranty support. If an issue arises, you contact Halo directly. We coordinate all repairs, backed by global manufacturer warranties on ePropulsion drivetrains, Victron power electronics, and structural yard guarantees.",
+  },
+];
+
 const SAFETY: Faq[] = [
+
   {
     q: "What offshore category is the Halo 13.5 certified for?",
     a: "The platform is engineered to CE Category A ocean standards for self-sufficient passage-making in extreme offshore conditions.",
