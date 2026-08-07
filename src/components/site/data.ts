@@ -214,9 +214,9 @@ export const RANGE_MODES = [
   },
   {
     mode: "Kite assisted + hydro-regeneration",
-    figures: "4.4 – 4.5+ kts overnight with net battery generation",
-    upgrade: "~2.4 kW regenerated above ~6 kts under kite",
-    note: "The kite carries the boat while the pods free-wheel, so daylight solar starts each morning from a fuller bank instead of a depleted one.",
+    figures: "4.4 – 4.5+ kts overnight with a small net battery gain",
+    upgrade: "~1.1 kW regenerated above ~6 kts under kite (twin pods)",
+    note: "The kite carries the boat while the pods free-wheel. Output follows ePropulsion's published curve, so speed matters: below 5 kts regeneration mostly offsets the hotel load, and above 6 kts daylight solar starts each morning from a fuller bank.",
   },
 ];
 
