@@ -154,7 +154,7 @@ const SUSTAINABILITY: Faq[] = [
 const JSON_LD = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [...SAFETY, ...SUSTAINABILITY].map((f) => ({
+  mainEntity: [...BUYING, ...SAFETY, ...SUSTAINABILITY].map((f) => ({
     "@type": "Question",
     name: f.q,
     acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -197,10 +197,15 @@ function FaqPage() {
       <PageHero
         eyebrow="Frequently asked questions"
         title="Safety and sustainability, answered directly."
-        intro="Short, technical answers to the questions owners, charter operators and partner yards ask most often about the Halo 13.5 platform."
+        intro="Short, technical answers to the questions owners, charter operators and partner yards ask most often about buying, owning and sailing the Halo 13.5 platform."
       />
 
-      <Section id="safety" eyebrow="Safety" title="Offshore safety & structural engineering">
+      <Section id="buying" eyebrow="Buying & build" title="The buying & build model">
+        <FaqList items={BUYING} idPrefix="buying" />
+      </Section>
+
+      <Section id="safety" eyebrow="Safety" title="Offshore safety & structural engineering" className="border-t border-border">
+
         <FaqList items={SAFETY} idPrefix="safety" />
       </Section>
 
