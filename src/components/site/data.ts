@@ -114,8 +114,8 @@ export const MODEL_COMPARISON = [
   },
   {
     metric: "Meaningful hydro-regeneration",
-    explorer: "Above ~6 kts under kite (~2.4 kW twin pods)",
-    coastal: "Above ~6 kts under kite (~2.4 kW twin pods)",
+    explorer: "Above ~6 kts under kite (~1.1 kW twin pods)",
+    coastal: "Above ~6 kts under kite (~1.1 kW twin pods)",
   },
 
   {
