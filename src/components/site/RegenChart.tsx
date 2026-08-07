@@ -41,7 +41,7 @@ export function RegenChart() {
               textAnchor="end"
               className="fill-muted-foreground text-[11px]"
             >
-              {kw.toFixed(1)}
+              {kw.toFixed(2)}
             </text>
           </g>
         ))}
@@ -99,7 +99,7 @@ export function RegenChart() {
               textAnchor="middle"
               className="fill-foreground text-[11px] font-medium"
             >
-              {p.twin.toFixed(1)}
+              {p.twin.toFixed(2)}
             </text>
           </g>
         ))}
