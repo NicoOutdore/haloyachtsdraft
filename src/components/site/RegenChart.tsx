@@ -24,7 +24,7 @@ export function RegenChart() {
         role="img"
         aria-label="Hydro-regeneration input against boat speed under kite power, for a single ePropulsion pod and for both pods combined."
       >
-        {[0, 0.5, 1, 1.5, 2, 2.5].map((kw) => (
+        {[0, 0.25, 0.5, 0.75, 1, 1.25].map((kw) => (
           <g key={kw}>
             <line
               x1={PAD.left}
