@@ -114,8 +114,8 @@ export const MODEL_COMPARISON = [
   },
   {
     metric: "Meaningful hydro-regeneration",
-    explorer: "Above ~6 kts under kite (~2.4 kW twin pods)",
-    coastal: "Above ~6 kts under kite (~2.4 kW twin pods)",
+    explorer: "Above ~6 kts under kite (~1.1 kW twin pods)",
+    coastal: "Above ~6 kts under kite (~1.1 kW twin pods)",
   },
 
   {
@@ -179,21 +179,23 @@ export const SOLAR_VS_DEMAND = [
   { condition: "Heavy overcast", input: "~0.8 – 1.5 kW", verdict: "Shortfall drawn from the 47 kWh bank" },
 ];
 
-// Hydro-regeneration under kite power. Per-pod values follow the ePropulsion
-// 20 kW pod regeneration curve; twin figures are the two pods combined.
+// Hydro-regeneration under kite power. Per-pod values are read off the
+// published ePropulsion Pod Drive 20 eSSA hydrogeneration curve (W vs knots);
+// twin figures are the two installed pods combined.
 export const REGEN_PROFILE = [
-  { speed: 3.0, perPod: 0.15, twin: 0.3 },
-  { speed: 4.0, perPod: 0.35, twin: 0.7 },
-  { speed: 5.0, perPod: 0.6, twin: 1.2 },
-  { speed: 6.5, perPod: 1.2, twin: 2.4 },
+  { speed: 3.0, perPod: 0.1, twin: 0.2 },
+  { speed: 4.0, perPod: 0.23, twin: 0.46 },
+  { speed: 5.0, perPod: 0.33, twin: 0.66 },
+  { speed: 6.5, perPod: 0.55, twin: 1.1 },
 ];
 
 // Regeneration only becomes a meaningful contributor above ~6 kts under kite.
 export const REGEN_THRESHOLD = {
   headline: "Meaningful passive recharging begins above ~6 knots under kite",
   detail:
-    "Regenerated power falls away non-linearly below 6 kts: at 3 – 4 kts the pods trickle 0.3 – 0.7 kW, which offsets part of the hotel load rather than building charge, and at 5 kts ~1.2 kW is still a trickle. Above ~6 kts the twin pods return ~2.4 kW and the bank genuinely refills. Kite regeneration supplements the solar array; it does not replace it.",
+    "Read from ePropulsion's published Pod Drive 20 eSSA hydrogeneration curve, output rises steeply with boat speed and only plateaus (~1.75 kW per pod) beyond 10 kts. At 3 – 4 kts the twin pods return ~0.2 – 0.45 kW, which covers part of the hotel load rather than building charge; at 5 kts ~0.65 kW roughly balances it. Above ~6 kts the pair returns ~1.1 kW and the bank starts to refill. Kite regeneration supplements the solar array; it does not replace it.",
 };
+
 
 // Three honest range modes, derived from the published 2.6 kW propulsion +
 // 0.4 kW hotel draw at 5.0 kts against a ~90% usable 47.0 kWh bank.
@@ -212,9 +214,9 @@ export const RANGE_MODES = [
   },
   {
     mode: "Kite assisted + hydro-regeneration",
-    figures: "4.4 – 4.5+ kts overnight with net battery generation",
-    upgrade: "~2.4 kW regenerated above ~6 kts under kite",
-    note: "The kite carries the boat while the pods free-wheel, so daylight solar starts each morning from a fuller bank instead of a depleted one.",
+    figures: "4.4 – 4.5+ kts overnight with a small net battery gain",
+    upgrade: "~1.1 kW regenerated above ~6 kts under kite (twin pods)",
+    note: "The kite carries the boat while the pods free-wheel. Output follows ePropulsion's published curve, so speed matters: below 5 kts regeneration mostly offsets the hotel load, and above 6 kts daylight solar starts each morning from a fuller bank.",
   },
 ];
 

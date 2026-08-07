@@ -4,7 +4,7 @@ const W = 640;
 const H = 280;
 const PAD = { top: 24, right: 24, bottom: 44, left: 56 };
 
-const MAX_KW = 2.5;
+const MAX_KW = 1.25;
 const MIN_KTS = 2.5;
 const MAX_KTS = 7;
 
@@ -24,7 +24,7 @@ export function RegenChart() {
         role="img"
         aria-label="Hydro-regeneration input against boat speed under kite power, for a single ePropulsion pod and for both pods combined."
       >
-        {[0, 0.5, 1, 1.5, 2, 2.5].map((kw) => (
+        {[0, 0.25, 0.5, 0.75, 1, 1.25].map((kw) => (
           <g key={kw}>
             <line
               x1={PAD.left}
@@ -41,7 +41,7 @@ export function RegenChart() {
               textAnchor="end"
               className="fill-muted-foreground text-[11px]"
             >
-              {kw.toFixed(1)}
+              {kw.toFixed(2)}
             </text>
           </g>
         ))}
@@ -99,7 +99,7 @@ export function RegenChart() {
               textAnchor="middle"
               className="fill-foreground text-[11px] font-medium"
             >
-              {p.twin.toFixed(1)}
+              {p.twin.toFixed(2)}
             </text>
           </g>
         ))}

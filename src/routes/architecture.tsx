@@ -184,27 +184,28 @@ function Architecture() {
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
           <div className="surface-panel rounded-lg p-6">
             <p className="text-sm text-muted-foreground">3 – 4 kts under kite</p>
-            <p className="mt-2 text-xl font-semibold text-accent">~0.3 – 0.7 kW</p>
+            <p className="mt-2 text-xl font-semibold text-accent">~0.20 – 0.45 kW</p>
             <p className="mt-2 text-xs text-muted-foreground">
-              Hotel-load offset only — this trickle does not build charge in the bank.
+              Partial hotel-load offset only — this trickle does not build charge in the bank.
             </p>
           </div>
           <div className="surface-panel rounded-lg p-6">
             <p className="text-sm text-muted-foreground">5.0 kts under kite</p>
-            <p className="mt-2 text-xl font-semibold text-accent">~1.2 kW</p>
+            <p className="mt-2 text-xl font-semibold text-accent">~0.65 kW</p>
             <p className="mt-2 text-xs text-muted-foreground">
-              Roughly 0.6 kW per pod — covers the hotel load with only a marginal trickle beyond it.
+              About 0.33 kW per pod — roughly balances the ~0.4 kW hotel load.
             </p>
           </div>
           <div className="surface-panel rounded-lg p-6">
             <p className="text-sm text-muted-foreground">Above ~6 kts under kite</p>
-            <p className="mt-2 text-xl font-semibold text-accent">~2.4 kW</p>
+            <p className="mt-2 text-xl font-semibold text-accent">~1.1 kW</p>
             <p className="mt-2 text-xs text-muted-foreground">
-              About 1.2 kW per pod at 6.5 kts — the threshold where the bank genuinely refills
+              About 0.55 kW per pod at 6.5 kts — the point where the bank starts to refill
               overnight.
             </p>
           </div>
         </div>
+
 
 
       </Section>
