@@ -4,7 +4,7 @@ const W = 640;
 const H = 280;
 const PAD = { top: 24, right: 24, bottom: 44, left: 56 };
 
-const MAX_KW = 2.5;
+const MAX_KW = 1.25;
 const MIN_KTS = 2.5;
 const MAX_KTS = 7;
 
