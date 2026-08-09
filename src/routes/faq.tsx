@@ -196,9 +196,10 @@ function FaqPage() {
     <SiteShell>
       <PageHero
         eyebrow="Frequently asked questions"
-        title="Safety and sustainability, answered directly."
-        intro="Short, technical answers to the questions owners, charter operators and partner yards ask most often about buying, owning and sailing the Halo 13.5 platform."
+        title="Buying, owning and using a Halo, answered directly."
+        intro="Short, clear answers to the questions owners, charter operators and partner yards ask most often about buying a Halo, living with one day to day, and where its ocean capability fits in."
       />
+
 
       <Section id="buying" eyebrow="Buying & build" title="The buying & build model">
         <FaqList items={BUYING} idPrefix="buying" />
