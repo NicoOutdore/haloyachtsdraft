@@ -5,9 +5,9 @@ import { Logo } from "@/components/site/Logo";
 import { Button } from "@/components/ui/button";
 import { IMAGES, PARTNERS, MODELS, RUNNING_COSTS, BASE_PRICE } from "@/components/site/data";
 
-const TITLE = "Halo Yachts | 13.5m Solar-Electric Aluminium Catamarans";
+const TITLE = "Halo Yachts | Solar Powered. Ocean Capable. Quiet by Design.";
 const DESCRIPTION =
-  "Halo Yachts builds 13.5m solar-electric aluminium blue-water cruising catamarans — CE Category A ocean certified, 47 kWh (67.4 kWh optional) ePropulsion 96V architecture and standard LibertyKite auxiliary drive.";
+  "Luxury solar-electric power catamarans designed around a simpler, more enjoyable way to spend time on the water — quiet propulsion, daily solar energy and genuine ocean capability.";
 
 const JSON_LD = {
   "@context": "https://schema.org",
@@ -44,21 +44,49 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+const DAY_ABOARD = [
+  {
+    time: "Morning",
+    body: "Slip the lines and run quietly along the coast. No diesel clatter, no vibration underfoot - only water, wind and conversation.",
+  },
+  {
+    time: "Midday",
+    body: "Choose a secluded bay. Where conditions suit, the twin electric drives hold position on GPS while lunch is prepared, so a short stop stays a short stop.",
+  },
+  {
+    time: "Afternoon",
+    body: "Swim, paddleboard, or read on a cork deck that stays cool underfoot in strong sun. Nothing running, nothing to shout over.",
+  },
+  {
+    time: "Evening",
+    body: "Return to harbour or stay out. The array keeps working through the last of the light, replenishing the bank while you sit down to dinner.",
+  },
+];
+
+const OWNERSHIP = [
+  "Quiet propulsion.",
+  "Reduced servicing.",
+  "No sails or standing rigging.",
+  "Far fewer winterisation procedures.",
+  "Simple, intuitive operation.",
+  "Solar energy every day.",
+];
+
 const VALUES = [
   {
     icon: Anchor,
-    title: "CE Category A Ocean Certified",
-    body: "Engineered for self-sufficiency in extreme offshore conditions, with ISO/CE-compliant offshore safety equipment throughout.",
+    title: "Confidence when the coast runs out",
+    body: "CE Category A ocean certification, self-sufficient systems and ISO/CE offshore safety equipment throughout. Capability you rarely need, and are glad to have.",
   },
   {
     icon: Sun,
-    title: "Solar-Electric Autonomy",
-    body: "Continuous daytime range from ~38 m² of Maxeon all-black rigid glass modules rail-mounted on the hardtop, a 47 kWh standard bank (67.4 kWh optional), and standard LibertyKite auxiliary downwind drive with hydro-regeneration.",
+    title: "Energy that arrives on its own",
+    body: "Around 38 m² of Maxeon all-black rigid glass modules, a 47 kWh bank (67.4 kWh optional) and a standard LibertyKite auxiliary drive with hydro-regeneration. No fuel dock, no schedule.",
   },
   {
     icon: Factory,
-    title: "Decentralised Build Model",
-    body: "World-class naval architecture and precision CNC kit-sets, fabricated by licensed regional partner yards in New Zealand, Australia, Germany and Italy.",
+    title: "Built close to home",
+    body: "Precision CNC kit-sets from a single naval architecture package, fabricated by licensed regional partner yards in New Zealand, Australia, Germany and Italy.",
   },
 ];
 
@@ -74,19 +102,23 @@ function Home() {
         <div className="absolute inset-0 overlay-depth" />
         <div className="relative mx-auto max-w-4xl px-5 pt-28 pb-16 text-center lg:px-8">
           <Logo className="mx-auto h-28 sm:h-36" />
+          <p className="eyebrow mt-5">Infinite Range. Zero Noise.</p>
           <h1 className="mt-8 text-3xl font-semibold leading-[1.1] sm:text-5xl lg:text-6xl">
-            Freedom Without Compromise.
+            Solar Powered. Ocean Capable.
+            <span className="mt-3 block text-[2.15rem] font-light leading-[1.15] text-foreground/85 sm:text-[2.5rem] lg:text-[3rem]">
+              Quiet by Design.
+            </span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Discover the Coastal and Explorer editions - aluminium solar-electric catamarans engineered
-            for extended cruising, quiet luxury, and true off-grid self-sufficiency.
+          <p className="mx-auto mt-7 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            Luxury solar-electric power catamarans designed around a simpler, more enjoyable way to
+            spend time on the water.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg">
               <Link to="/configure">Configure Your Halo</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link to="/architecture">Explore Architecture</Link>
+              <Link to="/configure">Request a Private Briefing</Link>
             </Button>
           </div>
           <p className="mx-auto mt-10 max-w-2xl text-sm italic leading-relaxed text-muted-foreground/80">
@@ -96,7 +128,84 @@ function Home() {
         </div>
       </section>
 
-      <Section eyebrow="Why Halo" title="Built to leave the fuel dock behind.">
+      <Section eyebrow="Brand essence" title="Designed around the water, not the machinery.">
+        <div className="mt-8 max-w-3xl space-y-6">
+          <p className="text-lg leading-relaxed text-foreground sm:text-xl">
+            Halo is designed around the experience of being on the water, not the machinery required
+            to get there. Every significant decision - quiet electric propulsion, solar energy,
+            simple operation, natural materials, exceptional autonomy - exists to remove friction
+            from a day afloat.
+          </p>
+          <p className="text-base leading-relaxed text-muted-foreground">
+            Halo removes the complexity of traditional yachting without removing the adventure. A
+            two-hour evening cruise, a lunch stop in a quiet bay, a weekend away, a season of island
+            hopping or an ocean passage: the same yacht, the same calm, with no ritual of preparation
+            standing between you and the water.
+          </p>
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="A day aboard Halo"
+        title="How the yacht is actually used."
+        className="border-t border-border"
+      >
+        <div className="mt-12 max-w-4xl divide-y divide-border/60">
+          {DAY_ABOARD.map((d) => (
+            <div key={d.time} className="grid gap-3 py-8 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-10">
+              <p className="eyebrow pt-1">{d.time}</p>
+              <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">{d.body}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Effortless ownership"
+        title="More time on the water."
+        intro="Halo is engineered to reduce the complexity that comes with traditional yacht ownership. Less time preparing the yacht. More time enjoying it."
+        className="border-t border-border"
+      >
+        <ul className="mt-12 grid max-w-4xl gap-x-12 gap-y-6 sm:grid-cols-2">
+          {OWNERSHIP.map((o) => (
+            <li key={o} className="border-b border-border/50 pb-5 text-lg font-light text-foreground">
+              {o}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          Cork decking and insulation keep the interior quieter and the deck comfortable underfoot,
+          cooler in strong sun and warmer in cool weather. Other onboard systems still need
+          appropriate seasonal care, but the annual routine is a fraction of what a sailing or
+          diesel yacht demands.
+        </p>
+      </Section>
+
+      <Section
+        eyebrow="Our philosophy"
+        title="Substance over spectacle."
+        className="border-t border-border"
+      >
+        <div className="surface-panel mt-10 max-w-4xl rounded-lg p-8 sm:p-12">
+          <p className="text-lg leading-relaxed text-foreground sm:text-xl">
+            For discerning owners who value substance over spectacle, Halo delivers 44ft
+            solar-electric catamarans that unite commercial-grade engineering with pragmatic quiet
+            luxury.
+          </p>
+          <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+            Where conventional leisure yachts bring fragile systems, maintenance downtime and noisy
+            diesel generators, Halo pairs continuous-duty reliability with a quiet, beautifully
+            understated aesthetic. We engineer for peace of mind at sea, so the journey stays silent
+            and uninterrupted.
+          </p>
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="The evidence"
+        title="What makes the experience possible."
+        className="border-t border-border"
+      >
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {VALUES.map(({ icon: Icon, title, body }) => (
             <article key={title} className="surface-panel rounded-lg p-8">
@@ -107,29 +216,6 @@ function Home() {
           ))}
         </div>
       </Section>
-
-      <Section
-        eyebrow="Our philosophy"
-        title="Substance over spectacle."
-        className="border-t border-border"
-      >
-        <div className="surface-panel mt-10 max-w-4xl rounded-lg p-8 sm:p-12">
-          <p className="text-lg leading-relaxed text-foreground sm:text-xl">
-            For discerning ocean navigators and eco-conscious yacht owners who value substance over
-            spectacle, Halo Yachts delivers 44ft solar-electric catamarans that unite
-            commercial-grade engineering with pragmatic quiet luxury.
-          </p>
-          <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            Unlike conventional leisure yachts - often plagued by fragile systems, high maintenance
-            downtime, and noisy diesel generators - Halo combines zero-emission blue-water autonomy
-            and industrial-grade continuous-duty reliability with a quiet, beautifully understated
-            aesthetic. We engineer for absolute peace of mind at sea, so you can focus on the
-            journey, silent and uninterrupted.
-          </p>
-        </div>
-      </Section>
-
-
 
       <section className="border-y border-border bg-navy-deep">
         <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8">
@@ -202,9 +288,12 @@ function Home() {
             </div>
           ))}
         </div>
-        <div className="mt-10">
+        <div className="mt-10 flex flex-wrap gap-3">
           <Button asChild variant="outline">
             <Link to="/pricing">Pricing & acquisition pathways</Link>
+          </Button>
+          <Button asChild>
+            <Link to="/configure">Request a Private Briefing</Link>
           </Button>
         </div>
       </Section>
