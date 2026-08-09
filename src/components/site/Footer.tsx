@@ -8,9 +8,11 @@ export function Footer() {
         <div>
           <Logo className="h-16" />
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-            13.5 m solar-electric aluminium blue-water cruising catamarans. Naval architecture by
-            Dixon Yacht Design, assembled by licensed regional partner yards.
+            Luxury 13.5 m solar-electric aluminium catamarans. Quiet, simple to own and genuinely
+            ocean capable. Naval architecture by Dixon Yacht Design, assembled by licensed regional
+            partner yards.
           </p>
+
         </div>
 
         <nav aria-label="Yachts">
@@ -29,6 +31,8 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li><Link to="/pricing" className="hover:text-foreground">Pricing & ownership</Link></li>
             <li><Link to="/configure" className="hover:text-foreground">Configure & reserve</Link></li>
+            <li><Link to="/configure" className="hover:text-foreground">Request a private briefing</Link></li>
+
             <li><Link to="/build-with-us" className="hover:text-foreground">Partner yard application</Link></li>
             <li><Link to="/faq" className="hover:text-foreground">FAQ — buying, safety & sustainability</Link></li>
           </ul>
