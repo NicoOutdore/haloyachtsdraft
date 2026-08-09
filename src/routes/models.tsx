@@ -60,9 +60,10 @@ function Models() {
     <SiteShell>
       <PageHero
         eyebrow="Model comparison"
-        title="Explorer or Coastal. One platform, two missions."
-        intro="Both editions share the same aluminium hull platform, 96 V ePropulsion drivetrain and ~38 m² solar hardtop. Displacement, capacity and cruise performance are where they diverge."
+        title="Explorer or Coastal. One platform, two ways to live with it."
+        intro="Both editions share the same aluminium hull platform, 96 V ePropulsion drivetrain and ~38 m² solar hardtop, and both are quiet, simple and ocean capable. Displacement, capacity and cruise performance are where they diverge."
       />
+
 
       <Section eyebrow="Positioning" title="Two very different owners.">
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
