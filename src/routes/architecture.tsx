@@ -37,8 +37,9 @@ function Architecture() {
       <PageHero
         eyebrow="Technical hub"
         title="Shared naval architecture. Two superstructures."
-        intro="A slender semi-displacement aluminium platform designed by Dixon Yacht Design, engineered for CE Category A ocean service and continuous solar-electric autonomy."
+        intro="A slender semi-displacement aluminium platform designed by Dixon Yacht Design. The engineering exists to make the experience effortless: quiet running, daily solar energy, and CE Category A capability held in reserve."
       />
+
 
       <Section eyebrow="Platform" title="Dimensional & structural specification">
         <dl className="mt-10 grid gap-x-14 md:grid-cols-2">
