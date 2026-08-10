@@ -46,6 +46,76 @@ const FRAMEWORK = [
   },
 ];
 
+const CADENCE = [
+  { label: "Total labour budget", value: "2,410 hours" },
+  { label: "Scheduled window", value: "24 weeks" },
+  { label: "Programme start", value: "Keel laying" },
+  { label: "Programme end", value: "Sea trials & handover" },
+];
+
+const MILESTONES = [
+  { week: "Weeks 1 – 4", body: "Kit receipt and verification, jig set-up, keel laying, hull panel tacking. Stage 1 sign-off on structural alignment." },
+  { week: "Weeks 5 – 10", body: "Full hull and bridge-deck welding, bulkheads, mini-keels, fairing and weld inspection records." },
+  { week: "Weeks 11 – 16", body: "Deck and superstructure close-out, tank integration, cabling runs, 96 V drivetrain and 24 V domestic architecture installed." },
+  { week: "Weeks 17 – 21", body: "Solar array on rails, interior fit-out to the curated palette, systems commissioning and factory acceptance tests." },
+  { week: "Weeks 22 – 24", body: "CE Category A documentation pack completed, sea trials, snagging and owner handover." },
+];
+
+const SOURCING = [
+  {
+    title: "Turnkey sourcing (default)",
+    body: "Halo purchases, ships, insures and warrants the specified equipment — drivetrain, batteries, power electronics, solar modules and safety gear — and delivers it to the yard against the build schedule. The yard receives, stores and installs; Halo carries supply risk and manufacturer warranty claims.",
+  },
+  {
+    title: "Client free-issue supply",
+    body: "The owner may supply nominated items directly — preferred electronics, tender, soft furnishings — with no yard markup. The owner buys, ships and insures to the yard door and holds the manufacturer warranty; the yard receives, stores and installs to the Halo specification and is paid installation labour only. Free-issue items must be on site by the scheduled stage or the slot proceeds without them.",
+  },
+];
+
+const RESPONSIBILITY = [
+  { item: "Naval architecture, structural CAD & CNC kit files", halo: "Owns", yard: "Executes", client: "—" },
+  { item: "Kit cutting & delivery to yard", halo: "Supplies", yard: "Receives & verifies", client: "—" },
+  { item: "Welding, fairing, fit-out labour", halo: "Specifies & inspects", yard: "Performs", client: "—" },
+  { item: "Drivetrain, batteries, power electronics", halo: "Sources & warrants", yard: "Installs", client: "—" },
+  { item: "Nominated free-issue equipment", halo: "Approves spec", yard: "Receives & installs", client: "Buys & ships" },
+  { item: "Interior palette selection", halo: "Curates options", yard: "Builds to selection", client: "Selects" },
+  { item: "Weekly inspection & milestone sign-off", halo: "Performs", yard: "Hosts & documents", client: "Receives report" },
+  { item: "CE Category A certification file", halo: "Owns & submits", yard: "Provides build records", client: "—" },
+  { item: "Stage payment release from escrow", halo: "Authorises", yard: "Invoices on certificate", client: "Funds escrow" },
+];
+
+const OVERSIGHT = [
+  {
+    title: "Weekly on-site inspection",
+    body: "A dedicated Halo representative or appointed marine surveyor attends the yard weekly, reviews work against the stage checklist and records progress with dated photography and video.",
+  },
+  {
+    title: "Milestone sign-off gates payment",
+    body: "No stage payment leaves escrow until the surveyor issues a formal Stage Completion Certificate for that milestone. Non-conforming work is remediated before the gate opens.",
+  },
+  {
+    title: "Documented traceability",
+    body: "Welder qualifications, material certificates, weld inspection records and commissioning tests are logged into the build file as work proceeds — not reconstructed at the end.",
+  },
+  {
+    title: "CE Category A (Ocean) certification",
+    body: "Halo owns the certification file and notified-body liaison. The yard supplies build records, hosts inspections and holds to the approved structural and systems definition without deviation.",
+  },
+];
+
+const REGIONAL_OPTIONS = [
+  {
+    label: "Option A",
+    title: "Complete build in Holland / UK",
+    body: "The vessel is built, commissioned and sea-trialled at a core northern European yard, then shipped or delivered on her own bottom to the owner's home port.",
+  },
+  {
+    label: "Option B",
+    title: "Local kit-cut and regional assembly",
+    body: "Precision CNC aluminium kit files are cut at a certified regional metalwork partner near the client's home port and assembled locally under the same supervision regime, cutting freight and import cost.",
+  },
+];
+
 const CRITERIA = [
 
   { title: "Aluminium fabrication", body: "Demonstrable marine-grade aluminium welding to 5083-H111 / Sealium, with certified welders and documented procedures." },
