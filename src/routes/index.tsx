@@ -118,7 +118,7 @@ function Home() {
               <Link to="/configure">Configure Your Halo</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link to="/configure">Request Build Slot</Link>
+              <Link to="/configure">Request Information</Link>
             </Button>
           </div>
           <p className="mx-auto mt-10 max-w-2xl text-sm italic leading-relaxed text-muted-foreground/80">
