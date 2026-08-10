@@ -153,6 +153,41 @@ function Configure() {
         intro="Choose your superstructure, interior layout and equipment packs, then tell us where and when you would like her built."
       />
 
+      <section className="border-y border-border bg-navy-deep">
+        <div className="mx-auto grid max-w-7xl gap-6 px-5 py-10 sm:grid-cols-3 lg:px-8">
+          <div>
+            <p className="text-sm font-semibold">24-week delivery</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              A scheduled programme from keel laying to handover.
+            </p>
+          </div>
+          <div>
+            <p className="text-sm font-semibold">Escrow-protected payments</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Stage funds release only on an independent surveyor&apos;s certificate.
+            </p>
+          </div>
+          <div>
+            <p className="text-sm font-semibold">CE Category A (Ocean)</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Certified, turnkey and covered by single-point Halo warranty.
+            </p>
+          </div>
+          <p className="text-xs text-muted-foreground sm:col-span-3">
+            Full detail in the{" "}
+            <Link to="/faq" className="text-accent hover:underline">
+              buyer FAQ
+            </Link>{" "}
+            and the{" "}
+            <Link to="/build-with-us" className="text-accent hover:underline">
+              build programme
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+
+
       <Section>
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-start">
           <div className="space-y-12">
