@@ -37,9 +37,20 @@ A responsibility matrix (Halo / yard / client free-issue) makes the split explic
 
 Add **Virtual Anchor Mode (electric dynamic positioning)** as a named lifestyle feature on the homepage ("A day aboard Halo" / benefits list) and in the /architecture systems copy: total silence at swim and lunch stops, no chain drag over protected Posidonia seagrass, and a positive net solar balance while holding station in calm daylight. Framed as convenience where conditions permit, never as a substitute for anchoring or a safety system.
 
+## 7. LibertyKite 40 sqm section
+
+New section on `/architecture` (with a short benefit-led mention in the homepage feature list), using the uploaded aerial kite photo as the section image:
+
+- What it is: a 40 sqm LibertyKite traction wing flown from the foredeck for downwind and reaching passages — quiet, low-heel assistance that adds range without sails, mast or standing rigging.
+- Standard cleat reinforcement: every Halo is delivered with reinforced, structurally backed foredeck cleat and load-point fittings engineered for sustained kite loads, so extended kite use is safe and does not require a retrofit. Loads are tied into the aluminium structure rather than deck hardware alone.
+- Ties into the existing kite-assisted range mode already in `data.ts`, so the range figures and this section reference the same numbers.
+
+Framed as an assistance system for suitable conditions, not a primary propulsion or safety claim.
+
 ## Technical notes
 
-- Files touched: `src/routes/configure.tsx`, `src/routes/faq.tsx`, `src/routes/build-with-us.tsx`, `src/routes/index.tsx`, `src/routes/architecture.tsx`, `src/components/site/Footer.tsx`, and small copy edits in `models.tsx` / `equipment.tsx` / `pricing.tsx`.
+- Files touched: `src/routes/build-with-us.tsx` (largest change), `src/routes/configure.tsx`, `src/routes/faq.tsx`, `src/routes/index.tsx`, `src/routes/architecture.tsx`, `src/components/site/Footer.tsx`, and small copy edits in `models.tsx` / `equipment.tsx` / `pricing.tsx`.
+- The kite image is registered as a Lovable asset pointer and imported, matching how other site imagery is handled; alt text describes the kite-assisted catamaran.
 - FAQ uses the existing shadcn Accordion; content lives in typed arrays that also feed the JSON-LD.
 - No changes to `data.ts` pricing, the Google Sheets submission functions, form field schema, or Sheets columns.
-- Head metadata refreshed on `/configure` and `/faq` to match the new content.
+- Head metadata refreshed on `/configure`, `/faq`, `/build-with-us` and `/architecture` to match the new content.
