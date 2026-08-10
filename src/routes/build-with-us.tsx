@@ -10,9 +10,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { PhoneFields, PHONE_PATTERN, EMAIL_PATTERN } from "@/components/site/PhoneFields";
 import { submitYardApplication } from "@/lib/submissions.functions";
 
-const TITLE = "Partner Yard Application — Build With Us | Halo Yachts";
+const TITLE = "Partner Yard Programme — Build With Us | Halo Yachts";
 const DESCRIPTION =
-  "Apply to join the Halo Yachts licensed build network. For premier aluminium fabrication yards with CNC welding capability, crane and slipway capacity and audited quality control.";
+  "How a Halo build runs: 2,410 labour hours over 24 weeks, turnkey vs client free-issue sourcing, regional fabrication options, weekly surveyor inspection, milestone sign-off and CE Category A certification.";
 
 export const Route = createFileRoute("/build-with-us")({
   head: () => ({
@@ -43,6 +43,76 @@ const FRAMEWORK = [
     step: "03 — Regional delivery",
     title: "Built near the owner",
     body: "Boats are built in the region they will be sailed — New Zealand, Australia, Germany, Italy — cutting freight, import duty and delivery miles while keeping the specification identical worldwide.",
+  },
+];
+
+const CADENCE = [
+  { label: "Total labour budget", value: "2,410 hours" },
+  { label: "Scheduled window", value: "24 weeks" },
+  { label: "Programme start", value: "Keel laying" },
+  { label: "Programme end", value: "Sea trials & handover" },
+];
+
+const MILESTONES = [
+  { week: "Weeks 1 – 4", body: "Kit receipt and verification, jig set-up, keel laying, hull panel tacking. Stage 1 sign-off on structural alignment." },
+  { week: "Weeks 5 – 10", body: "Full hull and bridge-deck welding, bulkheads, mini-keels, fairing and weld inspection records." },
+  { week: "Weeks 11 – 16", body: "Deck and superstructure close-out, tank integration, cabling runs, 96 V drivetrain and 24 V domestic architecture installed." },
+  { week: "Weeks 17 – 21", body: "Solar array on rails, interior fit-out to the curated palette, systems commissioning and factory acceptance tests." },
+  { week: "Weeks 22 – 24", body: "CE Category A documentation pack completed, sea trials, snagging and owner handover." },
+];
+
+const SOURCING = [
+  {
+    title: "Turnkey sourcing (default)",
+    body: "Halo purchases, ships, insures and warrants the specified equipment — drivetrain, batteries, power electronics, solar modules and safety gear — and delivers it to the yard against the build schedule. The yard receives, stores and installs; Halo carries supply risk and manufacturer warranty claims.",
+  },
+  {
+    title: "Client free-issue supply",
+    body: "The owner may supply nominated items directly — preferred electronics, tender, soft furnishings — with no yard markup. The owner buys, ships and insures to the yard door and holds the manufacturer warranty; the yard receives, stores and installs to the Halo specification and is paid installation labour only. Free-issue items must be on site by the scheduled stage or the slot proceeds without them.",
+  },
+];
+
+const RESPONSIBILITY = [
+  { item: "Naval architecture, structural CAD & CNC kit files", halo: "Owns", yard: "Executes", client: "—" },
+  { item: "Kit cutting & delivery to yard", halo: "Supplies", yard: "Receives & verifies", client: "—" },
+  { item: "Welding, fairing, fit-out labour", halo: "Specifies & inspects", yard: "Performs", client: "—" },
+  { item: "Drivetrain, batteries, power electronics", halo: "Sources & warrants", yard: "Installs", client: "—" },
+  { item: "Nominated free-issue equipment", halo: "Approves spec", yard: "Receives & installs", client: "Buys & ships" },
+  { item: "Interior palette selection", halo: "Curates options", yard: "Builds to selection", client: "Selects" },
+  { item: "Weekly inspection & milestone sign-off", halo: "Performs", yard: "Hosts & documents", client: "Receives report" },
+  { item: "CE Category A certification file", halo: "Owns & submits", yard: "Provides build records", client: "—" },
+  { item: "Stage payment release from escrow", halo: "Authorises", yard: "Invoices on certificate", client: "Funds escrow" },
+];
+
+const OVERSIGHT = [
+  {
+    title: "Weekly on-site inspection",
+    body: "A dedicated Halo representative or appointed marine surveyor attends the yard weekly, reviews work against the stage checklist and records progress with dated photography and video.",
+  },
+  {
+    title: "Milestone sign-off gates payment",
+    body: "No stage payment leaves escrow until the surveyor issues a formal Stage Completion Certificate for that milestone. Non-conforming work is remediated before the gate opens.",
+  },
+  {
+    title: "Documented traceability",
+    body: "Welder qualifications, material certificates, weld inspection records and commissioning tests are logged into the build file as work proceeds — not reconstructed at the end.",
+  },
+  {
+    title: "CE Category A (Ocean) certification",
+    body: "Halo owns the certification file and notified-body liaison. The yard supplies build records, hosts inspections and holds to the approved structural and systems definition without deviation.",
+  },
+];
+
+const REGIONAL_OPTIONS = [
+  {
+    label: "Option A",
+    title: "Complete build in Holland / UK",
+    body: "The vessel is built, commissioned and sea-trialled at a core northern European yard, then shipped or delivered on her own bottom to the owner's home port.",
+  },
+  {
+    label: "Option B",
+    title: "Local kit-cut and regional assembly",
+    body: "Precision CNC aluminium kit files are cut at a certified regional metalwork partner near the client's home port and assembled locally under the same supervision regime, cutting freight and import cost.",
   },
 ];
 
@@ -186,7 +256,7 @@ function BuildWithUs() {
       <PageHero
         eyebrow="Build with us"
         title="Join the Halo licensed build network."
-        intro="We pair world-class naval architecture with premier regional aluminium yards. If your workshop meets the standard, we supply the kit, systems and specification — you build locally."
+        intro="Halo supplies the naval architecture, CNC kit, drivetrain and specification. Your yard supplies the fabrication. This page sets out how the programme is run, who is responsible for what, and how work is inspected and signed off."
       />
 
       <Section eyebrow="Framework" title="Precision CNC kit-set, local fabrication">
@@ -204,6 +274,100 @@ function BuildWithUs() {
           Maxeon all-black rigid glass solar modules in standard ISO/IEC structural dimensions,
           rail-mounted with airflow beneath, avoiding international freight markups on bulky items.
         </p>
+      </Section>
+
+      <Section
+        eyebrow="Production cadence"
+        title="2,410 labour hours across a 24-week window"
+        intro="Every build slot is booked against the same programme, from keel laying to handover. Yards quote and schedule against these hours, and the milestone gates below govern inspection and payment."
+        className="border-t border-border"
+      >
+        <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {CADENCE.map((c) => (
+            <div key={c.label} className="surface-panel rounded-lg p-6">
+              <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">{c.label}</dt>
+              <dd className="mt-2 text-xl font-semibold text-accent">{c.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <div className="mt-10 max-w-4xl divide-y divide-border/60">
+          {MILESTONES.map((m) => (
+            <div key={m.week} className="grid gap-2 py-6 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-10">
+              <p className="eyebrow pt-1">{m.week}</p>
+              <p className="text-sm leading-relaxed text-muted-foreground">{m.body}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Supply & sourcing"
+        title="Who buys, ships, insures and warrants"
+        className="border-t border-border"
+      >
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {SOURCING.map((s) => (
+            <article key={s.title} className="surface-panel rounded-lg p-8">
+              <h3 className="text-lg font-semibold">{s.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <h3 className="mt-14 text-xl font-semibold">Responsibility matrix</h3>
+        <div className="mt-6 overflow-x-auto">
+          <table className="w-full min-w-[44rem] text-left text-sm">
+            <thead>
+              <tr className="border-b border-border text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                <th className="py-3 pr-4 font-medium">Scope</th>
+                <th className="py-3 pr-4 font-medium">Halo</th>
+                <th className="py-3 pr-4 font-medium">Partner yard</th>
+                <th className="py-3 font-medium">Client</th>
+              </tr>
+            </thead>
+            <tbody>
+              {RESPONSIBILITY.map((r) => (
+                <tr key={r.item} className="border-b border-border/60">
+                  <td className="py-4 pr-4 font-medium">{r.item}</td>
+                  <td className="py-4 pr-4 text-muted-foreground">{r.halo}</td>
+                  <td className="py-4 pr-4 text-muted-foreground">{r.yard}</td>
+                  <td className="py-4 text-muted-foreground">{r.client}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Regional fabrication"
+        title="Two routes to a finished yacht"
+        className="border-t border-border"
+      >
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {REGIONAL_OPTIONS.map((o) => (
+            <article key={o.label} className="surface-panel rounded-lg p-8">
+              <p className="eyebrow">{o.label}</p>
+              <h3 className="mt-3 text-lg font-semibold">{o.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{o.body}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Oversight & approval"
+        title="Inspected weekly, signed off by stage"
+        className="border-t border-border"
+      >
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {OVERSIGHT.map((o) => (
+            <article key={o.title} className="surface-panel rounded-lg p-8">
+              <h3 className="text-lg font-semibold">{o.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{o.body}</p>
+            </article>
+          ))}
+        </div>
       </Section>
 
       <Section eyebrow="Requirements" title="What we look for in a partner yard" className="border-t border-border">

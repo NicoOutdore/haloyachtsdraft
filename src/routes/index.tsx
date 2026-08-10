@@ -51,7 +51,7 @@ const DAY_ABOARD = [
   },
   {
     time: "Midday",
-    body: "Choose a secluded bay. Where conditions suit, the twin electric drives hold position on GPS while lunch is prepared, so a short stop stays a short stop.",
+    body: "Choose a secluded bay and switch to Virtual Anchor Mode. Where conditions suit, the twin electric drives hold position on GPS - no engine idling, no chain dragged across protected Posidonia seagrass, and in calm daylight the array usually covers the draw with something left over.",
   },
   {
     time: "Afternoon",
@@ -65,6 +65,7 @@ const DAY_ABOARD = [
 
 const OWNERSHIP = [
   "Quiet propulsion.",
+  "Virtual Anchor Mode for silent swim and lunch stops.",
   "Reduced servicing.",
   "No sails or standing rigging.",
   "Far fewer winterisation procedures.",
@@ -118,7 +119,7 @@ function Home() {
               <Link to="/configure">Configure Your Halo</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link to="/configure">Request a Private Briefing</Link>
+              <Link to="/configure">Request Information</Link>
             </Button>
           </div>
           <p className="mx-auto mt-10 max-w-2xl text-sm italic leading-relaxed text-muted-foreground/80">
@@ -293,7 +294,7 @@ function Home() {
             <Link to="/pricing">Pricing & acquisition pathways</Link>
           </Button>
           <Button asChild>
-            <Link to="/configure">Request a Private Briefing</Link>
+            <Link to="/configure">Request Build Slot</Link>
           </Button>
         </div>
       </Section>

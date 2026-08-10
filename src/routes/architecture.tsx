@@ -206,9 +206,73 @@ function Architecture() {
             </p>
           </div>
         </div>
+      </Section>
 
+      <Section
+        eyebrow="Auxiliary drive"
+        title="LibertyKite 40 m² — standard on every Halo"
+        className="border-t border-border"
+      >
+        <div className="mt-10 grid items-center gap-10 lg:grid-cols-2">
+          <img
+            src="/images/libertykite.png"
+            alt="Aerial view of a cruising catamaran under a 40 square metre traction kite flown from the foredeck"
+            className="w-full rounded-lg object-cover"
+            loading="lazy"
+          />
+          <div>
+            <p className="text-base leading-relaxed text-muted-foreground">
+              A 40 m² LibertyKite traction wing is supplied as standard, flown from the foredeck on
+              downwind and reaching passages. It adds quiet, low-heel assistance and extends range
+              without a mast, sails or standing rigging — and while it pulls, both pods free-wheel
+              as generators.
+            </p>
+            <h3 className="mt-8 text-lg font-semibold">Reinforced cleats and load paths as standard</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Kite loads are steady and long-duration, so they are engineered into the structure
+              rather than carried by deck hardware alone. Every Halo leaves the yard with
+              structurally backed foredeck cleats and kite load points: doubler plates welded into
+              the aluminium deck, loads tied through to the underlying frames and bulkheads, and
+              chafe-protected lead points sized for sustained flying. No retrofit, no owner-fitted
+              padeyes, and no limit on extended kite use in suitable conditions.
+            </p>
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+              The foam-filled structural mini-keels give the tracking needed to hold a course under
+              kite, and CAN-bus integration authorises full hydro-regeneration back into the 96 V
+              bank while the kite is flying — see the regeneration curve above for realistic
+              recovery at each speed.
+            </p>
+            <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
+              The kite is an assistance system for suitable wind and sea states, used at the
+              skipper&apos;s discretion. It is not a primary propulsion or safety system.
+            </p>
+          </div>
+        </div>
+      </Section>
 
-
+      <Section
+        eyebrow="Virtual Anchor Mode"
+        title="Hold position without dropping chain."
+        className="border-t border-border"
+      >
+        <div className="mt-8 max-w-3xl space-y-5">
+          <p className="text-base leading-relaxed text-muted-foreground">
+            Electric dynamic positioning uses GPS and the twin pods to hold the yacht in place for a
+            swim or lunch stop. There is no engine idling and no generator running — the stop is
+            genuinely silent, and conversation carries across the cockpit.
+          </p>
+          <p className="text-base leading-relaxed text-muted-foreground">
+            Nothing is dragged across the seabed, so protected Posidonia seagrass meadows stay
+            intact where anchoring would otherwise be restricted or damaging. In calm daylight the
+            array typically out-produces the station-keeping and hotel draw, so the bank is level or
+            rising by the time you get under way again.
+          </p>
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            Intended for short stops in suitable conditions, at the skipper&apos;s discretion. It is
+            not a replacement for ground tackle and not a safety system; the yacht carries
+            offshore-grade anchoring equipment as standard.
+          </p>
+        </div>
       </Section>
     </SiteShell>
   );
