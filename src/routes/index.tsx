@@ -118,7 +118,7 @@ function Home() {
               <Link to="/configure">Configure Your Halo</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link to="/configure">Request a Private Briefing</Link>
+              <Link to="/configure">Request Build Slot</Link>
             </Button>
           </div>
           <p className="mx-auto mt-10 max-w-2xl text-sm italic leading-relaxed text-muted-foreground/80">
@@ -293,7 +293,7 @@ function Home() {
             <Link to="/pricing">Pricing & acquisition pathways</Link>
           </Button>
           <Button asChild>
-            <Link to="/configure">Request a Private Briefing</Link>
+            <Link to="/configure">Request Build Slot</Link>
           </Button>
         </div>
       </Section>

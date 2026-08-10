@@ -298,7 +298,7 @@ function Configure() {
                 />
               </div>
               <Button type="submit" size="lg" className="w-full" disabled={submitting}>
-                {submitting ? "Submitting…" : "Reserve a build slot"}
+                {submitting ? "Submitting…" : "Request Build Slot"}
               </Button>
 
               <p className="text-xs text-muted-foreground">
