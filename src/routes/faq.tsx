@@ -16,27 +16,27 @@ type Faq = { q: string; a: string };
 const BUYING: Faq[] = [
   {
     q: "How does purchasing a Halo yacht work?",
-    a: "You contract directly with Halo Yachts under a single, comprehensive purchase agreement for €525,000 + VAT. Halo manages the entire manufacturing process, quality control, independent surveys, and CE Category A certification, delivering a complete, turnkey vessel to you.",
+    a: "You contract directly with Halo Yachts under a single, comprehensive purchase agreement for €525,000 + VAT. Halo acts as your prime contractor and single point of accountability from initial deposit through to final handover. We supply the design IP, CNC kit, electric drivetrain and solar architecture, while subcontracting the physical assembly to our certified regional shipyard partners under strict technical supervision.",
   },
   {
     q: "Who is my point of contact during the build?",
-    a: "Halo Yachts is your single point of contact. You are assigned a dedicated Halo Program Manager who handles your build from deposit to handover. You deal directly with us — we manage the shipyard, suppliers, and sub-contractors on your behalf.",
+    a: "Halo Yachts is your single point of contact. You are assigned a dedicated Halo Program Manager who provides weekly progress updates, milestone photos and video walk-throughs. You deal exclusively with Halo — we manage the shipyard, component suppliers and sub-contractors on your behalf.",
   },
   {
-    q: "How is my money protected during construction?",
-    a: "Your stage payments sit in a dedicated escrow account. Funds are only released to the shipyard at key build milestones once a Halo-appointed independent marine surveyor inspects the vessel on-site and issues a formal completion certificate.",
+    q: "How are my funds protected during construction?",
+    a: "Your stage payments are held safely in a dedicated escrow account. Funds are only released to fund the next build stage after a Halo-appointed independent marine surveyor inspects the vessel on-site and issues a formal Stage Completion Certificate.",
   },
   {
-    q: "Can I choose the interior finishes and colours?",
-    a: "Yes. While structural layouts and electrical systems are 100% standardised for safety and performance, you can select from our Curated Interior Palettes — upholstery fabrics, galley surfaces and cork trims — when placing your order.",
+    q: "Can I select the interior finishes and colours?",
+    a: "Yes. While structural CAD engineering and electrical systems are 100% standardised for safety and blue-water performance, you select from our Curated Interior Palettes — upholstery fabrics, galley surfaces and cork trims — when placing your order.",
   },
   {
     q: "Why does Halo use standardised specifications?",
-    a: "Standardising our structural CAD engineering and system specifications allows us to guarantee strict CE Category A (Ocean) certification, a 24-week delivery timeline, and maximum fleet uptime for charter operators.",
+    a: "Standardising our structural engineering and production systems allows us to guarantee CE Category A (Ocean) certification, a 24-week delivery timeline and maximum fleet reliability for charter operators and private owners alike.",
   },
   {
     q: "What warranty comes with my Halo yacht?",
-    a: "Halo provides single-point warranty support. If an issue arises, you contact Halo directly. We coordinate all repairs, backed by global manufacturer warranties on ePropulsion drivetrains, Victron power electronics, and structural yard guarantees.",
+    a: "Halo provides single-point warranty support. If any component or finish requires attention, you contact Halo directly. We coordinate all remedial work, backed by global manufacturer warranties on ePropulsion drivetrains, Victron power electronics and structural shipyard guarantees.",
   },
 ];
 
