@@ -337,7 +337,8 @@ function Configure() {
               </Button>
 
               <p className="text-xs text-muted-foreground">
-                Enquiry only — no payment is taken. {acquisition} · {timeline}.
+                Enquiry only — no payment is taken. We reply by email; a phone number is optional
+                and used only if you ask us to use it. {acquisition} · {timeline}.
               </p>
             </form>
           </aside>
