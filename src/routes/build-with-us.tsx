@@ -10,9 +10,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { PhoneFields, PHONE_PATTERN, EMAIL_PATTERN } from "@/components/site/PhoneFields";
 import { submitYardApplication } from "@/lib/submissions.functions";
 
-const TITLE = "Partner Yard Application — Build With Us | Halo Yachts";
+const TITLE = "Partner Yard Programme — Build With Us | Halo Yachts";
 const DESCRIPTION =
-  "Apply to join the Halo Yachts licensed build network. For premier aluminium fabrication yards with CNC welding capability, crane and slipway capacity and audited quality control.";
+  "How a Halo build runs: 2,410 labour hours over 24 weeks, turnkey vs client free-issue sourcing, regional fabrication options, weekly surveyor inspection, milestone sign-off and CE Category A certification.";
 
 export const Route = createFileRoute("/build-with-us")({
   head: () => ({
