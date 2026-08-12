@@ -306,8 +306,8 @@ function BuildWithUs() {
       </Section>
 
       <Section
-        eyebrow="Supply & sourcing"
-        title="Who buys, ships, insures and warrants"
+        eyebrow="Supply, sourcing & fabrication"
+        title="A hybrid supply model: central tech, local fabrication"
         className="border-t border-border"
       >
         <div className="mt-10 grid gap-6 md:grid-cols-2">
