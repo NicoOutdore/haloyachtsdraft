@@ -63,21 +63,26 @@ const MILESTONES = [
 
 const SOURCING = [
   {
-    title: "Turnkey sourcing (default)",
-    body: "Halo purchases, ships, insures and warrants the specified equipment — drivetrain, batteries, power electronics, solar modules and safety gear — and delivers it to the yard against the build schedule. The yard receives, stores and installs; Halo carries supply risk and manufacturer warranty claims.",
+    title: "Centralized Master Partnerships (Halo Tier-1 Tech)",
+    body: "Halo holds central OEM supply agreements with Tier-1 marine technology partners — including ePropulsion for electric powertrains, Maxeon for ultra-high-efficiency solar architecture, and Victron Energy for power electronics. These master partnerships guarantee volume pricing, pre-engineered plug-and-play compatibility, and global single-point warranty backing for every build. The yard never sources or marks up Tier-1 drivetrain, energy storage, power electronics or solar systems.",
   },
   {
-    title: "Client free-issue supply",
-    body: "The owner may supply nominated items directly — preferred electronics, tender, soft furnishings — with no yard markup. The owner buys, ships and insures to the yard door and holds the manufacturer warranty; the yard receives, stores and installs to the Halo specification and is paid installation labour only. Free-issue items must be on site by the scheduled stage or the slot proceeds without them.",
+    title: "Regional Sourcing & Local CNC Cutting",
+    body: "Aluminium hull kits use raw 5083-H111 marine-grade plate router/laser-cut at certified local CNC facilities using Halo’s master DXF nesting files, provided mill certificates and ±0.2 mm tolerances are approved. Composite interior furniture flat-packs are CNC-routed locally to Halo digital files using approved PET foam or honeycomb-core suppliers. Saloon glazing, marine doors, portholes and galley/heads fixtures may be sourced locally to minimise freight and import duties. Where local sourcing is not practical or certified, Halo supplies the kit centrally.",
+  },
+  {
+    title: "The Halo Quality & Conformity Gate",
+    body: "All locally sourced materials, glass and fixtures are subject to explicit pre-approval by Halo’s engineering team before installation. This mandatory QA gate guarantees 100% conformity to Halo aesthetic standards, weight targets and CE Category A (Ocean) structural safety requirements. No locally sourced item enters the build without a Halo pre-approval record.",
   },
 ];
 
 const RESPONSIBILITY = [
-  { item: "Naval architecture, structural CAD & CNC kit files", halo: "Owns", yard: "Executes", client: "—" },
-  { item: "Kit cutting & delivery to yard", halo: "Supplies", yard: "Receives & verifies", client: "—" },
-  { item: "Welding, fairing, fit-out labour", halo: "Specifies & inspects", yard: "Performs", client: "—" },
-  { item: "Drivetrain, batteries, power electronics", halo: "Sources & warrants", yard: "Installs", client: "—" },
-  { item: "Nominated free-issue equipment", halo: "Approves spec", yard: "Receives & installs", client: "Buys & ships" },
+  { item: "Naval architecture, structural CAD & DXF nesting files", halo: "Owns & issues", yard: "Executes to file", client: "—" },
+  { item: "5083-H111 aluminium plate & local CNC cutting", halo: "Specifies & approves mill certs", yard: "Sources locally & cuts to DXF", client: "—" },
+  { item: "Composite interior flat-packs", halo: "Issues files & approves supplier", yard: "Sources locally & routes", client: "—" },
+  { item: "Tier-1 drivetrain, batteries, solar, power electronics", halo: "Sources centrally & warrants", yard: "Receives & installs", client: "—" },
+  { item: "Local outfitting items (glazing, doors, fixtures)", halo: "Pre-approves spec", yard: "Sources locally", client: "Nominates within approved range" },
+  { item: "Curated options (furnishings, laminates, electronics packs)", halo: "Contracts & free-issues", yard: "Receives & installs", client: "Selects from curated range" },
   { item: "Interior palette selection", halo: "Curates options", yard: "Builds to selection", client: "Selects" },
   { item: "Weekly inspection & milestone sign-off", halo: "Performs", yard: "Hosts & documents", client: "Receives report" },
   { item: "CE Category A certification file", halo: "Owns & submits", yard: "Provides build records", client: "—" },
