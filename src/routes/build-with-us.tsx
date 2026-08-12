@@ -310,7 +310,7 @@ function BuildWithUs() {
         title="A hybrid supply model: central tech, local fabrication"
         className="border-t border-border"
       >
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {SOURCING.map((s) => (
             <article key={s.title} className="surface-panel rounded-lg p-8">
               <h3 className="text-lg font-semibold">{s.title}</h3>
