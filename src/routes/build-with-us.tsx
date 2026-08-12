@@ -12,7 +12,7 @@ import { submitYardApplication } from "@/lib/submissions.functions";
 
 const TITLE = "Partner Yard Programme — Build With Us | Halo Yachts";
 const DESCRIPTION =
-  "How a Halo build runs: 2,410 labour hours over 24 weeks, turnkey vs client free-issue sourcing, regional fabrication options, weekly surveyor inspection, milestone sign-off and CE Category A certification.";
+  "How a Halo build runs: 2,410 labour hours over 24 weeks, central Tier-1 partnerships, regional CNC-cut aluminium and interior kits, local outfitting under the Halo Quality & Conformity Gate, weekly surveyor inspection, milestone sign-off and CE Category A certification.";
 
 export const Route = createFileRoute("/build-with-us")({
   head: () => ({
