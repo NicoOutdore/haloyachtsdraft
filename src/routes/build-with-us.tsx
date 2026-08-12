@@ -31,13 +31,13 @@ export const Route = createFileRoute("/build-with-us")({
 const FRAMEWORK = [
   {
     step: "01 — Central engineering",
-    title: "Nested CNC kit supplied by Halo",
-    body: "Every hull, bulkhead and structural component is nested and CNC-cut to the Dixon Yacht Design definition, delivered as a numbered kit with build manual and weld procedures. No lofting, no interpretation.",
+    title: "Master DXF nesting files from Halo",
+    body: "Every hull, bulkhead and structural component is defined by Dixon Yacht Design and issued by Halo as numbered master DXF nesting files. Certified local CNC facilities cut the 5083-H111/Sealium plate directly to these files, eliminating lofting, interpretation or shipping heavy aluminium across oceans.",
   },
   {
     step: "02 — Local fabrication",
-    title: "Your yard welds and fits out",
-    body: "The partner yard welds, fairs and fits out to the Halo specification using local labour and locally sourced standard components, under Halo engineering supervision and staged inspection.",
+    title: "Your yard welds, sources and fits out",
+    body: "The partner yard welds and fairs to the Halo specification, sources locally approved aluminium and composite interior flat-packs against Halo files, and fits out using local labour. Halo engineering supervision and staged inspection ensure every local item meets the master standard.",
   },
   {
     step: "03 — Regional delivery",
