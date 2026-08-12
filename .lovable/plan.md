@@ -1,28 +1,66 @@
-# Correct the supply model on /build-with-us
+# Update the supply model on /build-with-us to a hybrid sourcing model
 
-The page currently describes "client free-issue supply", where the owner buys, ships and insures items directly to the yard. That is wrong. Halo is the sole contracting party with the client (€525,000 + options), and Halo free-issues everything to the yard.
+The /build-with-us page currently describes a simple "Halo free-issue" model and a sourcing/responsibility matrix that does not match the real hybrid approach. Update it to a three-part model: central Tier-1 partnerships, regional sourcing with local CNC, and the Halo Quality & Conformity Gate.
 
-## Corrected model
+## 1. New "Supply, Sourcing & Fabrication Options" section
 
-Replace the two-card "Turnkey vs client free-issue" split with a single, accurate description of how supply works:
+Replace the current two-card "SOURCING" block with a three-card layout that explains the hybrid model clearly to yard partners.
 
-1. **Halo free-issue supply (all equipment)** — the client contracts only with Halo. Halo contracts with suppliers at fleet volume to secure best pricing, and drop-ships equipment directly to the partner yard against the build schedule. Halo buys, ships, insures and warrants; the yard receives, stores and installs, and is paid installation labour only. Nothing is procured or marked up by the yard.
-2. **Curated client choice** — the client selects from a limited curated option set (soft furnishings, laminate and palette finishes, electronics packs, tender/toys). Selections lock at a defined cut-off in the schedule; Halo then places the supplier order. Standardised choice is what keeps pricing, lead times and warranty single-source.
+### Card 1 — Centralized Master Partnerships (Halo Tier-1 Tech)
 
-Add a short line for yards: free-issued goods arrive against a Halo delivery schedule tied to the milestone stages, and the yard confirms receipt and condition on arrival.
+- Halo holds central OEM supply agreements with Tier-1 marine technology partners including ePropulsion (electric powertrains), Maxeon (ultra-high-efficiency solar architecture), and Victron Energy (power electronics).
+- These master partnerships guarantee volume pricing, pre-engineered plug-and-play compatibility, and global single-point warranty backing for every build.
+- The yard never sources or marks up Tier-1 drivetrain, energy storage, power electronics, or solar systems.
 
-## Responsibility matrix updates
+### Card 2 — Regional Sourcing & Local CNC Cutting (Cost & Logistics Optimization)
 
-- Remove the "Nominated free-issue equipment — Client buys & ships" row.
-- Add: "Curated options (furnishings, laminates, electronics packs)" — Halo: Contracts & free-issues · Yard: Receives & installs · Client: Selects from curated range.
-- Keep "Interior palette selection" as Halo curates / yard builds / client selects.
-- Client column elsewhere stays limited to selection, funding escrow and receiving reports.
+Break this into three sub-bullets for readability:
 
-## Also updated
+- **Aluminium hull kits:** Raw 5083-H111 marine-grade aluminium plate is router/laser-cut at certified local CNC facilities using Halo’s master DXF nesting files, provided local metal mill certificates and dimensional tolerances (±0.2 mm) meet Halo’s structural requirements.
+- **Lightweight interior kits:** Composite interior furniture flat-packs (PET foam/honeycomb core panels) are CNC-routed locally to Halo’s digital files using approved local composite suppliers.
+- **Local outfitting items:** Saloon glazing, marine doors, portholes, and galley/heads fixtures may be sourced locally by the build team or client to minimize freight and import duties.
 
-- The page meta description, which currently says "turnkey vs client free-issue sourcing".
-- Any remaining "free-issue"/"owner-supplied" wording elsewhere on the page so it reads consistently as Halo free-issue.
+Add a short note: where local sourcing is not practical or certified, Halo supplies the kit centrally.
 
-## Technical notes
+### Card 3 — The Halo Quality & Conformity Gate
 
-Changes are confined to `src/routes/build-with-us.tsx`: the `SOURCING` array, the `RESPONSIBILITY` array, the section heading ("Who buys, ships, insures and warrants" stays accurate) and the `DESCRIPTION` constant. No pricing, form, or data.ts changes.
+- All locally sourced materials, glass, and fixtures are subject to explicit pre-approval by Halo’s engineering team before installation.
+- This mandatory QA gate guarantees 100% conformity to Halo’s aesthetic standards, weight targets, and CE Category A (Ocean) structural safety requirements.
+- No locally sourced item enters the build without a Halo pre-approval record.
+
+## 2. Responsibility matrix updates
+
+Revise the `RESPONSIBILITY` array to match the hybrid model:
+
+- **Naval architecture, structural CAD & DXF nesting files** — Halo: Owns & issues · Yard: Executes to file · Client: —
+- **5083-H111 aluminium plate & local CNC cutting** — Halo: Specifies, approves mill certs & tolerances · Yard: Sources locally & cuts to DXF · Client: —
+- **Composite interior flat-packs** — Halo: Issues digital files & approves supplier · Yard: Sources locally & routes · Client: —
+- **Tier-1 drivetrain, batteries, solar, power electronics** — Halo: Sources centrally & warrants · Yard: Receives & installs · Client: —
+- **Local outfitting items (glazing, doors, fixtures)** — Halo: Pre-approves spec · Yard: Sources locally · Client: May nominate within approved range
+- **Curated options (furnishings, laminates, electronics packs)** — Halo: Contracts & free-issues · Yard: Receives & installs · Client: Selects from curated range
+- **Interior palette selection** — Halo: Curates options · Yard: Builds to selection · Client: Selects
+- **Weekly inspection & milestone sign-off** — Halo: Performs · Yard: Hosts & documents · Client: Receives report
+- **CE Category A certification file** — Halo: Owns & submits · Yard: Provides build records · Client: —
+- **Stage payment release from escrow** — Halo: Authorises · Yard: Invoices on certificate · Client: Funds escrow
+
+Remove the outdated "Turnkey sourcing" / "Client free-issue supply" split and the "Nominated free-issue equipment" row.
+
+## 3. Framework section refinement
+
+Update the "01 — Central engineering" card body to mention that Halo supplies master DXF nesting files for local CNC cutting, not just "CNC kit supplied by Halo". Keep the "No lofting, no interpretation" angle.
+
+Update the "02 — Local fabrication" card body to mention local sourcing of aluminium and interior flat-packs under Halo file control, in addition to local labour and standard components.
+
+## 4. Meta description and heading copy
+
+Update the `DESCRIPTION` constant to remove "turnkey vs client free-issue sourcing" and instead say: "central Tier-1 partnerships, regional CNC-cut aluminium and interior kits, local outfitting under the Halo Quality & Conformity Gate, and CE Category A certification".
+
+Keep the section heading "Supply, sourcing & fabrication options" or similar. Update the section title to something like "A hybrid supply model: central tech, local fabrication".
+
+## 5. No other pages affected
+
+This is a copy/structure update confined to `src/routes/build-with-us.tsx`. No changes to `data.ts`, pricing, forms, or other routes.
+
+## Files touched
+
+- `src/routes/build-with-us.tsx` only.
