@@ -1,20 +1,25 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
-import { toast } from "sonner";
 import { SiteShell, Section, PageHero } from "@/components/site/SiteShell";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { PhoneFields, PHONE_PATTERN, EMAIL_PATTERN } from "@/components/site/PhoneFields";
-import { submitConfiguration } from "@/lib/submissions.functions";
-import { MODELS, PACKS, BASE_PRICE, BUILD_LOCATIONS, formatEur } from "@/components/site/data";
-
+import { Choice, VariantToggle, HighlightsCard, Step } from "@/components/site/configurator/parts";
+import { EnquiryDialog } from "@/components/site/configurator/EnquiryDialog";
+import {
+  MODELS,
+  PACKS,
+  BASE_PRICE,
+  BUILD_LOCATIONS,
+  SOURCING_ROUTES,
+  ENERGY_OPTIONS,
+  BUILD_FACTS,
+  VARIANTS,
+  formatEur,
+  type VariantId,
+} from "@/components/site/data";
 
 const TITLE = "Configure & Reserve Your Halo 13.5 | Halo Yachts";
 const DESCRIPTION =
-  "Configure your Halo 13.5m solar-electric catamaran — choose the Explorer or Coastal edition, 2, 3 or 4 cabin layout, equipment packs, preferred partner yard location and acquisition route.";
+  "Configure your Halo 13.5m solar-electric catamaran — switch between the Explorer and Coastal platforms, then specify layout, energy, smart packages and your sourcing route.";
 
 export const Route = createFileRoute("/configure")({
   head: () => ({
@@ -27,198 +32,189 @@ export const Route = createFileRoute("/configure")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
+  validateSearch: (search: Record<string, unknown>) => ({
+    variant: search["variant"] === "coastal" ? ("coastal" as const) : ("explorer" as const),
+  }),
   component: Configure,
 });
 
-const ACQUISITION = ["Outright cash purchase", "Maltese maritime lease (3 years)", "Marine mortgage (5 to 15 years)", "Undecided"];
-const TIMELINES = ["Within 12 months", "12 – 24 months", "24 – 36 months", "Exploring"];
+const ACQUISITION = [
+  "Outright cash purchase",
+  "Maltese maritime lease (3 years)",
+  "Marine mortgage (5 to 15 years)",
+  "Undecided",
+];
 const CABINS = ["2 cabins", "3 cabins", "4 cabins"];
 
-function Choice({
-  selected,
-  onClick,
-  title,
-  subtitle,
-  price,
-}: {
-  selected: boolean;
-  onClick: () => void;
-  title: string;
-  subtitle?: string;
-  price?: string;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={selected}
-      className={`w-full rounded-lg border p-5 text-left transition-colors ${
-        selected ? "border-accent bg-accent/10" : "border-border bg-surface hover:border-accent/50"
-      }`}
-    >
-      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-        <span className="min-w-0 font-medium">{title}</span>
-        {price && <span className="shrink-0 text-sm text-accent">{price}</span>}
-      </div>
-      {subtitle && <p className="mt-2 text-sm text-muted-foreground">{subtitle}</p>}
-    </button>
-  );
-}
-
 function Configure() {
-  const [model, setModel] = useState<string>(MODELS[0].code);
-  const [cabins, setCabins] = useState(CABINS[0]);
-  const [packs, setPacks] = useState<string[]>([]);
-  const [location, setLocation] = useState(BUILD_LOCATIONS[0]);
-  const [acquisition, setAcquisition] = useState(ACQUISITION[0]);
-  const [timeline, setTimeline] = useState(TIMELINES[0]);
+  const { variant: initialVariant } = Route.useSearch();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [dialCode, setDialCode] = useState("+44");
-  const [phone, setPhone] = useState("");
-  const [notes, setNotes] = useState("");
-  const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
-  const [submitting, setSubmitting] = useState(false);
+  const [variantId, setVariantId] = useState<VariantId>(initialVariant);
+  const variant = VARIANTS.find((v) => v.id === variantId)!;
 
-  const send = useServerFn(submitConfiguration);
+  const [cabins, setCabins] = useState<string>(variant.defaultCabins);
+  const [energy, setEnergy] = useState<string>(variant.defaultEnergy);
+  const [packs, setPacks] = useState<string[]>([variant.defaultPack]);
+  const [location, setLocation] = useState<string>(BUILD_LOCATIONS[0]!);
+  const [sourcing, setSourcing] = useState<string>(SOURCING_ROUTES[0]!.id);
+  const [acquisition, setAcquisition] = useState<string>(ACQUISITION[0]!);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
-  const availablePacks = useMemo(() => PACKS.filter((p) => p.model === model), [model]);
-  const total = useMemo(
-    () => BASE_PRICE + PACKS.filter((p) => packs.includes(p.id)).reduce((s, p) => s + p.price, 0),
-    [packs],
+  const model = MODELS.find((m) => m.code === variant.modelCode)!;
+  const availablePacks = useMemo(
+    () => PACKS.filter((p) => p.model === variant.modelCode),
+    [variant.modelCode],
+  );
+  const longRangePack = useMemo(
+    () => availablePacks.find((p) => p.items.some((i) => i.includes("67.4 kWh"))),
+    [availablePacks],
   );
 
-  function selectModel(code: string) {
-    setModel(code);
-    setPacks([]);
+  const selectedPacks = PACKS.filter((p) => packs.includes(p.id));
+  const total = BASE_PRICE + selectedPacks.reduce((s, p) => s + p.price, 0);
+
+  function selectVariant(id: VariantId) {
+    const next = VARIANTS.find((v) => v.id === id)!;
+    setVariantId(id);
+    setCabins(next.defaultCabins);
+    setEnergy(next.defaultEnergy);
+    setPacks([next.defaultPack]);
   }
 
   function togglePack(id: string) {
-    setPacks((prev) => (prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]));
+    setPacks((prev) => {
+      const next = prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id];
+      if (longRangePack && !next.includes(longRangePack.id) && energy === "long-range") {
+        setEnergy("standard");
+      }
+      return next;
+    });
   }
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const nextErrors: { email?: string; phone?: string } = {};
-    if (!EMAIL_PATTERN.test(email.trim())) nextErrors.email = "Enter a valid email address";
-    if (phone.trim() && !PHONE_PATTERN.test(phone.trim()))
-      nextErrors.phone = "Enter a valid phone number (digits, spaces or dashes)";
-    setErrors(nextErrors);
-    if (Object.keys(nextErrors).length > 0) return;
-
-    setSubmitting(true);
-    try {
-      await send({
-        data: {
-          name: name.trim(),
-          email: email.trim(),
-          dialCode: phone.trim() ? dialCode : "",
-          phone: phone.trim(),
-          model: `${selectedModel.code} — ${selectedModel.name}`,
-          cabins,
-          packs: PACKS.filter((p) => packs.includes(p.id)).map((p) => p.name).join(", "),
-          location,
-          acquisition,
-          timeline,
-          total,
-          notes: notes.trim(),
-        },
-      });
-      toast.success("Reservation enquiry received", {
-        description: "Our team will contact you within two business days with a build slot proposal.",
-      });
-      setName("");
-      setEmail("");
-      setPhone("");
-      setNotes("");
-    } catch {
-      toast.error("We could not submit your enquiry", {
-        description: "Please try again in a moment or email us directly.",
-      });
-    } finally {
-      setSubmitting(false);
+  function selectEnergy(id: string) {
+    setEnergy(id);
+    if (id === "long-range" && longRangePack && !packs.includes(longRangePack.id)) {
+      setPacks((prev) => [...prev, longRangePack.id]);
     }
   }
 
+  const energyOption = ENERGY_OPTIONS.find((e) => e.id === energy)!;
+  const sourcingRoute = SOURCING_ROUTES.find((s) => s.id === sourcing)!;
+  const packNames = selectedPacks.map((p) => p.name).join(", ") || "No equipment packs";
 
-  const selectedModel = MODELS.find((m) => m.code === model)!;
+  const specSummary = [
+    `Halo 13.5 — ${variant.label} (${model.code} · ${model.name})`,
+    `Layout: ${cabins}`,
+    `Energy: ${energyOption.name}`,
+    `Equipment packs: ${packNames}`,
+    `Sourcing: ${sourcingRoute.name} · ${location}`,
+    `Acquisition: ${acquisition}`,
+    `Indicative total: ${formatEur(total)} + VAT`,
+  ].join("\n");
 
   return (
     <SiteShell>
       <PageHero
         eyebrow="Configure & reserve"
         title="Specify your Halo 13.5."
-        intro="Choose your superstructure, interior layout and equipment packs, then tell us where and when you would like her built."
+        intro="Start with the platform that matches how you will use her, then refine layout, energy, smart packages and where she is built."
       />
 
-      <section className="border-y border-border bg-navy-deep">
-        <div className="mx-auto grid max-w-7xl gap-6 px-5 py-10 sm:grid-cols-3 lg:px-8">
-          <div>
-            <p className="text-sm font-semibold">24-week delivery</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              A scheduled programme from keel laying to handover.
-            </p>
-          </div>
-          <div>
-            <p className="text-sm font-semibold">Escrow-protected payments</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Stage funds release only on an independent surveyor&apos;s certificate.
-            </p>
-          </div>
-          <div>
-            <p className="text-sm font-semibold">CE Category A (Ocean)</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Certified, turnkey and covered by single-point Halo warranty.
-            </p>
-          </div>
-          <p className="text-xs text-muted-foreground sm:col-span-3">
-            Full detail in the{" "}
-            <Link to="/faq" className="text-accent hover:underline">
-              buyer FAQ
-            </Link>{" "}
-            and the{" "}
-            <Link to="/build-with-us" className="text-accent hover:underline">
-              build programme
-            </Link>
-            .
-          </p>
-        </div>
-      </section>
-
-
       <Section>
+        <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-start">
+          <div>
+            <VariantToggle value={variantId} onChange={selectVariant} />
+            <p className="mt-5 text-lg font-medium text-accent">{variant.subheadline}</p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              {model.code} — {model.name} · {model.capacity} · {model.cruise}
+            </p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+              {BUILD_FACTS.map((f) => (
+                <div key={f.label} className="rounded-lg border border-border bg-surface p-4">
+                  <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">{f.label}</p>
+                  <p className="mt-2 text-sm font-medium">{f.value}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-xs text-muted-foreground">
+              Full detail in the{" "}
+              <Link to="/faq" className="text-accent hover:underline">
+                buyer FAQ
+              </Link>{" "}
+              and the{" "}
+              <Link to="/build-with-us" className="text-accent hover:underline">
+                build programme
+              </Link>
+              .
+            </p>
+          </div>
+          <HighlightsCard variantId={variantId} />
+        </div>
+      </Section>
+
+      <Section className="pt-0">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-start">
-          <div className="space-y-12">
-            <div>
-              <h2 className="text-xl font-semibold">1. Superstructure</h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                {MODELS.map((m) => (
+          <div className="space-y-10">
+            <Step
+              index={1}
+              title="Layout & finishes"
+              description="Curated interior palettes and joinery; cabin count sets the sleeping arrangement."
+            >
+              <div className="grid gap-4 sm:grid-cols-3">
+                {CABINS.map((c) => (
                   <Choice
-                    key={m.id}
-                    selected={model === m.code}
-                    onClick={() => selectModel(m.code)}
-                    title={`${m.code} — ${m.name}`}
-                    subtitle={m.subtitle}
+                    key={c}
+                    selected={cabins === c}
+                    onClick={() => setCabins(c)}
+                    title={c}
+                    {...(c === variant.defaultCabins ? { badge: "Recommended" } : {})}
+                    {...(c === variant.defaultCabins
+                      ? {
+                          subtitle:
+                            variantId === "explorer"
+                              ? "Owner layout — master suite plus private office desk."
+                              : "High-density charter layout for eight guests.",
+                        }
+                      : {})}
                   />
                 ))}
               </div>
-            </div>
+            </Step>
 
-            <div>
-              <h2 className="text-xl font-semibold">2. Interior layout</h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-3">
-
-                {CABINS.map((c) => (
-                  <Choice key={c} selected={cabins === c} onClick={() => setCabins(c)} title={c} />
+            <Step
+              index={2}
+              title="Energy & propulsion"
+              description="Twin ePropulsion 96 V pods and a ~7.5 – 8.0 kWp Maxeon array on every boat."
+            >
+              <div className="grid gap-4 sm:grid-cols-2">
+                {ENERGY_OPTIONS.map((e) => (
+                  <Choice
+                    key={e.id}
+                    selected={energy === e.id}
+                    onClick={() => selectEnergy(e.id)}
+                    title={e.name}
+                    subtitle={e.detail}
+                  />
                 ))}
               </div>
-            </div>
+              {energy === "long-range" && longRangePack && (
+                <p className="mt-4 text-xs text-muted-foreground">
+                  The long-range bank is supplied inside the {longRangePack.name}, which has been added
+                  to your specification.
+                </p>
+              )}
+            </Step>
 
-            <div>
-              <h2 className="text-xl font-semibold">3. Equipment packs</h2>
-              <div className="mt-5 grid gap-4">
+            <Step
+              index={3}
+              title="Smart packages"
+              description={
+                variantId === "explorer"
+                  ? "Virtual Anchor Mode, off-grid comms and water autonomy."
+                  : "Charter protection, fleet telematics and commercial durability."
+              }
+            >
+              <div className="grid gap-4">
                 {availablePacks.map((p) => (
                   <Choice
                     key={p.id}
@@ -227,123 +223,112 @@ function Configure() {
                     title={p.name}
                     subtitle={p.items.join(" · ")}
                     price={formatEur(p.price)}
+                    {...(p.id === variant.defaultPack ? { badge: "Pre-selected" } : {})}
                   />
                 ))}
               </div>
-            </div>
+              <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
+                {variant.capability.map((c) => (
+                  <li key={c} className="flex gap-3">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </Step>
 
-            <div>
-              <h2 className="text-xl font-semibold">4. Preferred build location</h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-3">
+            <Step
+              index={4}
+              title="Sourcing & delivery"
+              description="Where she is built, and how the aluminium is cut."
+            >
+              <div className="grid gap-4 sm:grid-cols-2">
+                {SOURCING_ROUTES.map((s) => (
+                  <Choice
+                    key={s.id}
+                    selected={sourcing === s.id}
+                    onClick={() => setSourcing(s.id)}
+                    title={s.name}
+                    subtitle={s.detail}
+                  />
+                ))}
+              </div>
+              <p className="mt-6 text-sm font-medium">Preferred build region</p>
+              <div className="mt-3 grid gap-4 sm:grid-cols-3">
                 {BUILD_LOCATIONS.map((l) => (
                   <Choice key={l} selected={location === l} onClick={() => setLocation(l)} title={l} />
                 ))}
               </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold">5. Acquisition route & timeline</h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <p className="mt-6 text-sm font-medium">Acquisition route</p>
+              <div className="mt-3 grid gap-4 sm:grid-cols-2">
                 {ACQUISITION.map((a) => (
-                  <Choice key={a} selected={acquisition === a} onClick={() => setAcquisition(a)} title={a} />
+                  <Choice
+                    key={a}
+                    selected={acquisition === a}
+                    onClick={() => setAcquisition(a)}
+                    title={a}
+                  />
                 ))}
               </div>
-              <div className="mt-4 grid gap-4 sm:grid-cols-4">
-                {TIMELINES.map((t) => (
-                  <Choice key={t} selected={timeline === t} onClick={() => setTimeline(t)} title={t} />
-                ))}
-              </div>
-            </div>
+            </Step>
           </div>
 
           <aside className="surface-panel rounded-lg p-8 lg:sticky lg:top-28">
-            <p className="eyebrow">Your specification</p>
-            <h2 className="mt-3 text-2xl font-semibold">{selectedModel.name}</h2>
+            <p className="eyebrow">Your custom Halo summary</p>
+            <h2 className="mt-3 text-2xl font-semibold">{variant.label}</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {model.code} — {model.name}
+            </p>
             <dl className="mt-6 space-y-3 text-sm">
-              <div className="flex justify-between gap-4 border-b border-border/70 pb-3">
-                <dt className="text-muted-foreground">Base build (pre-VAT)</dt>
-                <dd>{formatEur(BASE_PRICE)}</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-b border-border/70 pb-3">
-                <dt className="text-muted-foreground">Layout</dt>
-                <dd>{cabins}</dd>
-              </div>
-              {PACKS.filter((p) => packs.includes(p.id)).map((p) => (
-                <div key={p.id} className="flex justify-between gap-4 border-b border-border/70 pb-3">
-                  <dt className="min-w-0 text-muted-foreground">{p.name}</dt>
-                  <dd className="shrink-0">{formatEur(p.price)}</dd>
-                </div>
+              <SummaryRow label="Base build (pre-VAT)" value={formatEur(BASE_PRICE)} />
+              <SummaryRow label="Layout" value={cabins} />
+              <SummaryRow label="Energy" value={energyOption.name} />
+              {selectedPacks.map((p) => (
+                <SummaryRow key={p.id} label={p.name} value={formatEur(p.price)} />
               ))}
-              <div className="flex justify-between gap-4 border-b border-border/70 pb-3">
-                <dt className="text-muted-foreground">Build location</dt>
-                <dd>{location}</dd>
-              </div>
+              <SummaryRow label="Sourcing" value={sourcingRoute.name} />
+              <SummaryRow label="Build region" value={location} />
+              <SummaryRow label="Build programme" value="24 weeks · 2,410 hours" />
+              <SummaryRow label="Certification" value="CE Category A (Ocean)" />
             </dl>
-            <p className="mt-6 text-xs uppercase tracking-[0.18em] text-muted-foreground">Indicative total</p>
+            <p className="mt-6 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              Indicative total
+            </p>
             <p className="mt-1 text-3xl font-semibold text-accent">{formatEur(total)}</p>
+            <p className="mt-1 text-xs text-muted-foreground">Plus VAT, from a €525,000 base build.</p>
 
-            <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
-              <div>
-                <Label htmlFor="name">Full name</Label>
-                <Input
-                  id="name"
-                  name="name"
-                  required
-                  maxLength={100}
-                  className="mt-2"
-                  autoComplete="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div>
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  maxLength={255}
-                  className="mt-2"
-                  autoComplete="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  aria-invalid={Boolean(errors.email)}
-                />
-                {errors.email && <p className="mt-2 text-sm text-destructive">{errors.email}</p>}
-              </div>
-              <PhoneFields
-                dialCode={dialCode}
-                onDialCodeChange={setDialCode}
-                phone={phone}
-                onPhoneChange={setPhone}
-                error={errors.phone}
-              />
-              <div>
-                <Label htmlFor="notes">Notes</Label>
-                <Textarea
-                  id="notes"
-                  name="notes"
-                  rows={3}
-                  maxLength={1000}
-                  className="mt-2"
-                  placeholder="Cruising plans, questions, timing"
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                />
-              </div>
-              <Button type="submit" size="lg" className="w-full" disabled={submitting}>
-                {submitting ? "Submitting…" : "Request Build Slot"}
-              </Button>
-
-              <p className="text-xs text-muted-foreground">
-                Enquiry only — no payment is taken. We reply by email; a phone number is optional
-                and used only if you ask us to use it. {acquisition} · {timeline}.
-              </p>
-            </form>
+            <Button size="lg" className="mt-7 w-full" onClick={() => setDialogOpen(true)}>
+              Reserve Build Slot / Enquire About This Spec
+            </Button>
+            <p className="mt-3 text-xs text-muted-foreground">
+              Enquiry only — no payment is taken, and we reply by email.
+            </p>
           </aside>
         </div>
       </Section>
+
+      <EnquiryDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        payload={{
+          model: `${variant.label} — ${model.code} ${model.name}`,
+          cabins,
+          packs: packNames,
+          location: `${location} · ${sourcingRoute.name}`,
+          acquisition,
+          total,
+          specSummary,
+        }}
+      />
     </SiteShell>
+  );
+}
+
+function SummaryRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex justify-between gap-4 border-b border-border/70 pb-3">
+      <dt className="min-w-0 text-muted-foreground">{label}</dt>
+      <dd className="shrink-0 text-right">{value}</dd>
+    </div>
   );
 }
