@@ -297,3 +297,96 @@ export const PARTNERS = [
 
 
 export const BUILD_LOCATIONS = ["New Zealand", "Australia", "Germany", "Italy", "Undecided"];
+
+export const SOURCING_ROUTES = [
+  {
+    id: "turnkey",
+    name: "Turnkey partner-yard build",
+    detail: "A Halo-approved fabrication yard builds, outfits and commissions the boat complete under Halo supervision.",
+  },
+  {
+    id: "regional-kit",
+    name: "Approved regional CNC kit cutting",
+    detail: "Halo issues the master DXF nesting files for local plate cutting, with Tier-1 technology free-issued to the yard.",
+  },
+];
+
+export const DELIVERY_WINDOWS = ["Within 12 months", "12 – 24 months", "24 – 36 months", "Exploring"];
+
+export const OPERATING_REGIONS = [
+  "Western Mediterranean",
+  "Eastern Mediterranean",
+  "Northern Europe / Baltic",
+  "Caribbean",
+  "North America",
+  "Australia / New Zealand",
+  "Southeast Asia",
+  "Other / undecided",
+];
+
+export const BUILD_FACTS = [
+  { label: "Build programme", value: "24 weeks · 2,410 production hours" },
+  { label: "Certification", value: "CE Category A — Ocean" },
+  { label: "Base build", value: "€525,000 + VAT" },
+];
+
+export const ENERGY_OPTIONS = [
+  {
+    id: "standard",
+    name: "47.0 kWh standard bank",
+    detail: "2 × 23.5 kWh ePropulsion 96 V blocks, one per hull, with the ~7.5 – 8.0 kWp Maxeon array.",
+  },
+  {
+    id: "long-range",
+    name: "67.4 kWh long-range bank",
+    detail: "Adds 2 × 10.2 kWh, one per hull. Supplied inside the equipment pack that carries it.",
+  },
+];
+
+export const VARIANTS = [
+  {
+    id: "explorer",
+    label: "Halo Explorer",
+    audience: "Private owner & off-grid",
+    modelCode: "Model A",
+    subheadline: "Off-grid autonomy and silent luxury for owner-operators.",
+    defaultCabins: "3 cabins",
+    defaultPack: "off-grid-endurance",
+    defaultEnergy: "long-range",
+    capability: [
+      "Virtual Anchor Mode — GPS station keeping",
+      "Starlink off-grid comms suite",
+      "High-output solar watermaker & eco waste treatment",
+    ],
+    highlights: [
+      "No marina dependence — the boat makes its own water and power.",
+      "Hold position over deep water and Posidonia beds with Virtual Anchor Mode instead of anchor chain.",
+      "Silent climate control day and night, with no generator running.",
+      "400 L symmetrical tankage kept topped up by the watermaker.",
+    ],
+  },
+  {
+    id: "coastal",
+    label: "Halo Coastal",
+    audience: "Charter & commercial fleet",
+    modelCode: "Model B",
+    subheadline: "Zero fuel OPEX, low maintenance and smart fleet protection.",
+    defaultCabins: "4 cabins",
+    defaultPack: "charter-entertainment",
+    defaultEnergy: "standard",
+    capability: [
+      "Charter smart protection suite — eco-governor speed limit, dynamic return-home reserve, IoT geofencing",
+      "Heavy-duty commercial wear surfaces",
+      "Simplified maintenance access for fast turnarounds",
+    ],
+    highlights: [
+      "No diesel fuel bill across the whole season.",
+      "Far less engine servicing than a diesel drivetrain — no oil, filters or impellers.",
+      "Charter-safe by software: speed governor and return-home reserve stop guests flattening the bank at full throttle.",
+      "IoT geofencing and telematics keep the fleet inside its operating area.",
+    ],
+  },
+] as const;
+
+export type VariantId = (typeof VARIANTS)[number]["id"];
+
