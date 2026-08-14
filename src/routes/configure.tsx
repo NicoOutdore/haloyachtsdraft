@@ -32,9 +32,12 @@ export const Route = createFileRoute("/configure")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  validateSearch: (search: Record<string, unknown>) => ({
-    variant: search["variant"] === "coastal" ? ("coastal" as const) : ("explorer" as const),
-  }),
+  validateSearch: (search: Record<string, unknown>): { variant?: VariantId } =>
+    search["variant"] === "coastal"
+      ? { variant: "coastal" }
+      : search["variant"] === "explorer"
+        ? { variant: "explorer" }
+        : {},
   component: Configure,
 });
 
@@ -49,7 +52,7 @@ const CABINS = ["2 cabins", "3 cabins", "4 cabins"];
 function Configure() {
   const { variant: initialVariant } = Route.useSearch();
 
-  const [variantId, setVariantId] = useState<VariantId>(initialVariant);
+  const [variantId, setVariantId] = useState<VariantId>(initialVariant ?? "explorer");
   const variant = VARIANTS.find((v) => v.id === variantId)!;
 
   const [cabins, setCabins] = useState<string>(variant.defaultCabins);
