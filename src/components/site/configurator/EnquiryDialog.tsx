@@ -46,8 +46,8 @@ export function EnquiryDialog({
   const [email, setEmail] = useState("");
   const [dialCode, setDialCode] = useState("+44");
   const [phone, setPhone] = useState("");
-  const [region, setRegion] = useState(OPERATING_REGIONS[0]);
-  const [window, setWindow] = useState(DELIVERY_WINDOWS[0]);
+  const [region, setRegion] = useState<string>(OPERATING_REGIONS[0]!);
+  const [window, setWindow] = useState<string>(DELIVERY_WINDOWS[0]!);
   const [notes, setNotes] = useState("");
   const [touchedNotes, setTouchedNotes] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
