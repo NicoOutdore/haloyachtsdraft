@@ -9,8 +9,6 @@ import {
   PACKS,
   BASE_PRICE,
   BUILD_LOCATIONS,
-  SOURCING_ROUTES,
-  ENERGY_OPTIONS,
   BUILD_FACTS,
   VARIANTS,
   formatEur,
@@ -56,10 +54,8 @@ function Configure() {
   const variant = VARIANTS.find((v) => v.id === variantId)!;
 
   const [cabins, setCabins] = useState<string>(variant.defaultCabins);
-  const [energy, setEnergy] = useState<string>(variant.defaultEnergy);
   const [packs, setPacks] = useState<string[]>([variant.defaultPack]);
   const [location, setLocation] = useState<string>(BUILD_LOCATIONS[0]!);
-  const [sourcing, setSourcing] = useState<string>(SOURCING_ROUTES[0]!.id);
   const [acquisition, setAcquisition] = useState<string>(ACQUISITION[0]!);
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -67,10 +63,6 @@ function Configure() {
   const availablePacks = useMemo(
     () => PACKS.filter((p) => p.model === variant.modelCode),
     [variant.modelCode],
-  );
-  const longRangePack = useMemo(
-    () => availablePacks.find((p) => p.items.some((i) => i.includes("67.4 kWh"))),
-    [availablePacks],
   );
 
   const selectedPacks = PACKS.filter((p) => packs.includes(p.id));
@@ -80,37 +72,20 @@ function Configure() {
     const next = VARIANTS.find((v) => v.id === id)!;
     setVariantId(id);
     setCabins(next.defaultCabins);
-    setEnergy(next.defaultEnergy);
     setPacks([next.defaultPack]);
   }
 
   function togglePack(id: string) {
-    setPacks((prev) => {
-      const next = prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id];
-      if (longRangePack && !next.includes(longRangePack.id) && energy === "long-range") {
-        setEnergy("standard");
-      }
-      return next;
-    });
+    setPacks((prev) => (prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]));
   }
 
-  function selectEnergy(id: string) {
-    setEnergy(id);
-    if (id === "long-range" && longRangePack && !packs.includes(longRangePack.id)) {
-      setPacks((prev) => [...prev, longRangePack.id]);
-    }
-  }
-
-  const energyOption = ENERGY_OPTIONS.find((e) => e.id === energy)!;
-  const sourcingRoute = SOURCING_ROUTES.find((s) => s.id === sourcing)!;
   const packNames = selectedPacks.map((p) => p.name).join(", ") || "No equipment packs";
 
   const specSummary = [
     `Halo 13.5 — ${variant.label} (${model.code} · ${model.name})`,
     `Layout: ${cabins}`,
-    `Energy: ${energyOption.name}`,
     `Equipment packs: ${packNames}`,
-    `Sourcing: ${sourcingRoute.name} · ${location}`,
+    `Preferred build region: ${location}`,
     `Acquisition: ${acquisition}`,
     `Indicative total: ${formatEur(total)} + VAT`,
   ].join("\n");
@@ -120,7 +95,7 @@ function Configure() {
       <PageHero
         eyebrow="Configure & reserve"
         title="Specify your Halo 13.5."
-        intro="Start with the platform that matches how you will use her, then refine layout, energy, smart packages and where she is built."
+        intro="Every Halo carries twin ePropulsion 96 V pods and a ~7.5 – 8.0 kWp Maxeon array. Start with the platform that matches how you will use her, then refine layout, smart packages and where she is built."
       />
 
       <Section>
@@ -186,30 +161,6 @@ function Configure() {
 
             <Step
               index={2}
-              title="Energy & propulsion"
-              description="Twin ePropulsion 96 V pods and a ~7.5 – 8.0 kWp Maxeon array on every boat."
-            >
-              <div className="grid gap-4 sm:grid-cols-2">
-                {ENERGY_OPTIONS.map((e) => (
-                  <Choice
-                    key={e.id}
-                    selected={energy === e.id}
-                    onClick={() => selectEnergy(e.id)}
-                    title={e.name}
-                    subtitle={e.detail}
-                  />
-                ))}
-              </div>
-              {energy === "long-range" && longRangePack && (
-                <p className="mt-4 text-xs text-muted-foreground">
-                  The long-range bank is supplied inside the {longRangePack.name}, which has been added
-                  to your specification.
-                </p>
-              )}
-            </Step>
-
-            <Step
-              index={3}
               title="Smart packages"
               description={
                 variantId === "explorer"
@@ -241,22 +192,11 @@ function Configure() {
             </Step>
 
             <Step
-              index={4}
-              title="Sourcing & delivery"
-              description="Where she is built, and how the aluminium is cut."
+              index={3}
+              title="Delivery & acquisition"
+              description="Where she is built, and how you would like to acquire her."
             >
-              <div className="grid gap-4 sm:grid-cols-2">
-                {SOURCING_ROUTES.map((s) => (
-                  <Choice
-                    key={s.id}
-                    selected={sourcing === s.id}
-                    onClick={() => setSourcing(s.id)}
-                    title={s.name}
-                    subtitle={s.detail}
-                  />
-                ))}
-              </div>
-              <p className="mt-6 text-sm font-medium">Preferred build region</p>
+              <p className="text-sm font-medium">Preferred build region</p>
               <div className="mt-3 grid gap-4 sm:grid-cols-3">
                 {BUILD_LOCATIONS.map((l) => (
                   <Choice key={l} selected={location === l} onClick={() => setLocation(l)} title={l} />
@@ -285,11 +225,9 @@ function Configure() {
             <dl className="mt-6 space-y-3 text-sm">
               <SummaryRow label="Base build (pre-VAT)" value={formatEur(BASE_PRICE)} />
               <SummaryRow label="Layout" value={cabins} />
-              <SummaryRow label="Energy" value={energyOption.name} />
               {selectedPacks.map((p) => (
                 <SummaryRow key={p.id} label={p.name} value={formatEur(p.price)} />
               ))}
-              <SummaryRow label="Sourcing" value={sourcingRoute.name} />
               <SummaryRow label="Build region" value={location} />
               <SummaryRow label="Build programme" value="24 weeks · 2,410 hours" />
               <SummaryRow label="Certification" value="CE Category A (Ocean)" />
@@ -317,7 +255,7 @@ function Configure() {
           model: `${variant.label} — ${model.code} ${model.name}`,
           cabins,
           packs: packNames,
-          location: `${location} · ${sourcingRoute.name}`,
+          location,
           acquisition,
           total,
           specSummary,
