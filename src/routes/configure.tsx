@@ -95,7 +95,7 @@ function Configure() {
       <PageHero
         eyebrow="Configure & reserve"
         title="Specify your Halo 13.5."
-        intro="Start with the platform that matches how you will use her, then refine layout, energy, smart packages and where she is built."
+        intro="Every Halo carries twin ePropulsion 96 V pods and a ~7.5 – 8.0 kWp Maxeon array. Start with the platform that matches how you will use her, then refine layout, smart packages and where she is built."
       />
 
       <Section>
