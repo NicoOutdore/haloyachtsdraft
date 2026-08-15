@@ -225,11 +225,9 @@ function Configure() {
             <dl className="mt-6 space-y-3 text-sm">
               <SummaryRow label="Base build (pre-VAT)" value={formatEur(BASE_PRICE)} />
               <SummaryRow label="Layout" value={cabins} />
-              <SummaryRow label="Energy" value={energyOption.name} />
               {selectedPacks.map((p) => (
                 <SummaryRow key={p.id} label={p.name} value={formatEur(p.price)} />
               ))}
-              <SummaryRow label="Sourcing" value={sourcingRoute.name} />
               <SummaryRow label="Build region" value={location} />
               <SummaryRow label="Build programme" value="24 weeks · 2,410 hours" />
               <SummaryRow label="Certification" value="CE Category A (Ocean)" />
