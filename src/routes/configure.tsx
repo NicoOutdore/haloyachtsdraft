@@ -54,10 +54,8 @@ function Configure() {
   const variant = VARIANTS.find((v) => v.id === variantId)!;
 
   const [cabins, setCabins] = useState<string>(variant.defaultCabins);
-  const [energy, setEnergy] = useState<string>(variant.defaultEnergy);
   const [packs, setPacks] = useState<string[]>([variant.defaultPack]);
   const [location, setLocation] = useState<string>(BUILD_LOCATIONS[0]!);
-  const [sourcing, setSourcing] = useState<string>(SOURCING_ROUTES[0]!.id);
   const [acquisition, setAcquisition] = useState<string>(ACQUISITION[0]!);
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -65,10 +63,6 @@ function Configure() {
   const availablePacks = useMemo(
     () => PACKS.filter((p) => p.model === variant.modelCode),
     [variant.modelCode],
-  );
-  const longRangePack = useMemo(
-    () => availablePacks.find((p) => p.items.some((i) => i.includes("67.4 kWh"))),
-    [availablePacks],
   );
 
   const selectedPacks = PACKS.filter((p) => packs.includes(p.id));
@@ -78,37 +72,20 @@ function Configure() {
     const next = VARIANTS.find((v) => v.id === id)!;
     setVariantId(id);
     setCabins(next.defaultCabins);
-    setEnergy(next.defaultEnergy);
     setPacks([next.defaultPack]);
   }
 
   function togglePack(id: string) {
-    setPacks((prev) => {
-      const next = prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id];
-      if (longRangePack && !next.includes(longRangePack.id) && energy === "long-range") {
-        setEnergy("standard");
-      }
-      return next;
-    });
+    setPacks((prev) => (prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]));
   }
 
-  function selectEnergy(id: string) {
-    setEnergy(id);
-    if (id === "long-range" && longRangePack && !packs.includes(longRangePack.id)) {
-      setPacks((prev) => [...prev, longRangePack.id]);
-    }
-  }
-
-  const energyOption = ENERGY_OPTIONS.find((e) => e.id === energy)!;
-  const sourcingRoute = SOURCING_ROUTES.find((s) => s.id === sourcing)!;
   const packNames = selectedPacks.map((p) => p.name).join(", ") || "No equipment packs";
 
   const specSummary = [
     `Halo 13.5 — ${variant.label} (${model.code} · ${model.name})`,
     `Layout: ${cabins}`,
-    `Energy: ${energyOption.name}`,
     `Equipment packs: ${packNames}`,
-    `Sourcing: ${sourcingRoute.name} · ${location}`,
+    `Preferred build region: ${location}`,
     `Acquisition: ${acquisition}`,
     `Indicative total: ${formatEur(total)} + VAT`,
   ].join("\n");
