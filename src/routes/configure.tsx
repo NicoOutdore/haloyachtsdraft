@@ -161,30 +161,6 @@ function Configure() {
 
             <Step
               index={2}
-              title="Energy & propulsion"
-              description="Twin ePropulsion 96 V pods and a ~7.5 – 8.0 kWp Maxeon array on every boat."
-            >
-              <div className="grid gap-4 sm:grid-cols-2">
-                {ENERGY_OPTIONS.map((e) => (
-                  <Choice
-                    key={e.id}
-                    selected={energy === e.id}
-                    onClick={() => selectEnergy(e.id)}
-                    title={e.name}
-                    subtitle={e.detail}
-                  />
-                ))}
-              </div>
-              {energy === "long-range" && longRangePack && (
-                <p className="mt-4 text-xs text-muted-foreground">
-                  The long-range bank is supplied inside the {longRangePack.name}, which has been added
-                  to your specification.
-                </p>
-              )}
-            </Step>
-
-            <Step
-              index={3}
               title="Smart packages"
               description={
                 variantId === "explorer"
