@@ -255,7 +255,7 @@ function Configure() {
           model: `${variant.label} — ${model.code} ${model.name}`,
           cabins,
           packs: packNames,
-          location: `${location} · ${sourcingRoute.name}`,
+          location,
           acquisition,
           total,
           specSummary,
