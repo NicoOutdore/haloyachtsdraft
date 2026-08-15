@@ -1,8 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { SiteShell, Section, PageHero, SpecRow } from "@/components/site/SiteShell";
 import { RegenChart } from "@/components/site/RegenChart";
+import { ModelShowcase } from "@/components/site/ModelShowcase";
 import {
-  MODELS,
   SHARED_SPECS,
   PROPULSION_SPECS,
   SOLAR_YIELDS,
@@ -49,49 +49,7 @@ function Architecture() {
         </dl>
       </Section>
 
-      {MODELS.map((m, i) => (
-        <section key={m.id} id={m.id} className={`scroll-mt-24 border-y border-border ${i % 2 ? "" : "bg-navy-deep"}`}>
-          <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 lg:grid-cols-2 lg:px-8 lg:py-24">
-            <img
-              src={m.image}
-              alt={`Halo ${m.code} — ${m.name}`}
-              className={`w-full rounded-lg object-cover ${i % 2 ? "lg:order-2" : ""}`}
-              loading="lazy"
-            />
-            <div>
-              <p className="eyebrow">{m.code} — {m.subtitle}</p>
-              <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">{m.name}</h2>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">{m.summary}</p>
-              <ul className="mt-7 space-y-3">
-                {m.features.map((f) => (
-                  <li key={f} className="flex gap-3 text-sm text-muted-foreground">
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <dl className="mt-7 grid gap-4 border-t border-border/60 pt-6 text-sm sm:grid-cols-3">
-                <div>
-                  <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Capacity</dt>
-                  <dd className="mt-1">{m.capacity}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Deployed weight</dt>
-                  <dd className="mt-1">{m.weight}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Tender & toys</dt>
-                  <dd className="mt-1">{m.tender}</dd>
-                </div>
-              </dl>
-              <p className="mt-6 text-sm font-medium text-accent">{m.cruise}</p>
-              <Link to="/models" className="mt-4 inline-block text-sm font-medium text-accent hover:underline">
-                Compare Explorer &amp; Coastal side by side →
-              </Link>
-            </div>
-          </div>
-        </section>
-      ))}
+      <ModelShowcase />
 
       <Section eyebrow="Drivetrain" title="Propulsion, energy systems & hydro-regeneration">
         <dl className="mt-10 grid gap-x-14 md:grid-cols-2">
