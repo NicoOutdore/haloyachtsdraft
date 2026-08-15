@@ -192,22 +192,11 @@ function Configure() {
             </Step>
 
             <Step
-              index={4}
-              title="Sourcing & delivery"
-              description="Where she is built, and how the aluminium is cut."
+              index={3}
+              title="Delivery & acquisition"
+              description="Where she is built, and how you would like to acquire her."
             >
-              <div className="grid gap-4 sm:grid-cols-2">
-                {SOURCING_ROUTES.map((s) => (
-                  <Choice
-                    key={s.id}
-                    selected={sourcing === s.id}
-                    onClick={() => setSourcing(s.id)}
-                    title={s.name}
-                    subtitle={s.detail}
-                  />
-                ))}
-              </div>
-              <p className="mt-6 text-sm font-medium">Preferred build region</p>
+              <p className="text-sm font-medium">Preferred build region</p>
               <div className="mt-3 grid gap-4 sm:grid-cols-3">
                 {BUILD_LOCATIONS.map((l) => (
                   <Choice key={l} selected={location === l} onClick={() => setLocation(l)} title={l} />
