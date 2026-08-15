@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell, Section, PageHero, SpecRow } from "@/components/site/SiteShell";
 import { RegenChart } from "@/components/site/RegenChart";
+import { ModelShowcase } from "@/components/site/ModelShowcase";
 import {
-  MODELS,
   SHARED_SPECS,
   PROPULSION_SPECS,
   SOLAR_YIELDS,
