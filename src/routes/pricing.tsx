@@ -71,21 +71,32 @@ function Pricing() {
             </p>
           </div>
           <div className="surface-panel rounded-lg p-10">
-            <h3 className="text-lg font-semibold">How the build price is allocated</h3>
-            <dl className="mt-6 space-y-4">
-              <div className="flex items-baseline justify-between gap-4 border-b border-border/70 pb-3">
-                <dt className="text-sm text-muted-foreground">Licensed partner yard</dt>
-                <dd className="text-sm font-medium">€262,500</dd>
-              </div>
-              <div className="flex items-baseline justify-between gap-4">
-                <dt className="text-sm text-muted-foreground">Halo Yachts (design, kit, systems)</dt>
-                <dd className="text-sm font-medium">€262,500</dd>
-              </div>
-            </dl>
+            <h3 className="text-lg font-semibold">Stage payment schedule</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Payments are held in a dedicated escrow account and released only after an independent marine surveyor issues a Stage Completion Certificate for each milestone.
+            </p>
+            <div className="mt-6 overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b border-border text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                    <th className="py-2 pr-4 font-medium">Stage</th>
+                    <th className="py-2 pr-4 font-medium">Milestone</th>
+                    <th className="py-2 font-medium">Timing</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {STAGE_PAYMENTS.map((s) => (
+                    <tr key={s.milestone} className="border-b border-border/60">
+                      <td className="py-3 pr-4 font-semibold text-accent">{s.percent}</td>
+                      <td className="py-3 pr-4 text-muted-foreground">{s.milestone}</td>
+                      <td className="py-3 text-muted-foreground">{s.timing}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <p className="mt-6 text-xs text-muted-foreground">
-              All prices are quoted in euro, the contract currency. Equipment packs, local VAT,
-              delivery and commissioning are quoted separately.
-
+              All percentages are of the base build price. Equipment packs, local VAT, delivery and commissioning are quoted and paid separately.
             </p>
           </div>
         </div>
