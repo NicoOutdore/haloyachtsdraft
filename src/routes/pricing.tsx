@@ -21,6 +21,14 @@ export const Route = createFileRoute("/pricing")({
   component: Pricing,
 });
 
+const STAGE_PAYMENTS = [
+  { percent: "20%", milestone: "Contract deposit", timing: "On order confirmation" },
+  { percent: "20%", milestone: "Keel laid and hull panels tacked", timing: "Weeks 1 – 4" },
+  { percent: "25%", milestone: "Hull, bridge-deck and bulkheads welded", timing: "Weeks 5 – 10" },
+  { percent: "20%", milestone: "Deck/superstructure close-out and systems commissioned", timing: "Weeks 11 – 21" },
+  { percent: "15%", milestone: "Sea trials, snagging complete and handover", timing: "Weeks 22 – 24" },
+];
+
 const PATHWAYS = [
   {
     name: "Outright cash purchase",
