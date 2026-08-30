@@ -232,6 +232,10 @@ function FaqPage() {
         <FaqList items={BUYING} idPrefix="buying" />
       </Section>
 
+      <Section id="warranty" eyebrow="Warranty & service" title="Ownership support & warranty coverage" className="border-t border-border">
+        <FaqList items={WARRANTY_SERVICE} idPrefix="warranty" />
+      </Section>
+
       <Section id="safety" eyebrow="Safety" title="Offshore safety & structural engineering" className="border-t border-border">
 
         <FaqList items={SAFETY} idPrefix="safety" />
