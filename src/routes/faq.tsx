@@ -7,9 +7,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const TITLE = "FAQ — Buying, Safety & Sustainability | Halo Yachts";
+const TITLE = "FAQ — Buying, Warranty, Safety & Sustainability | Halo Yachts";
 const DESCRIPTION =
-  "Answers on buying a Halo yacht — escrow-protected stage payments, single-point warranty and standardised specification — plus CE Category A safety engineering and solar-electric autonomy.";
+  "Answers on buying a Halo yacht — escrow-protected stage payments, warranty coverage and single-point service — plus CE Category A safety engineering and solar-electric autonomy.";
 
 type Faq = { q: string; a: string };
 
