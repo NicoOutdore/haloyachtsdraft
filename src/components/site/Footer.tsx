@@ -34,7 +34,7 @@ export function Footer() {
             <li><Link to="/configure" className="hover:text-foreground">Request build slot</Link></li>
 
             <li><Link to="/build-with-us" className="hover:text-foreground">Partner yards — build programme</Link></li>
-            <li><Link to="/faq" className="hover:text-foreground">FAQ — buying, safety & sustainability</Link></li>
+            <li><Link to="/faq" className="hover:text-foreground">FAQ — buying, warranty, safety & sustainability</Link></li>
           </ul>
 
         </nav>
