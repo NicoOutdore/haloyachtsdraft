@@ -40,6 +40,33 @@ const BUYING: Faq[] = [
   },
 ];
 
+const WARRANTY_SERVICE: Faq[] = [
+  {
+    q: "How does the warranty coverage work on my Halo 44?",
+    a: "Halo Yachts acts as your single point of contact for all warranty needs. We provide a limited assembly and workmanship warranty covering the hull structure, interior joinery, and systems integration. Integrated Tier-1 components (such as ePropulsion powertrains, Victron energy systems, and Maxeon solar arrays) carry their respective 2-to-5-year manufacturer warranties, which Halo manages on your behalf.",
+  },
+  {
+    q: "How do I log a service or warranty claim when away from a hub?",
+    a: "All claims are submitted directly through the Halo Owner Portal. Our client experience team immediately reviews your request, analyzes real-time telemetry from your onboard Victron Cerbo GX system, and coordinates the necessary repair plan or parts dispatch.",
+  },
+  {
+    q: "What happens if I experience an equipment issue in a remote cruising location?",
+    a: "Our remote diagnostic tools allow us to pinpoint component or software issues anywhere with satellite/cellular connection. If physical replacement is required, Halo coordinates advance replacement unit shipments and dispatches authorized mobile marine technicians to your nearest port or marina.",
+  },
+  {
+    q: "Who covers the electric propulsion and battery storage systems?",
+    a: "Your electric motors, inverter networks, and lithium battery banks are covered under direct pass-through warranties from our Tier-1 partners (ePropulsion and Victron). Halo manages the diagnostic triage, warranty filing, and parts replacement so you never have to deal with component manufacturers directly.",
+  },
+  {
+    q: "What is the scope of the Shipyard Workmanship Warranty?",
+    a: "The assembly shipyard provides a comprehensive 12-to-24-month back-to-back warranty on structural integrity, aluminum welds, plumbing systems, electrical looms, and interior installation.",
+  },
+  {
+    q: "Are hauling, slipway, or vessel transport fees covered under warranty?",
+    a: "Warranty coverage includes diagnostic triage, replacement parts, and repair labor. Scheduled repairs take place at designated regional service hubs or via mobile technician dispatch. Hauling, dockage, or vessel relocation expenses outside baseline service locations remain the responsibility of the vessel owner.",
+  },
+];
+
 const SAFETY: Faq[] = [
 
   {
@@ -154,7 +181,7 @@ const SUSTAINABILITY: Faq[] = [
 const JSON_LD = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [...BUYING, ...SAFETY, ...SUSTAINABILITY].map((f) => ({
+  mainEntity: [...BUYING, ...WARRANTY_SERVICE, ...SAFETY, ...SUSTAINABILITY].map((f) => ({
     "@type": "Question",
     name: f.q,
     acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -196,8 +223,8 @@ function FaqPage() {
     <SiteShell>
       <PageHero
         eyebrow="Frequently asked questions"
-        title="Buying, owning and using a Halo, answered directly."
-        intro="Short, clear answers to the questions owners, charter operators and partner yards ask most often about buying a Halo, living with one day to day, and where its ocean capability fits in."
+        title="Buying, owning, warranty and using a Halo, answered directly."
+        intro="Short, clear answers to the questions owners, charter operators and partner yards ask most often about buying a Halo, warranty and service support, living with one day to day, and where its ocean capability fits in."
       />
 
 
