@@ -63,6 +63,27 @@ export const submitConfiguration = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
+const yardInterestSchema = z.object({
+  yard: z.string().trim().min(1).max(150),
+  country: z.string().trim().min(1).max(100),
+  contact: z.string().trim().min(1).max(100),
+  email: z.string().trim().email().max(255),
+});
+
+export const submitYardInterest = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => yardInterestSchema.parse(data))
+  .handler(async ({ data }) => {
+    const { appendRow } = await import("./sheets.server");
+    await appendRow("Yard Interest", [
+      new Date().toISOString(),
+      data.yard,
+      data.country,
+      data.contact,
+      data.email,
+    ]);
+    return { ok: true };
+  });
+
 export const submitYardApplication = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => yardSchema.parse(data))
   .handler(async ({ data }) => {
