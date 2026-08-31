@@ -428,7 +428,7 @@ function ProgrammeBrief() {
           eyebrow="Production cadence"
           title="2,410 labour hours across a 24-week window"
           intro="Every build slot is booked against the same programme, from keel laying to handover. Yards quote and schedule against these hours, and the milestone gates below govern inspection and payment."
-          className="border-t border-border"
+          className="!max-w-none !px-0 !pt-0 !pb-10"
         >
           <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {CADENCE.map((c) => (
@@ -451,7 +451,7 @@ function ProgrammeBrief() {
         <Section
           eyebrow="Supply, sourcing & fabrication"
           title="A hybrid supply model: central tech, local fabrication"
-          className="border-t border-border"
+          className="!max-w-none !px-0 !py-10 border-t border-border/70"
         >
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {SOURCING.map((s) => (
@@ -490,7 +490,7 @@ function ProgrammeBrief() {
         <Section
           eyebrow="Regional fabrication"
           title="Two routes to a finished yacht"
-          className="border-t border-border"
+          className="!max-w-none !px-0 !py-10 border-t border-border/70"
         >
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {REGIONAL_OPTIONS.map((o) => (
@@ -506,7 +506,7 @@ function ProgrammeBrief() {
         <Section
           eyebrow="Oversight & approval"
           title="Inspected weekly, signed off by stage"
-          className="border-t border-border"
+          className="!max-w-none !px-0 !py-10 border-t border-border/70"
         >
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {OVERSIGHT.map((o) => (
