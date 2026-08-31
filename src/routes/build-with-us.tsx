@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { PhoneFields, PHONE_PATTERN, EMAIL_PATTERN } from "@/components/site/PhoneFields";
-import { submitYardApplication } from "@/lib/submissions.functions";
+import { submitYardApplication, submitYardInterest } from "@/lib/submissions.functions";
 
 const TITLE = "Partner Yard Programme — Build With Us | Halo Yachts";
 const DESCRIPTION =
@@ -27,6 +27,44 @@ export const Route = createFileRoute("/build-with-us")({
   }),
   component: BuildWithUs,
 });
+
+const TRUST = [
+  {
+    title: "One contract with Halo",
+    body: "The owner signs a single purchase agreement with Halo Yachts. Halo is prime contractor and the only counterparty — never the yard.",
+  },
+  {
+    title: "Escrow-held stage payments",
+    body: "Funds sit in dedicated escrow and are released stage by stage, only once the milestone is certified complete.",
+  },
+  {
+    title: "Independent surveyor sign-off",
+    body: "A Halo representative or appointed marine surveyor inspects weekly and issues the Stage Completion Certificate that opens each payment gate.",
+  },
+  {
+    title: "CE Category A owned centrally",
+    body: "Halo holds the certification file and notified-body liaison. The yard builds to an approved definition it cannot deviate from.",
+  },
+];
+
+const NETWORK = [
+  {
+    title: "Built near the owner",
+    body: "The boat is fabricated in the region she will be sailed, cutting freight, import duty and delivery miles — impossible from a single fixed factory.",
+  },
+  {
+    title: "Capacity is not one yard's order book",
+    body: "Slots exist across several accredited yards, so a delivery date does not depend on one workshop's backlog or local labour market.",
+  },
+  {
+    title: "A slot can be re-allocated",
+    body: "If a yard underperforms against the Quality & Conformity Gate, Halo moves the build. The owner's contract, escrow and specification are untouched.",
+  },
+  {
+    title: "The standard travels, not the shed",
+    body: "Master DXF files, centrally sourced Tier-1 systems and a fixed inspection regime mean an identical yacht regardless of which yard welds her.",
+  },
+];
 
 const FRAMEWORK = [
   {
@@ -190,6 +228,8 @@ function AreaField({
   );
 }
 
+const BRIEF_KEY = "halo-yard-brief-unlocked";
+
 function BuildWithUs() {
   const [yard, setYard] = useState("");
   const [country, setCountry] = useState("");
@@ -204,6 +244,46 @@ function BuildWithUs() {
   const [qc, setQc] = useState("");
   const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
   const [submitting, setSubmitting] = useState(false);
+
+  const [gYard, setGYard] = useState("");
+  const [gCountry, setGCountry] = useState("");
+  const [gContact, setGContact] = useState("");
+  const [gEmail, setGEmail] = useState("");
+  const [gError, setGError] = useState<string | undefined>(undefined);
+  const [unlocking, setUnlocking] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+
+  const sendInterest = useServerFn(submitYardInterest);
+
+  useEffect(() => {
+    if (window.localStorage.getItem(BRIEF_KEY) === "1") setUnlocked(true);
+  }, []);
+
+  async function handleUnlock(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!EMAIL_PATTERN.test(gEmail.trim())) {
+      setGError("Enter a valid email address");
+      return;
+    }
+    setGError(undefined);
+    setUnlocking(true);
+    try {
+      await sendInterest({
+        data: {
+          yard: gYard.trim(),
+          country: gCountry.trim(),
+          contact: gContact.trim(),
+          email: gEmail.trim(),
+        },
+      });
+    } catch {
+      // The brief still opens: capture failure must not block a partner yard.
+    } finally {
+      window.localStorage.setItem(BRIEF_KEY, "1");
+      setUnlocked(true);
+      setUnlocking(false);
+    }
+  }
 
   const send = useServerFn(submitYardApplication);
 
@@ -261,7 +341,7 @@ function BuildWithUs() {
       <PageHero
         eyebrow="Build with us"
         title="Join the Halo licensed build network."
-        intro="Halo supplies the naval architecture, CNC kit, drivetrain and specification. Your yard supplies the fabrication. This page sets out how the programme is run, who is responsible for what, and how work is inspected and signed off."
+        intro="Halo supplies the naval architecture, CNC kit, drivetrain and specification. Your yard supplies the fabrication. Below: how the programme is framed, what we require of a yard, and how to apply. The full operational brief opens on request."
       />
 
       <Section eyebrow="How the programme is governed" title="Halo carries the contract, the certification and the risk">
@@ -423,7 +503,7 @@ function BuildWithUs() {
 
 function ProgrammeBrief() {
   return (
-    <div className="mt-10 space-y-16">
+    <div className="mt-10">
         <Section
           eyebrow="Production cadence"
           title="2,410 labour hours across a 24-week window"
