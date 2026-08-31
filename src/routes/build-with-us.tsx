@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
@@ -8,11 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { PhoneFields, PHONE_PATTERN, EMAIL_PATTERN } from "@/components/site/PhoneFields";
-import { submitYardApplication } from "@/lib/submissions.functions";
+import { submitYardApplication, submitYardInterest } from "@/lib/submissions.functions";
 
 const TITLE = "Partner Yard Programme — Build With Us | Halo Yachts";
 const DESCRIPTION =
-  "How a Halo build runs: 2,410 labour hours over 24 weeks, central Tier-1 partnerships, regional CNC-cut aluminium and interior kits, local outfitting under the Halo Quality & Conformity Gate, weekly surveyor inspection, milestone sign-off and CE Category A certification.";
+  "Halo's partner yard programme: precision CNC kit-set aluminium builds, local fabrication under Halo supervision, the requirements we look for in a yard, and how to apply. Full production brief available on request.";
 
 export const Route = createFileRoute("/build-with-us")({
   head: () => ({
@@ -27,6 +27,44 @@ export const Route = createFileRoute("/build-with-us")({
   }),
   component: BuildWithUs,
 });
+
+const TRUST = [
+  {
+    title: "One contract with Halo",
+    body: "The owner signs a single purchase agreement with Halo Yachts. Halo is prime contractor and the only counterparty — never the yard.",
+  },
+  {
+    title: "Escrow-held stage payments",
+    body: "Funds sit in dedicated escrow and are released stage by stage, only once the milestone is certified complete.",
+  },
+  {
+    title: "Independent surveyor sign-off",
+    body: "A Halo representative or appointed marine surveyor inspects weekly and issues the Stage Completion Certificate that opens each payment gate.",
+  },
+  {
+    title: "CE Category A owned centrally",
+    body: "Halo holds the certification file and notified-body liaison. The yard builds to an approved definition it cannot deviate from.",
+  },
+];
+
+const NETWORK = [
+  {
+    title: "Built near the owner",
+    body: "The boat is fabricated in the region she will be sailed, cutting freight, import duty and delivery miles — impossible from a single fixed factory.",
+  },
+  {
+    title: "Capacity is not one yard's order book",
+    body: "Slots exist across several accredited yards, so a delivery date does not depend on one workshop's backlog or local labour market.",
+  },
+  {
+    title: "A slot can be re-allocated",
+    body: "If a yard underperforms against the Quality & Conformity Gate, Halo moves the build. The owner's contract, escrow and specification are untouched.",
+  },
+  {
+    title: "The standard travels, not the shed",
+    body: "Master DXF files, centrally sourced Tier-1 systems and a fixed inspection regime mean an identical yacht regardless of which yard welds her.",
+  },
+];
 
 const FRAMEWORK = [
   {
@@ -190,6 +228,8 @@ function AreaField({
   );
 }
 
+const BRIEF_KEY = "halo-yard-brief-unlocked";
+
 function BuildWithUs() {
   const [yard, setYard] = useState("");
   const [country, setCountry] = useState("");
@@ -204,6 +244,46 @@ function BuildWithUs() {
   const [qc, setQc] = useState("");
   const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
   const [submitting, setSubmitting] = useState(false);
+
+  const [gYard, setGYard] = useState("");
+  const [gCountry, setGCountry] = useState("");
+  const [gContact, setGContact] = useState("");
+  const [gEmail, setGEmail] = useState("");
+  const [gError, setGError] = useState<string | undefined>(undefined);
+  const [unlocking, setUnlocking] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+
+  const sendInterest = useServerFn(submitYardInterest);
+
+  useEffect(() => {
+    if (window.localStorage.getItem(BRIEF_KEY) === "1") setUnlocked(true);
+  }, []);
+
+  async function handleUnlock(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!EMAIL_PATTERN.test(gEmail.trim())) {
+      setGError("Enter a valid email address");
+      return;
+    }
+    setGError(undefined);
+    setUnlocking(true);
+    try {
+      await sendInterest({
+        data: {
+          yard: gYard.trim(),
+          country: gCountry.trim(),
+          contact: gContact.trim(),
+          email: gEmail.trim(),
+        },
+      });
+    } catch {
+      // The brief still opens: capture failure must not block a partner yard.
+    } finally {
+      window.localStorage.setItem(BRIEF_KEY, "1");
+      setUnlocked(true);
+      setUnlocking(false);
+    }
+  }
 
   const send = useServerFn(submitYardApplication);
 
@@ -261,10 +341,37 @@ function BuildWithUs() {
       <PageHero
         eyebrow="Build with us"
         title="Join the Halo licensed build network."
-        intro="Halo supplies the naval architecture, CNC kit, drivetrain and specification. Your yard supplies the fabrication. This page sets out how the programme is run, who is responsible for what, and how work is inspected and signed off."
+        intro="Halo supplies the naval architecture, CNC kit, drivetrain and specification. Your yard supplies the fabrication. Below: how the programme is framed, what we require of a yard, and how to apply. The full operational brief opens on request."
       />
 
-      <Section eyebrow="Framework" title="Precision CNC kit-set, local fabrication">
+      <Section eyebrow="How the programme is governed" title="Halo carries the contract, the certification and the risk">
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {TRUST.map((t) => (
+            <article key={t.title} className="surface-panel rounded-lg p-6">
+              <h3 className="text-base font-semibold">{t.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.body}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="For prospective owners"
+        title="Why a network, not a single factory"
+        intro="Halo does not own one production yard, by design. For an owner that is a structural advantage, not a gap."
+        className="border-t border-border"
+      >
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {NETWORK.map((n) => (
+            <article key={n.title} className="surface-panel rounded-lg p-8">
+              <h3 className="text-lg font-semibold">{n.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{n.body}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Framework" title="Precision CNC kit-set, local fabrication" className="border-t border-border">
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {FRAMEWORK.map((f) => (
             <article key={f.title} className="surface-panel rounded-lg p-8">
@@ -282,97 +389,39 @@ function BuildWithUs() {
       </Section>
 
       <Section
-        eyebrow="Production cadence"
-        title="2,410 labour hours across a 24-week window"
-        intro="Every build slot is booked against the same programme, from keel laying to handover. Yards quote and schedule against these hours, and the milestone gates below govern inspection and payment."
+        eyebrow="Programme brief"
+        title="The full partner programme brief"
+        intro="Production cadence and milestone gates, the hybrid sourcing model, the full Halo / yard / client responsibility matrix, regional build routes and the weekly oversight regime. Tell us who you are and it opens on this page."
         className="border-t border-border"
       >
-        <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {CADENCE.map((c) => (
-            <div key={c.label} className="surface-panel rounded-lg p-6">
-              <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">{c.label}</dt>
-              <dd className="mt-2 text-xl font-semibold text-accent">{c.value}</dd>
+        {unlocked ? (
+          <ProgrammeBrief />
+        ) : (
+          <form onSubmit={handleUnlock} className="surface-panel mt-10 grid max-w-2xl gap-5 rounded-lg p-8">
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field id="brief-yard" label="Yard name" required maxLength={150} value={gYard} onChange={setGYard} />
+              <Field id="brief-country" label="Country / region" required maxLength={100} value={gCountry} onChange={setGCountry} />
+              <Field id="brief-contact" label="Contact name" required maxLength={100} autoComplete="name" value={gContact} onChange={setGContact} />
+              <Field
+                id="brief-email"
+                label="Email"
+                type="email"
+                required
+                maxLength={255}
+                autoComplete="email"
+                value={gEmail}
+                onChange={setGEmail}
+                error={gError}
+              />
             </div>
-          ))}
-        </dl>
-        <div className="mt-10 max-w-4xl divide-y divide-border/60">
-          {MILESTONES.map((m) => (
-            <div key={m.week} className="grid gap-2 py-6 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-10">
-              <p className="eyebrow pt-1">{m.week}</p>
-              <p className="text-sm leading-relaxed text-muted-foreground">{m.body}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="Supply, sourcing & fabrication"
-        title="A hybrid supply model: central tech, local fabrication"
-        className="border-t border-border"
-      >
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {SOURCING.map((s) => (
-            <article key={s.title} className="surface-panel rounded-lg p-8">
-              <h3 className="text-lg font-semibold">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-            </article>
-          ))}
-        </div>
-
-        <h3 className="mt-14 text-xl font-semibold">Responsibility matrix</h3>
-        <div className="mt-6 overflow-x-auto">
-          <table className="w-full min-w-[44rem] text-left text-sm">
-            <thead>
-              <tr className="border-b border-border text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                <th className="py-3 pr-4 font-medium">Scope</th>
-                <th className="py-3 pr-4 font-medium">Halo</th>
-                <th className="py-3 pr-4 font-medium">Partner yard</th>
-                <th className="py-3 font-medium">Client</th>
-              </tr>
-            </thead>
-            <tbody>
-              {RESPONSIBILITY.map((r) => (
-                <tr key={r.item} className="border-b border-border/60">
-                  <td className="py-4 pr-4 font-medium">{r.item}</td>
-                  <td className="py-4 pr-4 text-muted-foreground">{r.halo}</td>
-                  <td className="py-4 pr-4 text-muted-foreground">{r.yard}</td>
-                  <td className="py-4 text-muted-foreground">{r.client}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="Regional fabrication"
-        title="Two routes to a finished yacht"
-        className="border-t border-border"
-      >
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {REGIONAL_OPTIONS.map((o) => (
-            <article key={o.label} className="surface-panel rounded-lg p-8">
-              <p className="eyebrow">{o.label}</p>
-              <h3 className="mt-3 text-lg font-semibold">{o.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{o.body}</p>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="Oversight & approval"
-        title="Inspected weekly, signed off by stage"
-        className="border-t border-border"
-      >
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {OVERSIGHT.map((o) => (
-            <article key={o.title} className="surface-panel rounded-lg p-8">
-              <h3 className="text-lg font-semibold">{o.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{o.body}</p>
-            </article>
-          ))}
-        </div>
+            <Button type="submit" size="lg" className="justify-self-start" disabled={unlocking}>
+              {unlocking ? "Opening…" : "Open the programme brief"}
+            </Button>
+            <p className="text-xs text-muted-foreground">
+              No document download and no waiting on an email — the detail opens immediately below.
+            </p>
+          </form>
+        )}
       </Section>
 
       <Section eyebrow="Requirements" title="What we look for in a partner yard" className="border-t border-border">
@@ -449,5 +498,105 @@ function BuildWithUs() {
         </form>
       </Section>
     </SiteShell>
+  );
+}
+
+function ProgrammeBrief() {
+  return (
+    <div className="mt-10">
+        <Section
+          eyebrow="Production cadence"
+          title="2,410 labour hours across a 24-week window"
+          intro="Every build slot is booked against the same programme, from keel laying to handover. Yards quote and schedule against these hours, and the milestone gates below govern inspection and payment."
+          className="!max-w-none !px-0 !pt-0 !pb-10"
+        >
+          <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {CADENCE.map((c) => (
+              <div key={c.label} className="surface-panel rounded-lg p-6">
+                <dt className="text-xs uppercase tracking-[0.16em] text-muted-foreground">{c.label}</dt>
+                <dd className="mt-2 text-xl font-semibold text-accent">{c.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-10 max-w-4xl divide-y divide-border/60">
+            {MILESTONES.map((m) => (
+              <div key={m.week} className="grid gap-2 py-6 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-10">
+                <p className="eyebrow pt-1">{m.week}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground">{m.body}</p>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section
+          eyebrow="Supply, sourcing & fabrication"
+          title="A hybrid supply model: central tech, local fabrication"
+          className="!max-w-none !px-0 !py-10 border-t border-border/70"
+        >
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {SOURCING.map((s) => (
+              <article key={s.title} className="surface-panel rounded-lg p-8">
+                <h3 className="text-lg font-semibold">{s.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+              </article>
+            ))}
+          </div>
+
+          <h3 className="mt-14 text-xl font-semibold">Responsibility matrix</h3>
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full min-w-[44rem] text-left text-sm">
+              <thead>
+                <tr className="border-b border-border text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                  <th className="py-3 pr-4 font-medium">Scope</th>
+                  <th className="py-3 pr-4 font-medium">Halo</th>
+                  <th className="py-3 pr-4 font-medium">Partner yard</th>
+                  <th className="py-3 font-medium">Client</th>
+                </tr>
+              </thead>
+              <tbody>
+                {RESPONSIBILITY.map((r) => (
+                  <tr key={r.item} className="border-b border-border/60">
+                    <td className="py-4 pr-4 font-medium">{r.item}</td>
+                    <td className="py-4 pr-4 text-muted-foreground">{r.halo}</td>
+                    <td className="py-4 pr-4 text-muted-foreground">{r.yard}</td>
+                    <td className="py-4 text-muted-foreground">{r.client}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Section>
+
+        <Section
+          eyebrow="Regional fabrication"
+          title="Two routes to a finished yacht"
+          className="!max-w-none !px-0 !py-10 border-t border-border/70"
+        >
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {REGIONAL_OPTIONS.map((o) => (
+              <article key={o.label} className="surface-panel rounded-lg p-8">
+                <p className="eyebrow">{o.label}</p>
+                <h3 className="mt-3 text-lg font-semibold">{o.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{o.body}</p>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        <Section
+          eyebrow="Oversight & approval"
+          title="Inspected weekly, signed off by stage"
+          className="!max-w-none !px-0 !py-10 border-t border-border/70"
+        >
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {OVERSIGHT.map((o) => (
+              <article key={o.title} className="surface-panel rounded-lg p-8">
+                <h3 className="text-lg font-semibold">{o.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{o.body}</p>
+              </article>
+            ))}
+          </div>
+        </Section>
+    </div>
   );
 }
