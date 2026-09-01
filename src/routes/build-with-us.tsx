@@ -47,24 +47,6 @@ const TRUST = [
   },
 ];
 
-const NETWORK = [
-  {
-    title: "Built near the owner",
-    body: "The boat is fabricated in the region she will be sailed, cutting freight, import duty and delivery miles — impossible from a single fixed factory.",
-  },
-  {
-    title: "Capacity is not one yard's order book",
-    body: "Slots exist across several accredited yards, so a delivery date does not depend on one workshop's backlog or local labour market.",
-  },
-  {
-    title: "A slot can be re-allocated",
-    body: "If a yard underperforms against the Quality & Conformity Gate, Halo moves the build. The owner's contract, escrow and specification are untouched.",
-  },
-  {
-    title: "The standard travels, not the shed",
-    body: "Master DXF files, centrally sourced Tier-1 systems and a fixed inspection regime mean an identical yacht regardless of which yard welds her.",
-  },
-];
 
 const FRAMEWORK = [
   {
@@ -167,6 +149,31 @@ const CRITERIA = [
   { title: "Quality control", body: "Documented QC infrastructure, inspection records and willingness to host independent marine surveyor sign-offs." },
 ];
 
+function HoneyPot({
+  id,
+  value,
+  onChange,
+}: {
+  id: string;
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+      <label htmlFor={id}>Do not fill this in</label>
+      <input
+        id={id}
+        name={id}
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    </div>
+  );
+}
+
 function Field({
   id,
   label,
@@ -229,6 +236,7 @@ function AreaField({
 }
 
 const BRIEF_KEY = "halo-yard-brief-unlocked";
+const BRIEF_EMAIL_KEY = "halo-yard-brief-email";
 
 function BuildWithUs() {
   const [yard, setYard] = useState("");
@@ -252,6 +260,9 @@ function BuildWithUs() {
   const [gError, setGError] = useState<string | undefined>(undefined);
   const [unlocking, setUnlocking] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
+  const [gHp, setGHp] = useState("");
+  const [hp, setHp] = useState("");
+  const [startedAt] = useState(() => Date.now());
 
   const sendInterest = useServerFn(submitYardInterest);
 
@@ -267,19 +278,24 @@ function BuildWithUs() {
     }
     setGError(undefined);
     setUnlocking(true);
+    const alreadyLogged = window.localStorage.getItem(BRIEF_EMAIL_KEY) === gEmail.trim().toLowerCase();
     try {
+      if (alreadyLogged) throw new Error("already-logged");
       await sendInterest({
         data: {
           yard: gYard.trim(),
           country: gCountry.trim(),
           contact: gContact.trim(),
           email: gEmail.trim(),
+          hp: gHp,
+          elapsed: Date.now() - startedAt,
         },
       });
     } catch {
       // The brief still opens: capture failure must not block a partner yard.
     } finally {
       window.localStorage.setItem(BRIEF_KEY, "1");
+      window.localStorage.setItem(BRIEF_EMAIL_KEY, gEmail.trim().toLowerCase());
       setUnlocked(true);
       setUnlocking(false);
     }
@@ -312,6 +328,8 @@ function BuildWithUs() {
           welding: welding.trim(),
           capacity: capacity.trim(),
           qc: qc.trim(),
+          hp,
+          elapsed: Date.now() - startedAt,
         },
       });
       toast.success("Application submitted", {
@@ -350,22 +368,6 @@ function BuildWithUs() {
             <article key={t.title} className="surface-panel rounded-lg p-6">
               <h3 className="text-base font-semibold">{t.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.body}</p>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="For prospective owners"
-        title="Why a network, not a single factory"
-        intro="Halo does not own one production yard, by design. For an owner that is a structural advantage, not a gap."
-        className="border-t border-border"
-      >
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {NETWORK.map((n) => (
-            <article key={n.title} className="surface-panel rounded-lg p-8">
-              <h3 className="text-lg font-semibold">{n.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{n.body}</p>
             </article>
           ))}
         </div>
@@ -414,6 +416,7 @@ function BuildWithUs() {
                 error={gError}
               />
             </div>
+            <HoneyPot id="brief-company-website" value={gHp} onChange={setGHp} />
             <Button type="submit" size="lg" className="justify-self-start" disabled={unlocking}>
               {unlocking ? "Opening…" : "Open the programme brief"}
             </Button>
@@ -492,6 +495,7 @@ function BuildWithUs() {
             onChange={setQc}
           />
 
+          <HoneyPot id="yard-company-website" value={hp} onChange={setHp} />
           <Button type="submit" size="lg" className="justify-self-start" disabled={submitting}>
             {submitting ? "Submitting…" : "Submit application"}
           </Button>
