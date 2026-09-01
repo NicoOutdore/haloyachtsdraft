@@ -40,6 +40,33 @@ const BUYING: Faq[] = [
   },
 ];
 
+const NETWORK_FAQ: Faq[] = [
+  {
+    q: "Why doesn't Halo own its own shipyard?",
+    a: "Halo owns the part that determines the yacht: the naval architecture, the master CNC files, the Tier-1 systems, the specification and the CE Category A certification file. Physical fabrication is contracted to accredited aluminium yards. Capital that would otherwise sit in a shed and a fixed workforce sits instead in engineering and in the boat itself.",
+  },
+  {
+    q: "Who am I actually buying from?",
+    a: "Halo Yachts. You sign one purchase agreement with Halo, who acts as prime contractor. The building yard is Halo's subcontractor and is never your counterparty — your contract, your escrow account, your specification and your warranty all sit with Halo from deposit to handover.",
+  },
+  {
+    q: "How do I know the yard building my boat is any good?",
+    a: "Every partner yard is accredited against fixed criteria: certified aluminium welding qualifications, documented marine QA and traceability records, and proven capacity for a build of this size. During the build, work passes the Halo Quality & Conformity Gate, a Halo representative or appointed marine surveyor inspects weekly, and stage payments are released from escrow only against a signed Stage Completion Certificate.",
+  },
+  {
+    q: "Will two Halos built at different yards be the same boat?",
+    a: "Yes. Every hull is cut from the same master DXF files, fitted with the same centrally sourced Tier-1 systems, inspected under the same regime and certified to the same approved design definition. The yard supplies fabrication labour and workshop capability, not design decisions.",
+  },
+  {
+    q: "Does building near my home port actually benefit me?",
+    a: "It shortens the delivery leg, reduces freight cost and import exposure, and means commissioning, sea trials and handover happen in the waters you will actually use. It also keeps you close to the build if you want to visit during construction.",
+  },
+  {
+    q: "What happens if a yard fails to perform mid-build?",
+    a: "Problems surface weekly rather than at handover, because inspection is continuous and payment is staged. In practice most issues are rectification at the yard, at the yard's cost, before the next stage is certified. Your money is the primary protection: an uncertified stage releases no funds, so you never pay ahead of verified work. Relocating a build is only realistic early on, while it is still effectively a cut kit — at that point Halo can re-allocate the slot to another accredited yard. Later in the programme the remedy is Halo taking direct control of completion: supervision stepped up, additional labour or a replacement subcontractor brought in, and if necessary a different yard completing fit-out and commissioning. We do not claim a schedule can never be disrupted; we do commit that your contract, escrow balance, specification and warranty remain with Halo throughout.",
+  },
+];
+
 const WARRANTY_SERVICE: Faq[] = [
   {
     q: "How does the warranty coverage work on my Halo 44?",
