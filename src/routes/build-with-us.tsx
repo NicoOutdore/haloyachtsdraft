@@ -149,6 +149,31 @@ const CRITERIA = [
   { title: "Quality control", body: "Documented QC infrastructure, inspection records and willingness to host independent marine surveyor sign-offs." },
 ];
 
+function HoneyPot({
+  id,
+  value,
+  onChange,
+}: {
+  id: string;
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+      <label htmlFor={id}>Do not fill this in</label>
+      <input
+        id={id}
+        name={id}
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    </div>
+  );
+}
+
 function Field({
   id,
   label,
@@ -234,6 +259,9 @@ function BuildWithUs() {
   const [gError, setGError] = useState<string | undefined>(undefined);
   const [unlocking, setUnlocking] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
+  const [gHp, setGHp] = useState("");
+  const [hp, setHp] = useState("");
+  const [startedAt] = useState(() => Date.now());
 
   const sendInterest = useServerFn(submitYardInterest);
 
@@ -256,6 +284,8 @@ function BuildWithUs() {
           country: gCountry.trim(),
           contact: gContact.trim(),
           email: gEmail.trim(),
+          hp: gHp,
+          elapsed: Date.now() - startedAt,
         },
       });
     } catch {
@@ -380,6 +410,7 @@ function BuildWithUs() {
                 error={gError}
               />
             </div>
+            <HoneyPot id="brief-company-website" value={gHp} onChange={setGHp} />
             <Button type="submit" size="lg" className="justify-self-start" disabled={unlocking}>
               {unlocking ? "Opening…" : "Open the programme brief"}
             </Button>
