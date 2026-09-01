@@ -236,6 +236,7 @@ function AreaField({
 }
 
 const BRIEF_KEY = "halo-yard-brief-unlocked";
+const BRIEF_EMAIL_KEY = "halo-yard-brief-email";
 
 function BuildWithUs() {
   const [yard, setYard] = useState("");
@@ -277,7 +278,9 @@ function BuildWithUs() {
     }
     setGError(undefined);
     setUnlocking(true);
+    const alreadyLogged = window.localStorage.getItem(BRIEF_EMAIL_KEY) === gEmail.trim().toLowerCase();
     try {
+      if (alreadyLogged) throw new Error("already-logged");
       await sendInterest({
         data: {
           yard: gYard.trim(),
@@ -292,6 +295,7 @@ function BuildWithUs() {
       // The brief still opens: capture failure must not block a partner yard.
     } finally {
       window.localStorage.setItem(BRIEF_KEY, "1");
+      window.localStorage.setItem(BRIEF_EMAIL_KEY, gEmail.trim().toLowerCase());
       setUnlocked(true);
       setUnlocking(false);
     }
@@ -491,6 +495,7 @@ function BuildWithUs() {
             onChange={setQc}
           />
 
+          <HoneyPot id="yard-company-website" value={hp} onChange={setHp} />
           <Button type="submit" size="lg" className="justify-self-start" disabled={submitting}>
             {submitting ? "Submitting…" : "Submit application"}
           </Button>
