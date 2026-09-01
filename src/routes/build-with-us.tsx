@@ -47,24 +47,6 @@ const TRUST = [
   },
 ];
 
-const NETWORK = [
-  {
-    title: "Built near the owner",
-    body: "The boat is fabricated in the region she will be sailed, cutting freight, import duty and delivery miles — impossible from a single fixed factory.",
-  },
-  {
-    title: "Capacity is not one yard's order book",
-    body: "Slots exist across several accredited yards, so a delivery date does not depend on one workshop's backlog or local labour market.",
-  },
-  {
-    title: "A slot can be re-allocated",
-    body: "If a yard underperforms against the Quality & Conformity Gate, Halo moves the build. The owner's contract, escrow and specification are untouched.",
-  },
-  {
-    title: "The standard travels, not the shed",
-    body: "Master DXF files, centrally sourced Tier-1 systems and a fixed inspection regime mean an identical yacht regardless of which yard welds her.",
-  },
-];
 
 const FRAMEWORK = [
   {
@@ -350,22 +332,6 @@ function BuildWithUs() {
             <article key={t.title} className="surface-panel rounded-lg p-6">
               <h3 className="text-base font-semibold">{t.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t.body}</p>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="For prospective owners"
-        title="Why a network, not a single factory"
-        intro="Halo does not own one production yard, by design. For an owner that is a structural advantage, not a gap."
-        className="border-t border-border"
-      >
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {NETWORK.map((n) => (
-            <article key={n.title} className="surface-panel rounded-lg p-8">
-              <h3 className="text-lg font-semibold">{n.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{n.body}</p>
             </article>
           ))}
         </div>
