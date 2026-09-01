@@ -7,9 +7,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const TITLE = "FAQ — Buying, Warranty, Safety & Sustainability | Halo Yachts";
+const TITLE = "FAQ — Buying, Build Network, Warranty & Safety | Halo Yachts";
 const DESCRIPTION =
-  "Answers on buying a Halo yacht — escrow-protected stage payments, warranty coverage and single-point service — plus CE Category A safety engineering and solar-electric autonomy.";
+  "Answers on buying a Halo yacht — escrow-protected stage payments, how our accredited yard network is governed, warranty and single-point service — plus CE Category A safety engineering and solar-electric autonomy.";
 
 type Faq = { q: string; a: string };
 
@@ -208,7 +208,7 @@ const SUSTAINABILITY: Faq[] = [
 const JSON_LD = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [...BUYING, ...WARRANTY_SERVICE, ...SAFETY, ...SUSTAINABILITY].map((f) => ({
+  mainEntity: [...BUYING, ...NETWORK_FAQ, ...WARRANTY_SERVICE, ...SAFETY, ...SUSTAINABILITY].map((f) => ({
     "@type": "Question",
     name: f.q,
     acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -257,6 +257,10 @@ function FaqPage() {
 
       <Section id="buying" eyebrow="Buying & build" title="The buying & build model">
         <FaqList items={BUYING} idPrefix="buying" />
+      </Section>
+
+      <Section id="network" eyebrow="Our build network" title="How Halo's yard network works for you" className="border-t border-border">
+        <FaqList items={NETWORK_FAQ} idPrefix="network" />
       </Section>
 
       <Section id="warranty" eyebrow="Warranty & service" title="Ownership support & warranty coverage" className="border-t border-border">
