@@ -324,6 +324,8 @@ function BuildWithUs() {
           welding: welding.trim(),
           capacity: capacity.trim(),
           qc: qc.trim(),
+          hp,
+          elapsed: Date.now() - startedAt,
         },
       });
       toast.success("Application submitted", {
