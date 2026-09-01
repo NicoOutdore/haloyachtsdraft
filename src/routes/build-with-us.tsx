@@ -439,67 +439,89 @@ function BuildWithUs() {
       </Section>
 
 
-      <Section eyebrow="Application" title="Yard application" className="border-t border-border">
-        <form onSubmit={handleSubmit} className="surface-panel mt-10 grid max-w-3xl gap-5 rounded-lg p-8">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field id="yard" label="Yard name" required maxLength={150} value={yard} onChange={setYard} />
-            <Field id="country" label="Country / region" required maxLength={100} value={country} onChange={setCountry} />
-            <Field id="contact" label="Contact name" required maxLength={100} autoComplete="name" value={contact} onChange={setContact} />
-            <Field
-              id="email"
-              label="Email"
-              type="email"
-              required
-              maxLength={255}
-              autoComplete="email"
-              value={email}
-              onChange={setEmail}
-              error={errors.email}
-            />
-            <PhoneFields
-              dialCode={dialCode}
-              onDialCodeChange={setDialCode}
-              phone={phone}
-              onPhoneChange={setPhone}
-              error={errors.phone}
-            />
-            <Field id="website" label="Website" type="url" maxLength={255} placeholder="https://" value={website} onChange={setWebsite} />
+      <Section
+        eyebrow="Application"
+        title="Yard application"
+        intro="Applications are reviewed by Halo's production team. Shortlisted yards are invited to an invitation-only RFQ that includes the full build timetable, scope of supply, target costs for yard-sourced materials, design study plans (chine plate nesting and structural frame layout), and a simple 5-page tender return document. Commercial terms and labour rates are discussed at RFQ stage against the 2,410-hour programme."
+        className="border-t border-border"
+      >
+        <div className="mt-10 grid max-w-3xl gap-6">
+          <div className="surface-panel rounded-lg p-6">
+            <h3 className="text-base font-semibold">What happens after you apply</h3>
+            <ol className="mt-4 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-muted-foreground">
+              <li>
+                <strong className="text-foreground">Review</strong> — Halo's production team checks your accreditations, aluminium welding capacity, CNC and assembly capability, and quality-control infrastructure.
+              </li>
+              <li>
+                <strong className="text-foreground">RFQ invitation</strong> — Shortlisted yards receive the RFQ pack: design study plans, the 24-week / 2,410-hour build timetable, scope splits and a tender return template.
+              </li>
+              <li>
+                <strong className="text-foreground">Tender return & commercial terms</strong> — Yards return rates and hours against the 2,410-hour programme. Commercial terms, payment milestones and escrow release are agreed at this stage.
+              </li>
+            </ol>
           </div>
 
-          <AreaField
-            id="accreditations"
-            label="Workshop accreditations & certifications"
-            placeholder="ISO 9001, welder qualifications (e.g. EN ISO 9606-2), CE/RCD experience"
-            value={accreditations}
-            onChange={setAccreditations}
-          />
-          <AreaField
-            id="welding"
-            label="CNC & aluminium welding capability"
-            placeholder="Machines, sheet capacity, number of certified welders, annual aluminium tonnage"
-            value={welding}
-            onChange={setWelding}
-          />
-          <AreaField
-            id="capacity"
-            label="Crane, slipway & covered build capacity"
-            placeholder="Lifting capacity, launch access, covered floor area and available build bays"
-            value={capacity}
-            onChange={setCapacity}
-          />
-          <AreaField
-            id="qc"
-            label="Quality control infrastructure"
-            placeholder="Inspection processes, documentation, NDT, surveyor access"
-            value={qc}
-            onChange={setQc}
-          />
+          <form onSubmit={handleSubmit} className="surface-panel grid gap-5 rounded-lg p-8">
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field id="yard" label="Yard name" required maxLength={150} value={yard} onChange={setYard} />
+              <Field id="country" label="Country / region" required maxLength={100} value={country} onChange={setCountry} />
+              <Field id="contact" label="Contact name" required maxLength={100} autoComplete="name" value={contact} onChange={setContact} />
+              <Field
+                id="email"
+                label="Email"
+                type="email"
+                required
+                maxLength={255}
+                autoComplete="email"
+                value={email}
+                onChange={setEmail}
+                error={errors.email}
+              />
+              <PhoneFields
+                dialCode={dialCode}
+                onDialCodeChange={setDialCode}
+                phone={phone}
+                onPhoneChange={setPhone}
+                error={errors.phone}
+              />
+              <Field id="website" label="Website" type="url" maxLength={255} placeholder="https://" value={website} onChange={setWebsite} />
+            </div>
 
-          <HoneyPot id="yard-company-website" value={hp} onChange={setHp} />
-          <Button type="submit" size="lg" className="justify-self-start" disabled={submitting}>
-            {submitting ? "Submitting…" : "Submit application"}
-          </Button>
-        </form>
+            <AreaField
+              id="accreditations"
+              label="Workshop accreditations & certifications"
+              placeholder="ISO 9001, welder qualifications (e.g. EN ISO 9606-2), CE/RCD experience"
+              value={accreditations}
+              onChange={setAccreditations}
+            />
+            <AreaField
+              id="welding"
+              label="CNC & aluminium welding capability"
+              placeholder="Machines, sheet capacity, number of certified welders, annual aluminium tonnage"
+              value={welding}
+              onChange={setWelding}
+            />
+            <AreaField
+              id="capacity"
+              label="Crane, slipway & covered build capacity"
+              placeholder="Lifting capacity, launch access, covered floor area and available build bays"
+              value={capacity}
+              onChange={setCapacity}
+            />
+            <AreaField
+              id="qc"
+              label="Quality control infrastructure"
+              placeholder="Inspection processes, documentation, NDT, surveyor access"
+              value={qc}
+              onChange={setQc}
+            />
+
+            <HoneyPot id="yard-company-website" value={hp} onChange={setHp} />
+            <Button type="submit" size="lg" className="justify-self-start" disabled={submitting}>
+              {submitting ? "Submitting…" : "Submit application"}
+            </Button>
+          </form>
+        </div>
       </Section>
     </SiteShell>
   );
