@@ -189,7 +189,7 @@ function Home() {
       >
         <div className="surface-panel mt-10 max-w-4xl rounded-lg p-8 sm:p-12">
           <p className="text-lg leading-relaxed text-foreground sm:text-xl">
-            For discerning owners who value substance over spectacle, Halo delivers 44ft
+            For discerning owners who value substance over spectacle, Halo delivers 13.5 m
             solar-electric catamarans that unite commercial-grade engineering with pragmatic quiet
             luxury.
           </p>
