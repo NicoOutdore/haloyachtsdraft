@@ -69,7 +69,7 @@ const NETWORK_FAQ: Faq[] = [
 
 const WARRANTY_SERVICE: Faq[] = [
   {
-    q: "How does the warranty coverage work on my Halo 44?",
+    q: "How does the warranty coverage work on my Halo 13.5?",
     a: "Halo Yachts acts as your single point of contact for all warranty needs. We provide a limited assembly and workmanship warranty covering the hull structure, interior joinery, and systems integration. Integrated Tier-1 components (such as ePropulsion powertrains, Victron energy systems, and Maxeon solar arrays) carry their respective 2-to-5-year manufacturer warranties, which Halo manages on your behalf.",
   },
   {
