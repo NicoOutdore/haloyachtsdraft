@@ -223,7 +223,7 @@ function Configure() {
               {model.code} — {model.name}
             </p>
             <dl className="mt-6 space-y-3 text-sm">
-              <SummaryRow label="Base build (pre-VAT)" value={formatEur(BASE_PRICE)} />
+              <SummaryRow label="Base build (pre-VAT)" value={`from ${formatEur(BASE_PRICE)}`} />
               <SummaryRow label="Layout" value={cabins} />
               {selectedPacks.map((p) => (
                 <SummaryRow key={p.id} label={p.name} value={formatEur(p.price)} />
@@ -236,7 +236,7 @@ function Configure() {
               Indicative total
             </p>
             <p className="mt-1 text-3xl font-semibold text-accent">{formatEur(total)}</p>
-            <p className="mt-1 text-xs text-muted-foreground">Plus VAT, from a €525,000 base build.</p>
+            <p className="mt-1 text-xs text-muted-foreground">Plus VAT. Indicative from-price — a firm quotation is issued before contract and is fixed once signed.</p>
 
             <Button size="lg" className="mt-7 w-full" onClick={() => setDialogOpen(true)}>
               Reserve Build Slot / Enquire About This Spec

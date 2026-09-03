@@ -17,7 +17,7 @@ const JSON_LD = {
     description: m.summary,
     category: "Solar-electric cruising catamaran",
     brand: { "@type": "Brand", name: "Halo Yachts" },
-    offers: { "@type": "Offer", priceCurrency: "EUR", price: BASE_PRICE },
+    offers: { "@type": "AggregateOffer", priceCurrency: "EUR", lowPrice: BASE_PRICE, offerCount: 1 },
   })),
 };
 

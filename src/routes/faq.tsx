@@ -16,7 +16,11 @@ type Faq = { q: string; a: string };
 const BUYING: Faq[] = [
   {
     q: "How does purchasing a Halo yacht work?",
-    a: "You contract directly with Halo Yachts under a single, comprehensive purchase agreement for €525,000 + VAT. Halo acts as your prime contractor and single point of accountability from initial deposit through to final handover. We supply the design IP, CNC kit, electric drivetrain and solar architecture, while subcontracting the physical assembly to our certified regional shipyard partners under strict technical supervision.",
+    a: "You contract directly with Halo Yachts under a single, comprehensive purchase agreement at a firm, quoted contract price (indicative base build from €525,000 pre-VAT). Halo acts as your prime contractor and single point of accountability from initial deposit through to final handover. We supply the design IP, CNC kit, electric drivetrain and solar architecture, while subcontracting the physical assembly to our certified regional shipyard partners under strict technical supervision.",
+  },
+  {
+    q: "Is the published price the price I'll pay?",
+    a: "The published €525,000 pre-VAT figure is an indicative from-price. The final base price varies with the build yard's labour rate and the aluminium market at time of order. Before you commit to anything, Halo issues a firm, fixed-price written quotation valid for a defined acceptance window — once signed, that contracted price is fixed, and your stage payments are percentages of that figure. You never pay a deposit against an unconfirmed price.",
   },
   {
     q: "Who is my point of contact during the build?",
