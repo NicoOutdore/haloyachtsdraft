@@ -5,7 +5,7 @@ import { BASE_PRICE, RUNNING_COSTS, formatEur } from "@/components/site/data";
 
 const TITLE = "Pricing, Ownership Pathways & Running Costs | Halo Yachts";
 const DESCRIPTION =
-  "Halo 13.5m base build price €525,000 pre-VAT, with outright purchase, Maltese maritime leasing (50% VAT reduction) and marine mortgage pathways — plus annual running cost comparisons against diesel cats.";
+  "Halo 13.5m base build price from €525,000 pre-VAT, with outright purchase, Maltese maritime leasing (50% VAT reduction) and marine mortgage pathways — plus annual running cost comparisons against diesel cats.";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -62,13 +62,23 @@ function Pricing() {
       <Section eyebrow="Base build" title="Target base build price">
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.2fr_1fr]">
           <div className="surface-panel rounded-lg p-10">
-            <p className="eyebrow">End customer, pre-VAT</p>
-            <p className="mt-4 text-5xl font-semibold">{formatEur(BASE_PRICE)}</p>
+            <p className="eyebrow">Indicative base price — end customer, pre-VAT</p>
+            <p className="mt-4 text-5xl font-semibold">From {formatEur(BASE_PRICE)}</p>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground">
               Complete, sailaway 13.5 m solar-electric aluminium catamaran in Model A or Model B
               configuration, including the 47.0 kWh ePropulsion 96 V system (67.4 kWh optional via equipment pack), ~38 m² hardtop solar array
               and standard 40 m² LibertyKite auxiliary drive.
             </p>
+            <div className="mt-7 max-w-xl border-t border-border/60 pt-5">
+              <h3 className="text-sm font-semibold">How your final price is confirmed</h3>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                The published figure is an indicative from-price: the final base price varies with the
+                partner yard's labour rate and the aluminium market at time of order. Before contract,
+                Halo issues a firm, fixed-price written quotation valid for a defined acceptance window.
+                Once signed, your contracted price is fixed — stage payments are percentages of that
+                contracted figure, and nothing changes unless you change the specification.
+              </p>
+            </div>
           </div>
           <div className="surface-panel rounded-lg p-10">
             <h3 className="text-lg font-semibold">Stage payment schedule</h3>
@@ -96,7 +106,7 @@ function Pricing() {
               </table>
             </div>
             <p className="mt-6 text-xs text-muted-foreground">
-              All percentages are of the base build price. Equipment packs, local VAT, delivery and commissioning are quoted and paid separately.
+              All percentages are of the contracted base build price. Equipment packs, local VAT, delivery and commissioning are quoted and paid separately.
             </p>
           </div>
         </div>

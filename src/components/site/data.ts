@@ -327,7 +327,7 @@ export const OPERATING_REGIONS = [
 export const BUILD_FACTS = [
   { label: "Build programme", value: "24 weeks · 2,410 production hours" },
   { label: "Certification", value: "CE Category A — Ocean" },
-  { label: "Base build", value: "€525,000 + VAT" },
+  { label: "Base build", value: "from €525,000 + VAT" },
 ];
 
 export const ENERGY_OPTIONS = [
